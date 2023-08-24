@@ -79,7 +79,7 @@ export class AppModel {
 ```
 
 In the model object, use `fireRerenderers()` function. Note that this function
-actually invokes hooks inside the components, but it is not necessary to be
+actually invokes hooks inside the components, but its caller is not necessary to be
 inside a component function nor a hook function.
 
 Please see how it works in the [Demo](https://j2wckn.csb.app/]).
