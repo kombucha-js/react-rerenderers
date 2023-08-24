@@ -1,233 +1,103 @@
- React-Rerenderers.js
+ 🌈 React-Rerenderers.js
 ======================
 This is a new state management framework which allows you to decide when to
-render your components.
+render your components. For further information, please see below.
 
- Features
-----------
+ 👺 Features
+---------------
 **react-rerenderers** is a new state management library. This is a quite unusual
 and yet efficient usage of React.js' hooks.
 
-- No framework is required
 - No more infinite rendering loop
 - No more stale closure problem
 - No more batch update problem
 - No more fussy tricks to manage rendering triggers indirect way
 - Just call rerender() whenever you want to rerender
+- With no dependency
 
-In **react-rerenderers**, you can create a single object without restrictions
-which React.js applications have to follow and the object can be accessed from
-anywhere in your React.js application. The object survives re-renderings so
-that you do not have to care for its life-cycle. The object persists until the
-browser window closes.
 
-In **react-rerenderers**, the object is called **a model**.  And call `rerender()`
-method when there are any components to be updated because the components are
-built upon any fields of the model object; at this point, the React components
-can be called as **views**.
+ 🗽 Free Objects from Renderings 🎊
+-------------------------------------
+With **react-rerenderers**, you can create objects freely; that is your objects
+do not have to follow these restrictions which React.js usually gives you.
+Objects in React.js are usually difficult to survive between renderings; they
+usually have to be created in `useEffect()` hook and oftentimes they have to be
+protected with [memoization](https://react.dev/reference/react/memo).
 
-[CodeSandbox](https://hx4kvd.csb.app/)
+With **react-rerenderers**, your objects will be placed outside from React
+components and able to independently communicate to the components. And these
+outside objects can freely request the peer components to rerender.
 
-In this way, you can build your React application as a traditional pure
-JavaScritp object and you can even manually control when React renders the
-current Virtual DOM tree into HTML DOM tree.
+See this [https://j2wckn.csb.app/](Demo).
 
- How to Use
--------------
-
-Define your business logic as a simple pure JavaScript object as:
-
-`AppModel.js`
+In this demo, components directly refer the fields on the object which is
+located on a package scope; these values are not from `useState()` hook.
+Accessing values in this way usually ends up with stale-value issues which
+those components refer out-of-date states of the object. This is where
+**react-rerenderers.js** comes in. Call `useRerenderer()`.
 
 ```javascript
-export class AppModel {
-  fooValue = 1;
-  barValue = 1;
-  foo() {
-    this.fooValue++;
-    this.rerender();
-  }
-  bar() {
-    this.barValue--;
-    this.rerender();
-  }
-  dependency = 0;
-}
-```
+// AppView.js
 
-Then bind the model object to your main component; in this example, your main
-component is named as `AppView`.
-
-`App.js`
-
-```javascript
-import { defineModelView } from "react-hookless";
-import { AppView         } from "./AppView.js";
-import { AppModel        } from "./AppModel.js";
-export const [App, useAppModel] = defineModelView(
-  AppView,
-  () => new AppModel()
-);
-```
-
-Then build your main component. Your object can be accessed with `useAppModel()` hook.
-
-This is actually the only hook you have to use in this framework; other hooks
-are hidden to the hook.
-
-`AppView.js`
-
-```javascript
-import { useAppModel } from "./App.js";
-
-export function AppView() {
-  const appModel = useAppModel();
+import { useRerenderer } from "./react-rerenderers";
+import { model } from "./App";
+export const AppView = () => {
+  useRerenderer("cute-square");
   return (
-    <div>
-      <h1>An Unusual and Yet Very Effective Usage of React.js</h1>
-      <div onClick={() => appModel.foo()}>{appModel.fooValue}</div>
-      <br />
-      <div onClick={() => appModel.bar()}>{appModel.barValue}</div>
+    <div id="main-frame">
+      <div
+        id="main-object"
+        className={model.cuteSquare}
+        onClick={() => model.exec()}
+      >
+        {model.cuteSquare}
+      </div>
+      <div id="main-message">Click the Square</div>
     </div>
   );
-}
+};
 ```
 
-In case you worry about the life cycle of your object, I will mention that the
-object you specified to `defineModelView()` function survives
-re-renderings.
+It is not necessary to keep the returned value from the `useRerenderer()` hook.
 
-
-Then render the application object.
+After that:
 
 ```javascript
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import { App } from "./App.js";
+// AppModel.js
 
-const rootElement = document.getElementById("root");
-const root = createRoot(rootElement);
-root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
-```
-
- The Principle of React-Hookless
-----------------------------------
-
-The module `react-hookless` is so small that the source code can be exhibited
-in the `README.md` of itsown.
-
-The specified object becomes persistent by using `useRef()` hook and
-the instance is shared by `useContext()` hook.
-
-```javascript
-import * as React from "react";
-
-export function useRerender() {
-  const [, setState] = React.useState(true);
-  function rerender() {
-    setState((e) => !e);
+import { fireRerenderers } from "./react-rerenderers";
+export class AppModel {
+  counter = 0;
+  exec() {
+    if (3 < ++this.counter) this.counter = 0;
+    fireRerenderers(this, "cute-square");
   }
-  return rerender;
-}
-
-function usePersistentObject(factory, rerender) {
-  const ref = React.useRef(null);
-  if (ref.current === null) {
-    ref.current = factory(rerender);
-    ref.current.rerender = rerender;
+  get cuteSquare() {
+    return `f${this.counter}`;
   }
-  return ref.current;
-}
-
-function definePersistentObject(ObjectConsumer, objectFactory) {
-  const context = React.createContext();
-  function ObjectProvider(props) {
-    const rerender = useRerender();
-    const persistentObject = usePersistentObject(objectFactory, rerender);
-    // return (
-    //   <context.Provider value={persistentObject}>
-    //     <ObjectConsumer />
-    //   </context.Provider>
-    // );
-    return React.createElement( context.Provider, {
-      value : persistentObject
-    }, React.createElement(ObjectConsumer, null));
-  }
-  function useObject() {
-    return React.useContext(context);
-  }
-  return [ObjectProvider, useObject];
-}
-
-export function defineModelView(AppView, modelFactory) {
-  return definePersistentObject(AppView, modelFactory);
 }
 ```
 
- The API Reference
----------------------
-### `defineModelView()` ###
-```javascript
-import { defineModelView } from "react-hookless";
-export const [App, useAppModel] = defineModelView( AppView, appModelFactory );
-```
+In the model object, use `fireRerenderers()` function. Note that this function
+actually invokes hooks inside the components, but it is not necessary to be
+inside a component function nor a hook function.
 
-- Parameters
-    - `AppView` : Specifing the view component
-    - `appModelFactory` : A function which creates the model object
-- Return Values
-    - `App` : The generated main component which is a view bound to the single
-      model object.
-    - `useAppModel` : The generated hook funcion which is to retrieve the
-      current model object from the view.
+Please see how it works in the [https://j2wckn.csb.app/](Demo).
 
-### `useRerender()` ###
-```javascript
-function SomeComponent(props) {
-  const rerender = useRerender();
-  const ref = React.useRef({
-    status: "ready"
-  });
+That is, the objects which contains your designated business logic can be
+located in package scope with full ability to call hooks in your component.
 
-  React.useEffect(() => {
-    if (ref.current.status === "ready") {
-      ref.current.status = "started";
-      rerender();
-      setTimeout(() => {
-        ref.current.status = "done";
-        ref.current.value = 42;
-        // Call `rerender()` in case of the timeout was occured while it is
-        // unmounted. If the timeout had been occured before this component was
-        // mounted, rerender() would not be necessary since it would be already
-        // displayed.
-        rerender();
-      }, 5000);
-    }
-    return ()=>{
-      // intentionally sabotarge to clear the timer
-    };
-  }, []);
+It is also said that these objects can be accessed from anywhere in your
+React.js application without necessity to take care of their life-cycle. The
+objects persist until the owning browser window closes.
 
-  return (
-    <>
-      <h1>{ref.current.status}</h1>
-      {ref.current.status === "done" ? <h1>{ref.current.value}</h1> : null}
-    </>
-  );
-}
-```
+This property of this module makes applications drastically easier to develop.
 
-Here is my two cents; just stick to `useRef()`/`useMemo()` to manage the state
-of your application and whenever you want to update your components, call
-`rerender()`. Just do not let React detect when to rerender.  This effectively
-lets your application survive under the error detection of React which enforces
-every rendering to repeat twice, especially if your application needs to start
-initialization by `useEffect()` hook; you have to be very clever to avoid the
-infnite rendering loop.
+
+ API Reference
+---------------
+
+Coming soon.
 
 
 ## Conclusion  ##
