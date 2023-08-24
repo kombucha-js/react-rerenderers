@@ -94,6 +94,16 @@ objects persist until the owning browser window closes.
 This property of this module makes applications drastically easier to develop.
 
 
+ 👩‍❤️‍👨Using React-Rerenderers with React-Router
+---------------------------------------------------------------
+You very likely to want use **react-rerenderers** with **React-Router**.
+
+```javascript
+
+```
+
+
+
  API Reference
 ---------------
 
