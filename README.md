@@ -28,7 +28,7 @@ With **react-rerenderers**, your objects will be placed outside from React
 components and able to independently communicate to the components. And these
 outside objects can freely request the peer components to rerender.
 
-See this [https://j2wckn.csb.app/](Demo).
+See this [Demo](https://j2wckn.csb.app/).
 
 In this demo, components directly refer the fields on the object which is
 located on a package scope; these values are not from `useState()` hook.
@@ -82,7 +82,7 @@ In the model object, use `fireRerenderers()` function. Note that this function
 actually invokes hooks inside the components, but it is not necessary to be
 inside a component function nor a hook function.
 
-Please see how it works in the [https://j2wckn.csb.app/](Demo).
+Please see how it works in the [Demo](https://j2wckn.csb.app/]).
 
 That is, the objects which contains your designated business logic can be
 located in package scope with full ability to call hooks in your component.
