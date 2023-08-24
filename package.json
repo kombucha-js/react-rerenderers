@@ -1,0 +1,25 @@
+{
+  "name": "react-rerenderers",
+  "version": "1.0.0",
+  "description": "a new state management framework which allows you to decide when to render your components.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kombucha-js/react-rerenderers.git"
+  },
+  "keywords": [
+    "state",
+    "management",
+    "react.js",
+    "hooks"
+  ],
+  "author": "Kombucha.js",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kombucha-js/react-rerenderers/issues"
+  },
+  "homepage": "https://github.com/kombucha-js/react-rerenderers#readme"
+}
