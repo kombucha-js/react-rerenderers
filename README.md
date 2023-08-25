@@ -86,10 +86,10 @@ export class AppModel {
 }
 ```
 
-In the model object, use `fireRerenderers()` function. Note that this function
-actually invokes hooks which are located inside the components, but the caller
-of `fireRerenderers()` does not necessarily have to be inside a component
-function nor a hook function.
+In the model object, it uses `fireRerenderers()` function. Note that this
+function actually invokes hooks which are located inside the components, but
+the caller of `fireRerenderers()` does not necessarily have to be inside a
+component function nor a hook function.
 
 Please see how it works in the [Demo](https://j2wckn.csb.app/]).
 
@@ -123,8 +123,8 @@ a direct descendant of the context provider. In **React-Router**, your
 component will be a direct descendant of `Route` component which is the case
 that **useContext()** cannot corpolate with.
 
-Unless your component is placed in following way, it cannot retrieve the
-`current instance`.
+Unless your component is placed in following way, it will not be able to
+retrieve the `current instance`.
 
 ```javascript
 const router = createBrowserRouter(
@@ -150,7 +150,7 @@ for further information.
 
 ### `useInstance()` ###
 
-### `GLOBAL\_INSTANCE` ###
+### `GLOBAL_INSTANCE` ###
 
 ### `useRerenderer()` ###
 
