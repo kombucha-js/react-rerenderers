@@ -103,8 +103,8 @@ objects persist until the owning browser window closes.
 This property of this module makes applications drastically easier to develop.
 
 
- 👩‍❤️‍👨Using React-Rerenderers with React-Router
----------------------------------------------------------------
+ 🌈 Using React-Rerenderers with React-Router 👩‍❤️‍👨
+------------------------------------------------------------------
 You very likely want to use **React-Rerenderers** with **React-Router**.  If
 you are in that case, you will try the following code and notice that it does
 not work.
@@ -143,14 +143,34 @@ See [this post](https://github.com/remix-run/react-router/issues/9324#issuecomme
 for further information.
 
 
-
  API Reference
----------------
+----------------
 
-Coming soon.
+### `InstanceProvider()` ###
+
+### `useInstance()` ###
+
+### `GLOBAL\_INSTANCE` ###
+
+### `useRerenderer()` ###
+
+### `fireRerenderers()` ###
+
+### `useGet()` ###
+
+### `useSet()` ###
+
+### `useNewTransmitter()` ###
+
+### `getTransmitter()` ###
+
+### `useTransmitter()` ###
+
+### `useRerender()` ###
 
 
-## Conclusion  ##
+ Conclusion
+--------------
 
 I am not sure this is an appropriate usage React.js nor I even don't think this
 is a correct usage of React.js since this usage is a kind of an attempt of
