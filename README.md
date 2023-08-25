@@ -18,11 +18,16 @@ and yet efficient usage of React.js' hooks.
 
  🗽 Free Objects from Renderings 🎊
 -------------------------------------
-With **react-rerenderers**, you can create objects freely; that is your objects
+With **react-rerenderers**, you can create objects freely; that is, your objects
 do not have to follow these restrictions which React.js usually gives you.
-Objects in React.js are usually difficult to survive between renderings; they
+Objects in React.js are usually difficult to survive between renderings; objects
 usually have to be created in `useEffect()` hook and oftentimes they have to be
-protected with [memoization](https://react.dev/reference/react/memo).
+destroyed when the owning component is unmounted.
+
+Therefore, the objects related to a mounted componet cannot survive between
+renderings unless the objects are protected with [memoization](https:
+//react.dev/reference/react/memo). This property of React.js makes designing
+applications be with some difficulties.
 
 With **react-rerenderers**, your objects will be placed outside from React
 components and able to independently communicate to the components. And these
@@ -58,7 +63,10 @@ export const AppView = () => {
 };
 ```
 
-It is not necessary to keep the returned value from the `useRerenderer()` hook.
+You might notice that the returned value of `useRerenderer()` hook is
+abondaned. Actually, it is not necessary to keep the returned value from the
+`useRerenderer()` hook because it should be called only for letting the system
+know where to be rerendered.
 
 After that:
 
@@ -79,8 +87,9 @@ export class AppModel {
 ```
 
 In the model object, use `fireRerenderers()` function. Note that this function
-actually invokes hooks inside the components, but its caller is not necessary to be
-inside a component function nor a hook function.
+actually invokes hooks which are located inside the components, but the caller
+of `fireRerenderers()` does not necessarily have to be inside a component
+function nor a hook function.
 
 Please see how it works in the [Demo](https://j2wckn.csb.app/]).
 
@@ -96,11 +105,42 @@ This property of this module makes applications drastically easier to develop.
 
  👩‍❤️‍👨Using React-Rerenderers with React-Router
 ---------------------------------------------------------------
-You very likely to want use **react-rerenderers** with **React-Router**.
+You very likely want to use **React-Rerenderers** with **React-Router**.  If
+you are in that case, you will try the following code and notice that it does
+not work.
 
 ```javascript
-
+const router = [ ... /* some-routes */ ];
+return (
+  <InstanceProvider factory={() => model} >
+    <RouterProvider router={router} />
+  </InstanceProvider>
+);
 ```
+
+**React-Rerenderers** uses `useContext()` hook; the context consumer have to be
+a direct descendant of the context provider. In **React-Router**, your
+component will be a direct descendant of `Route` component which is the case
+that **useContext()** cannot corpolate with.
+
+Unless your component is placed in following way, it cannot retrieve the
+`current instance`.
+
+```javascript
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route element={ <InstanceProvider factory={() => model} /> }>
+      <Route path="/" element={<AppView />} />
+    </Route>
+  )
+);
+return (
+  <RouterProvider router={router} />
+);
+```
+
+See [this post](https://github.com/remix-run/react-router/issues/9324#issuecomment-1268554681)
+for further information.
 
 
 
