@@ -29,10 +29,9 @@ class CollectionMap {
       return this.rerenderMap.get(key);
     } else {
       console.warn(
-        "the specified rerenderer of which key is '" +
-          (key ?? "null").toString() +
-          "' does not exist; ignored."
-      );
+        `the specified rerenderer of which key is ` +
+        `'${(key ?? "null").toString()}' ` +
+        `does not exist; ignored.`);
       return undefined;
     }
   }
@@ -59,9 +58,8 @@ class CollectionMap {
       return this.dependerMap.get(key);
     } else {
       console.warn(
-        `the specified rerenderer which key is ` +
-          key +
-          ` does not exist; ignored.`
+        `the specified rerenderer which key ` +
+        `is ${ key } does not exist; ignored.`
       );
       return undefined;
     }
@@ -92,17 +90,10 @@ class CollectionMapMap {
  *
  */
 
-// export function useRerender() {
-//   const [, setState] = React.useState(true);
-//   function rerender() {
-//     setState((e) => !e);
-//   }
-//   return rerender;
-// }
 export function useRerender() {
-  const [, setState] = React.useState(0);
+  const [, setState] = React.useState(true);
   function rerender() {
-    setState((e) => e + 1);
+    setState((e) => !e);
   }
   return rerender;
 }
@@ -177,6 +168,7 @@ function __executeUpdate(update, instance, state) {
 
 export const GLOBAL_INSTANCE = { ID: "GLOBAL_INSTANCE" };
 const GLOBAL_INSTANCE_FACTORY = () => GLOBAL_INSTANCE;
+
 function useInstanceDefinition(factory, update) {
   const rerender = useRerender();
   factory = factory ?? GLOBAL_INSTANCE_FACTORY;
@@ -185,7 +177,7 @@ function useInstanceDefinition(factory, update) {
   if (ref.current === null) {
     const instance = factory();
     ref.current = null;
-    if ("then" in instance && typeof instance.then === "function") {
+    if (('then' in instance) && (typeof instance.then === 'function')) {
       (async () => {
         ref.current = await instance;
         __executeUpdate(update, ref.current, "new");
@@ -203,16 +195,12 @@ function useInstanceDefinition(factory, update) {
 
 const instanceContext = React.createContext(GLOBAL_INSTANCE);
 
-function wrapInstance(o) {
-  return o;
-}
-
 export function useInstance() {
   const result = React.useContext(instanceContext);
   if (result === GLOBAL_INSTANCE) {
     console.warn("useInstance() returns GLOBAL_INSTANCE.");
   }
-  return wrapInstance(result);
+  return result;
 }
 
 export function InstanceProvider({ factory, update, children }) {
