@@ -25,15 +25,18 @@ usually have to be created in `useEffect()` hook and oftentimes they have to be
 destroyed when the owning component is unmounted.
 
 Therefore, the objects related to a mounted componet cannot survive between
-renderings unless the objects are protected with [memoization](https:
-//react.dev/reference/react/memo). This property of React.js makes designing
-applications be with some difficulties.
+renderings unless the objects are protected with [memoization][].  This
+property of React.js makes designing applications be with some difficulties.
+
+[memoization]: https://react.dev/reference/react/memo
 
 With **react-rerenderers**, your objects will be placed outside from React
 components and able to independently communicate to the components. And these
 outside objects can freely request the peer components to rerender.
 
-See this [Demo](https://j2wckn.csb.app/).
+See this [demo][].
+
+[demo]: https://j2wckn.csb.app/
 
 In this demo, components directly refer the fields on the object which is
 located on a package scope; these values are not from `useState()` hook.
