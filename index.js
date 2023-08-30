@@ -29,7 +29,9 @@ class CollectionMap {
       return this.rerenderMap.get(key);
     } else {
       console.warn(
-        `the specified rerenderer which key is ${key} does not exist; ignored.`
+        "the specified rerenderer of which key is '" +
+          (key ?? "null").toString() +
+          "' does not exist; ignored."
       );
       return undefined;
     }
@@ -57,7 +59,9 @@ class CollectionMap {
       return this.dependerMap.get(key);
     } else {
       console.warn(
-        `the specified rerenderer which key is ${key} does not exist; ignored.`
+        `the specified rerenderer which key is ` +
+          key +
+          ` does not exist; ignored.`
       );
       return undefined;
     }
@@ -88,14 +92,20 @@ class CollectionMapMap {
  *
  */
 
+// export function useRerender() {
+//   const [, setState] = React.useState(true);
+//   function rerender() {
+//     setState((e) => !e);
+//   }
+//   return rerender;
+// }
 export function useRerender() {
-  const [, setState] = React.useState(true);
+  const [, setState] = React.useState(0);
   function rerender() {
-    setState((e) => !e);
+    setState((e) => e + 1);
   }
   return rerender;
 }
-
 
 /*
  *
@@ -110,34 +120,13 @@ export function useRerenderer(args = { key: null }) {
   if (typeof args === "string") {
     args = { key: args };
   }
-  const { key, effect } = args ?? {};
-
-  // const [, setState] = React.useState(true);
-  // function rerender() {
-  //   setState((e) => !e);
-  // }
+  const { key } = args ?? {};
   const rerender = useRerender();
-
   React.useEffect(() => {
-    let effectResult = undefined;
-    if (typeof setup === "function") {
-      try {
-        effectResult = effect(rerender);
-      } catch (e) {
-        console.error(e);
-      }
-    }
     if (key !== undefined) {
       cmap.addRerenders(key, rerender);
     }
     return () => {
-      if (typeof effectResult === "function") {
-        try {
-          effectResult(rerender);
-        } catch (e) {
-          console.error(e);
-        }
-      }
       if (key !== undefined) {
         cmap.deleteRerenders(key, rerender);
       }
@@ -148,7 +137,12 @@ export function useRerenderer(args = { key: null }) {
   };
 }
 
-export function fireRerenderers(instance, key) {
+export function fireRerenderers(
+  instance,
+  key = (() => {
+    throw TypeError("key is not specified");
+  })()
+) {
   const cmap = mapMap.getMap(instance);
   const collection = cmap.peekRerenders(key);
   if (collection !== undefined) {
@@ -167,41 +161,65 @@ export function fireRerenderers(instance, key) {
  * Layer 3
  *
  */
-export const GLOBAL_INSTANCE = {};
+
+function __executeUpdate(update, instance, state) {
+  update = update ?? (() => null);
+  try {
+    update(instance, state);
+  } catch (e) {
+    console.error(
+      "useInstanceDefinition",
+      "specified `update` function threw an error; ignored.",
+      e
+    );
+  }
+}
+
+export const GLOBAL_INSTANCE = { ID: "GLOBAL_INSTANCE" };
 const GLOBAL_INSTANCE_FACTORY = () => GLOBAL_INSTANCE;
-function useInstanceDefinition(factory) {
+function useInstanceDefinition(factory, update) {
   const rerender = useRerender();
   factory = factory ?? GLOBAL_INSTANCE_FACTORY;
-  // if ( typeof factory !== 'function' ) {
-  //   const defaultValue = factory;
-  //   objectFactory = ()=>defaultValue;
-  // }
   const ref = React.useRef(null);
+
   if (ref.current === null) {
     const instance = factory();
-    ref.current = instance;
-
-    if ( ('then' in instance) && (typeof instance.then === 'function') ) {
-      (async()=>{
+    ref.current = null;
+    if ("then" in instance && typeof instance.then === "function") {
+      (async () => {
         ref.current = await instance;
+        __executeUpdate(update, ref.current, "new");
         rerender();
       })();
+    } else {
+      ref.current = instance;
+      __executeUpdate(update, ref.current, "new");
     }
+  } else {
+    __executeUpdate(update, ref.current, "update");
   }
   return ref.current;
 }
 
 const instanceContext = React.createContext(GLOBAL_INSTANCE);
 
+function wrapInstance(o) {
+  return o;
+}
+
 export function useInstance() {
   const result = React.useContext(instanceContext);
-  if ( result === GLOBAL_INSTANCE ) {
-    console.warn( 'the current context is global' );
+  if (result === GLOBAL_INSTANCE) {
+    console.warn("useInstance() returns GLOBAL_INSTANCE.");
   }
-  return result;
+  return wrapInstance(result);
 }
-export function InstanceProvider({ factory, children }) {
-  const instanceDefinition = useInstanceDefinition(factory);
+
+export function InstanceProvider({ factory, update, children }) {
+  const instanceDefinition = useInstanceDefinition(factory, update);
+  if (!Array.isArray(children)) {
+    children = [children];
+  }
   /*
    * return (
    *   <persistentObjectContext.Provider value={persistentObject}>
@@ -211,7 +229,7 @@ export function InstanceProvider({ factory, children }) {
    */
   return React.createElement(instanceContext.Provider, {
     value: instanceDefinition,
-    children
+    children: [...(Array.isArray(children) ? children : [children])]
   });
 }
 
@@ -220,7 +238,7 @@ export function InstanceProvider({ factory, children }) {
  * Layer 4
  *
  */
-export function useGet(key) {
+export function useInstanceValue(key) {
   const instance = useInstance();
   /* const rerender = */ useRerenderer(key);
   return instance[key];
@@ -228,14 +246,14 @@ export function useGet(key) {
 
 export function useSet(key) {
   const instance = useInstance();
-  const rerender = useRerenderer(key);
-  return function writer(value) {
-    instance[key] = value;
-    rerender();
+  return function setter(f) {
+    if (typeof f !== "function") {
+      throw new TypeError("value is not a function");
+    }
+    instance[key] = f(instance[key]);
+    fireRerenderers(key);
   };
 }
-
-
 
 /*
  *
@@ -252,32 +270,43 @@ export function useSet(key) {
             + / hook
             +-[node]
 */
-export function useNewTransmitter( key, value ) {
-  if ( key === null || key === undefined ) {
-    throw new ReferenceError( 'the parameter key was not specified' );
+function setTransmitter(scope, key, value) {
+  if (key === null || key === undefined) {
+    throw new ReferenceError("the parameter key was not specified");
   }
-  const scope = useInstance();
-  React.useEffect(()=>{
-    scope[ key ] = value;
-    return ()=>{
-      scope[ key ] = null;
-    };
-  });
-  return scope;
+  if (scope === null || scope === undefined) {
+    throw new ReferenceError("the parameter scope was not specified");
+  }
+  if (typeof scope !== "object") {
+    throw new ReferenceError("scope must be an object");
+  }
+  scope[key] = value;
+  return;
 }
 
-export function getTransmitter( scope, key ) {
-  if ( scope === null || scope === undefined ) {
-    throw new ReferenceError( 'the parameter scope was not specified' );
+function getTransmitter(scope, key) {
+  if (key === null || key === undefined) {
+    throw new ReferenceError("the parameter key was not specified");
   }
-  if ( key === null || key === undefined ) {
-    throw new ReferenceError( 'the parameter key was not specified' );
+  if (scope === null || scope === undefined) {
+    throw new ReferenceError("the parameter scope was not specified");
   }
-  return scope[ key ] ?? null;
+  if (typeof scope !== "object") {
+    throw new ReferenceError("scope must be an object");
+  }
+  return scope[key] ?? null;
 }
 
-export function useTransmitter( key ) {
+export function useNewTransmitter(key, value) {
+  if (key === null || key === undefined) {
+    throw new ReferenceError("the parameter key was not specified");
+  }
   const scope = useInstance();
-  return getTransmitter( scope, key );
+  setTransmitter(scope, key, value);
+}
+export function useTransmitter(key) {
+  /* const rerenderer = */ useRerenderer(key);
+  const scope = useInstance();
+  return getTransmitter(scope, key);
 }
 
