@@ -239,7 +239,7 @@ export function useInstanceValueSetter(key) {
       throw new TypeError("value is not a function");
     }
     instance[key] = f(instance[key]);
-    fireRerenderers(key);
+    fireRerenderers(instance, key);
   };
 }
 
