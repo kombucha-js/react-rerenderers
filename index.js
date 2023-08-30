@@ -232,7 +232,7 @@ export function useInstanceValue(key) {
   return instance[key];
 }
 
-export function useSet(key) {
+export function useInstanceValueSetter(key) {
   const instance = useInstance();
   return function setter(f) {
     if (typeof f !== "function") {
