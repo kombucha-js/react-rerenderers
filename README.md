@@ -10,10 +10,12 @@ and yet efficient usage of React.js' hooks.
 
 - No more infinite rendering loop
 - No more stale closure problem
+- No more Provider Hell
+- No more Prop Drilling Hell
 - No more batch update problem
 - No more fussy tricks to manage rendering triggers indirect way
 - Just call rerender() whenever you want to rerender
-- With no dependency
+- With zero dependency
 
 
  🗽 Free Objects from Renderings 🎊
@@ -36,7 +38,7 @@ outside objects can freely request the peer components to rerender.
 
 See this [demo][].
 
-[demo]: https://j2wckn.csb.app/
+[demo]: https://2scdyx.csb.app/
 
 In this demo, components directly refer the fields on the object which is
 located on a package scope; these values are not from `useState()` hook.
@@ -47,23 +49,26 @@ those components refer out-of-date states of the object. This is where
 ```javascript
 // AppView.js
 
-import { useRerenderer } from "./react-rerenderers";
-import { model } from "./App";
+import * as Rerenderers from "./react-rerenderers";
+import React from "react";
+
 export const AppView = () => {
-  useRerenderer("cute-square");
+  const instance = Rerenderers.useInstance();
+  const cuteSquare = Rerenderers.useInstanceValue("cuteSquare");
   return (
     <div id="main-frame">
       <div
         id="main-object"
-        className={model.cuteSquare}
-        onClick={() => model.exec()}
+        className={cuteSquare}
+        onClick={() => instance.counter++}
       >
-        {model.cuteSquare}
+        <div>{instance.counter}</div>
       </div>
       <div id="main-message">Click the Square</div>
     </div>
   );
 };
+
 ```
 
 You might notice that the returned value of `useRerenderer()` hook is
@@ -75,18 +80,26 @@ After that:
 
 ```javascript
 // AppModel.js
-
 import { fireRerenderers } from "./react-rerenderers";
-export class AppModel {
-  counter = 0;
-  exec() {
-    if (3 < ++this.counter) this.counter = 0;
-    fireRerenderers(this, "cute-square");
+
+class AppModel {
+  __counter = 0;
+
+  set counter(v) {
+    this.__counter = v % 4;
+    fireRerenderers(this, "cuteSquare");
   }
+
+  get counter() {
+    return this.__counter;
+  }
+
   get cuteSquare() {
-    return `f${this.counter}`;
+    return `f${this.__counter}`;
   }
 }
+
+export const model = new AppModel();
 ```
 
 In the model object, it uses `fireRerenderers()` function. Note that this
