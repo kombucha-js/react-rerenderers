@@ -41,7 +41,12 @@ from React's hells hell.
 Assume you are creating such a simple application:
 
 [Demo No.0](https://codesandbox.io/s/rerenderers-example-no-00-without-react-rerenderers-6d5hnh?file=/src/AppView.js)
-
+<iframe src="https://codesandbox.io/embed/rerenderers-example-no-00-without-react-rerenderers-6d5hnh?fontsize=14&hidenavigation=1&theme=dark"
+     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+     title="Rerenderers Example No.00 Without React-Rerenderers"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
 ```jsx
 import React from "react";
 
