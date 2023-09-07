@@ -35,6 +35,25 @@ from React's hells hell.
  🗽 Free Objects from Renderings 🎊
 =====================================
 
+ Basic Usage
+-----------------------
+
+Assume you are creating such a simple application:
+
+[Demo No.0](https://codesandbox.io/s/rerenderers-example-no-00-without-react-rerenderers-6d5hnh)
+
+
+[Demo No.1](https://codesandbox.io/s/rerenderers-example-no-01-a-basic-usage-nkvvjs)
+
+[Demo No.2](https://codesandbox.io/s/rerenderers-example-no-02-a-crucial-usage-mm5p8h?file=/src/AppView.js)
+
+[Demo No.3](https://codesandbox.io/s/rerenderers-example-no-03-an-advanced-usage-fxwhvp?file=/src/AppView.js)
+
+
+
+
+
+
  Principle Behind the Rerenderers
 ------------------------------------------
 With **react-rerenderers**, you can create objects freely; that is, your objects
