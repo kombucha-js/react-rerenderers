@@ -7,25 +7,30 @@ render your components. For further information, please see below.
 ---------------
 **react-rerenderers** is a new state management library. This is a quite
 unusual and yet efficient usage of React.js' hooks which offers a way to escape
-from React-hell hell:
+from React's hells hell.
 
 - No more [useState() hell][usestate-hell]
 - No more [Prop Drilling][prop-drilling] Hell
 - No more [Lifting-State-Up][lifting-state-up] Hell
 - No more [Context-Provider Hell][context-provider-hell]
 - No more [Redux State Hell][redux-state-hell]
-- No more encapsulation hell
-- No more infinite rendering loop
-- No more stale closure problem
-- No more batch update problem
+- No more [Encapsulation Hell][encapsulation-hell]
+- No more [Infinite Rendering Loop][inf-rendering-loop] hell
+- No more [Stale Closure Problem][stale-closure-problem]
+- No more [Batch Update Problem][batch-update-problem]
 - No more fussy tricks to manage rendering triggers indirect way
 - Zero dependent
 
 [usestate-hell]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+state+hell
 [prop-drilling]: https://react.dev/learn/passing-data-deeply-with-context
 [lifting-state-up]: https://react.dev/learn/sharing-state-between-components
-[context-provider-hell]: https://www.google.com/search?gl=us&hl=en&q=context+provider+hell
+[context-provider-hell]: https://www.google.com/search?gl=us&hl=en&q=react+context+provider+hell
 [redux-state-hell]: https://www.google.com/search?gl=us&hl=en&q=redux-state-hell
+[inf-rendering-loop]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+infinite+rendering
+[encapsulation-hell]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=encapsulation+hell
+[stale-closure-problem]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+stale+closure+problem
+[batch-update-problem]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+state+batch+update+problem
+
 
  🗽 Free Objects from Renderings 🎊
 =====================================
