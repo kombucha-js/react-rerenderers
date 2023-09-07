@@ -9,7 +9,7 @@ render your components. For further information, please see below.
 unusual and yet efficient usage of React.js' hooks which offers a way to escape
 from React's hells hell.
 
-- No more [useState() hell][usestate-hell]
+- No more [useState() Hell][usestate-hell]
 - No more [Prop Drilling][prop-drilling] Hell
 - No more [Lifting-State-Up][lifting-state-up] Hell
 - No more [Context-Provider Hell][context-provider-hell]
