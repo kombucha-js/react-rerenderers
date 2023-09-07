@@ -62,8 +62,8 @@ export const AppView = () => {
 };
 ```
 
-In this demo, every time you clicks on the square `main-object`, the CSS class
-name of `main-object` rotates from `square0` to `square3`.
+In this demo, every time you clicks on the square `main-object`, its CSS class
+rotates from `square0` to `square3`.
 
 [Demo No.1](https://codesandbox.io/s/rerenderers-example-no-01-a-basic-usage-nkvvjs?file=/src/AppView.js)
 
