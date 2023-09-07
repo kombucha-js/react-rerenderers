@@ -5,19 +5,27 @@ render your components. For further information, please see below.
 
  👺 Features
 ---------------
-**react-rerenderers** is a new state management library. This is a quite unusual
-and yet efficient usage of React.js' hooks.
+**react-rerenderers** is a new state management library. This is a quite
+unusual and yet efficient usage of React.js' hooks which offers a way to escape
+from React-hell hell:
 
-- No useState()
-- No encapsulation hell
+- No more [useState() hell][usestate-hell]
+- No more [Prop Drilling][prop-drilling] Hell
+- No more [Lifting-State-Up][lifting-state-up] Hell
+- No more [Context-Provider Hell][context-provider-hell]
+- No more [Redux State Hell][redux-state-hell]
+- No more encapsulation hell
 - No more infinite rendering loop
 - No more stale closure problem
-- No more Provider Hell
-- No more Prop Drilling Hell
 - No more batch update problem
 - No more fussy tricks to manage rendering triggers indirect way
 - Zero dependent
 
+[usestate-hell]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+state+hell
+[prop-drilling]: https://react.dev/learn/passing-data-deeply-with-context
+[lifting-state-up]: https://react.dev/learn/sharing-state-between-components
+[context-provider-hell]: https://www.google.com/search?gl=us&hl=en&q=context+provider+hell
+[redux-state-hell]: https://www.google.com/search?gl=us&hl=en&q=redux-state-hell
 
  🗽 Free Objects from Renderings 🎊
 =====================================
