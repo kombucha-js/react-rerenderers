@@ -18,10 +18,14 @@ and yet efficient usage of React.js' hooks.
 - With zero dependency
 
 
+
  🗽 Free Objects from Renderings 🎊
--------------------------------------
+=====================================
+
+ Principle Behind the Rerenderers
+------------------------------------------
 With **react-rerenderers**, you can create objects freely; that is, your objects
-do not have to follow these restrictions which React.js usually gives you.
+do not have to follow these restrictions which React.js usually gives us.
 Objects in React.js are usually difficult to survive between renderings; objects
 usually have to be created in `useEffect()` hook and oftentimes they have to be
 destroyed when the owning component is unmounted.
@@ -140,7 +144,7 @@ component will be a direct descendant of `Route` component which is the case
 that **useContext()** cannot corpolate with.
 
 Unless your component is placed in following way, it will not be able to
-retrieve the `current instance`.
+retrieve its `current instance`.
 
 ```javascript
 const router = createBrowserRouter(
