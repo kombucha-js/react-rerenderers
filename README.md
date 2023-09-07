@@ -8,15 +8,15 @@ render your components. For further information, please see below.
 **react-rerenderers** is a new state management library. This is a quite unusual
 and yet efficient usage of React.js' hooks.
 
+- No useState()
+- No encapsulation hell
 - No more infinite rendering loop
 - No more stale closure problem
 - No more Provider Hell
 - No more Prop Drilling Hell
 - No more batch update problem
 - No more fussy tricks to manage rendering triggers indirect way
-- Just call rerender() whenever you want to rerender
-- With zero dependency
-
+- Zero dependent
 
 
  🗽 Free Objects from Renderings 🎊
