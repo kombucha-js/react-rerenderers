@@ -40,16 +40,36 @@ from React's hells hell.
 
 Assume you are creating such a simple application:
 
-[Demo No.0](https://codesandbox.io/s/rerenderers-example-no-00-without-react-rerenderers-6d5hnh)
+[Demo No.0](https://codesandbox.io/s/rerenderers-example-no-00-without-react-rerenderers-6d5hnh?file=/src/AppView.js)
 
+```jsx
+import React from "react";
 
-[Demo No.1](https://codesandbox.io/s/rerenderers-example-no-01-a-basic-usage-nkvvjs)
+export const AppView = () => {
+  const [counter, setCounter] = React.useState(0);
+  return (
+    <div id="main-frame">
+      <div
+        id="main-object"
+        className={`square${counter}`}
+        onClick={(e) => setCounter((counter) => (counter + 1) % 4)}
+      >
+        <div>{counter}</div>
+      </div>
+      <div id="main-message">Click the Square</div>
+    </div>
+  );
+};
+```
+
+In this demo, every time you clicks on the square `main-object`, the CSS class
+name of `main-object` rotates from `square0` to `square3`.
+
+[Demo No.1](https://codesandbox.io/s/rerenderers-example-no-01-a-basic-usage-nkvvjs?file=/src/AppView.js)
 
 [Demo No.2](https://codesandbox.io/s/rerenderers-example-no-02-a-crucial-usage-mm5p8h?file=/src/AppView.js)
 
 [Demo No.3](https://codesandbox.io/s/rerenderers-example-no-03-an-advanced-usage-fxwhvp?file=/src/AppView.js)
-
-
 
 
 
