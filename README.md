@@ -223,13 +223,67 @@ component design.
 you actually don't have to call any hook when only thing you want to do is to
 update the state.
 
-
-Actually, this is the biggest surprise which I have encountered duruing I was 
+Actually, this is the biggest surprise which I have encountered duruing I was
 designing **React-Rerenderers**.
 
 See the following example:
 
+[Example No.4](https://codesandbox.io/s/rerenderers-example-no-04-update-components-from-outside-react-ss6tdm?file=/src/AppView.js)
+
+
+```javascript
+import * as Rerenderers from "./react-rerenderers";
+
+/*
+ * Please note that this variable is not
+ * defined inside a React component nor a React hook.
+ */
+let counter = 0;
+
+/*
+ * Again, please note that this function is not
+ * defined inside a React component nor a React hook.
+ */
+const handleClick = () => {
+  counter = (counter + 1) % 4;
+  /*
+   * This rerenders the component which called the
+   * useRenderer() hook with the argument "counter".
+   * See below.
+   */
+  Rerenderers.fireRerenderers("counter");
+};
+
+export const AppView = () => {
+  /*
+   * This is acutually the only hook which you have
+   * to call in this framework. In order to mark
+   * which component to rerender when the model state is
+   * modified, you have to call useRerenderer() hook.
+   */
+  Rerenderers.useRerenderer("counter");
+  /*
+   * Note that you can read and write the variable which
+   * is defined outside the domain of React.
+   * Also note that it can be achieved
+   * without these React hells hell.
+   */
+  return (
+    <div id="main-frame">
+      <div id="main-object" className={`square${counter}`}>
+        <div>{counter}</div>
+      </div>
+      <button id="main-message" onClick={handleClick}>
+        Click Me
+      </button>
+    </div>
+  );
+};
+```
+
+
 [Example No.4](https://codesandbox.io/s/rerenderers-example-no-03-an-advanced-usage-fxwhvp?file=/src/AppView.js)
+
 
 ```javascript
 import * as Rerenderers from "./react-rerenderers";
