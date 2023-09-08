@@ -108,7 +108,7 @@ than `useState()` hook could disgust you, it gives some advantages which
 `useState()` cannot achieve.
 
 ### The Things You Can Achieve with `React-Rerenderers` ###
-#### You can Refresh Your Components from a Remote Location ####
+#### 1. You can Refresh Your Components from a Remote Location ####
 
 See the example below:
 
@@ -171,6 +171,9 @@ import { AppButton } from "./AppButton.js";
 import { AppSquare } from "./AppSquare.js";
 
 export const AppView = () => {
+  // It is not necessary to call `useState()` in
+  // the root of the virtual DOM tree.
+  // const [counter, setCounter] = React.useState(0);
   return (
     <div id="main-frame">
       <AppSquare />
@@ -184,6 +187,7 @@ export const AppView = () => {
 import * as Rerenderers from "./react-rerenderers";
 
 export function AppSquare() {
+  // check this out
   const counter = Rerenderers.useInstanceValue("counter");
   return (
     <div id="main-object" className={`square${counter}`}>
@@ -197,6 +201,7 @@ export function AppSquare() {
 import * as Rerenderers from "./react-rerenderers";
 
 export function AppButton() {
+  // check this out
   const setCount = Rerenderers.useInstanceValueSetter("counter");
   return (
     <button id="main-message" onClick={() => setCount((count) => count + 1)}>
@@ -207,18 +212,25 @@ export function AppButton() {
 ```
 
 Note that `useState()` hook calling at the `<AppView/>` component is eliminated.
-This just works fine.
+See it just works fine.
+
+And you will see that this small difference invokes a drastic change of the
+component design.
 
 
-#### You can Refresh your Components from a Remote Location ####
+#### 2. You Actually Don't Have to Call Any Hook When Only Thing You Want Do is to Update the State
 
+I would like to write it again; you actually don't have to call any hook when
+only thing you want do is to update the state.
+
+This is the biggest thing Which I was surprised When I Wrote
+**React-Rerenderers**
 
 **It actually does not need to use any hooks** to achieve the same goal.  These
 two hooks `useInstanceValueSetter()` and `useInstanceValue()` are just helpers.
 
 With **React-Rerenderers.js** you can acutually define a model object and
 directly access to it.
-
 
 
 [Example No.3](https://codesandbox.io/s/rerenderers-example-no-02-a-crucial-usage-mm5p8h?file=/src/AppView.js)
