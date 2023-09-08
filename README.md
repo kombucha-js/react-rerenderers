@@ -40,7 +40,7 @@ from React's hells hell.
 
 Assume you are creating such a simple application:
 
-[Demo No.0](https://codesandbox.io/s/rerenderers-example-no-00-without-react-rerenderers-6d5hnh?file=/src/AppView.js)
+[Example No.0](https://codesandbox.io/s/rerenderers-example-no-00-without-react-rerenderers-6d5hnh?file=/src/AppView.js)
 
 ```jsx
 import React from "react";
@@ -62,15 +62,40 @@ export const AppView = () => {
 };
 ```
 
-In this demo, every time you clicks on the square `main-object`, its CSS class
-rotates from `square0` to `square3`.
+In this demo, every time you click on the square `main-object`, its CSS class
+will be set to `square0`, `square1`, `square2` and `square3` respectively.  As
+it goes, it moves around the screen to top-left, top-right, bottom-right and
+bottom-left.
 
-[Demo No.1](https://codesandbox.io/s/rerenderers-example-no-01-a-basic-usage-nkvvjs?file=/src/AppView.js)
+In React-Rerenderers, we implement the same logic in the following manner:
 
-[Demo No.2](https://codesandbox.io/s/rerenderers-example-no-02-a-crucial-usage-mm5p8h?file=/src/AppView.js)
+[Example No.1](https://codesandbox.io/s/rerenderers-example-no-01-a-basic-usage-nkvvjs?file=/src/AppView.js)
 
-[Demo No.3](https://codesandbox.io/s/rerenderers-example-no-03-an-advanced-usage-fxwhvp?file=/src/AppView.js)
+```javascript
+import * as Rerenderers from "./react-rerenderers";
 
+export const AppView = () => {
+  const counter = Rerenderers.useInstanceValue("counter");
+  const setCount = Rerenderers.useInstanceValueSetter("counter");
+  return (
+    <div id="main-frame">
+      <div
+        id="main-object"
+        className={`square${counter}`}
+        // a direct access with no hook.
+        onClick={() => setCount((count) => count + 1)}
+      >
+        <div>{counter}</div>
+      </div>
+      <div id="main-message">Click the Square</div>
+    </div>
+  );
+};
+```
+
+[Example No.2](https://codesandbox.io/s/rerenderers-example-no-02-a-crucial-usage-mm5p8h?file=/src/AppView.js)
+
+[Example No.3](https://codesandbox.io/s/rerenderers-example-no-03-an-advanced-usage-fxwhvp?file=/src/AppView.js)
 
 
 
@@ -163,7 +188,7 @@ function actually invokes hooks which are located inside the components, but
 the caller of `fireRerenderers()` does not necessarily have to be inside a
 component function nor a hook function.
 
-Please see how it works in the [Demo](https://j2wckn.csb.app/]).
+Please see how it works in the [Example](https://j2wckn.csb.app/]).
 
 That is, the objects which contains your designated business logic can be
 located in package scope with full ability to call hooks in your component.
