@@ -46,7 +46,7 @@ Assume you are creating such a simple application:
 import React from "react";
 
 export const AppView = () => {
-  const [counter, setCounter] = React.useState(0);
+  const [counter, setCounter] = React.useState(0); // << check this out
   return (
     <div id="main-frame">
       <div
@@ -64,8 +64,8 @@ export const AppView = () => {
 
 In this demo, every time you click on the square `main-object`, its CSS class
 will be set to `square0`, `square1`, `square2` and `square3` respectively.  As
-it goes, it moves around the screen to top-left, top-right, bottom-right and
-bottom-left, respectively.
+the CSS class goes, the square moves around the screen to top-left, top-right,
+bottom-right and bottom-left, respectively.
 
 In **React-Rerenderers**, we implement the same logic in the following manner:
 
@@ -75,8 +75,8 @@ In **React-Rerenderers**, we implement the same logic in the following manner:
 import * as Rerenderers from "./react-rerenderers";
 
 export const AppView = () => {
-  const counter = Rerenderers.useInstanceValue("counter");
-  const setCount = Rerenderers.useInstanceValueSetter("counter");
+  const counter = Rerenderers.useInstanceValue("counter"); // << check this out
+  const setCount = Rerenderers.useInstanceValueSetter("counter"); // << check this out
   return (
     <div id="main-frame">
       <div
