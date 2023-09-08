@@ -106,9 +106,61 @@ than `useState()` hook could disgust you, it gives some advantages with which
 
 See the example below:
 
-[Example No.2](https://codesandbox.io/s/rerenderers-example-no-02-modifying-a-vaue-from-a-remote-location-cc8rdd?file=/src/AppView.js)
+[Example No.2](https://codesandbox.io/s/rerenderers-example-no-02-modifying-a-vaue-from-a-remote-location-with-usestate-lm5yhm?file=/src/AppView.js)
 
-I moved the clicker to a remote location which is defined in the different file.
+I moved the clicker to a remote location which is defined in a different file.
+
+Note that with the traditional `useState()` hook, you have to
+[Lifting Up][lifting-state-up] the `useState()` hook and then you have to
+[Drilling Properties][prop-drilling] six feet deep as the following.
+
+```javascript
+import React from "react";
+import { AppButton } from "./AppButton.js";
+import { AppSquare } from "./AppSquare.js";
+
+export const AppView = () => {
+  const [counter, setCounter] = React.useState(0);
+  return (
+    <div id="main-frame">
+      <AppSquare counter={counter} />
+      <AppButton setCounter={setCounter} />
+    </div>
+  );
+};
+```
+
+```javascript
+export function AppButton({ setCounter }) {
+  return (
+    <button
+      id="main-message"
+      onClick={() => setCounter((count) => (count + 1) % 4)}
+    >
+      Click Me
+    </button>
+  );
+}
+```
+
+```javascript
+export function AppSquare({ counter }) {
+  return (
+    <div id="main-object" className={`square${counter}`}>
+      <div>{counter}</div>
+    </div>
+  );
+}
+```
+
+
+With **React-Rerenderers.js**, you do not need [Lifting Up][lifting-state-up]
+and [Drilling Properties][prop-drilling] anymore. See the following example.
+
+
+[Example No.3](https://codesandbox.io/s/rerenderers-example-no-02-modifying-a-vaue-from-a-remote-location-cc8rdd?file=/src/AppView.js)
+
+
 
 ```javascript
 import * as Rerenderers from "./react-rerenderers";
@@ -142,11 +194,7 @@ export function AppButton() {
 
 This works fine.
 
-Note that with the traditional `useState()` hook, you have to
-[Lifting Up][lifting-state-up] the `useState()` hook and then you have to
-[Drilling Properties][prop-drilling] six feet deep as the following example.
 
-[Example No.4](https://codesandbox.io/s/rerenderers-example-no-04-modifying-a-vaue-from-a-remote-location-with-usestate-lm5yhm?file=/src/AppView.js)
 
 **It actually does not need to use any hooks** to achieve the same goal.  These
 two hooks `useInstanceValueSetter()` and `useInstanceValue()` are just helpers.
