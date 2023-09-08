@@ -31,7 +31,6 @@ from React's hells hell.
 [stale-closure-problem]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+stale+closure+problem
 [batch-update-problem]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+state+batch+update+problem
 
-
  🗽 Free Objects from Renderings 🎊
 =====================================
 
@@ -333,8 +332,8 @@ export class AppModel {
   __counter = 0;
   set counter(v) {
     /*
-     * This is MOD; this resets `v` to zero if
-     * `v` is equals or greater than 4
+     * This is MOD operator; this resets `v` to zero if
+     * `v` is equals or greater than four.
      */
     this.__counter = v % 4;
 
@@ -369,121 +368,10 @@ export const model = new AppModel();
 ```
 
 
+ 🌈  Miscellaneous 🌈
+=====================================
 
-
-**It actually does not need to use any hooks** to achieve the same goal.  These
-two hooks `useInstanceValueSetter()` and `useInstanceValue()` are just helpers.
-
-With **React-Rerenderers.js** you can acutually define a model object and
-directly access to it.
-
-
-
-[Example No.3](https://codesandbox.io/s/rerenderers-example-no-02-a-crucial-usage-mm5p8h?file=/src/AppView.js)
-
-
- Principle Behind the Rerenderers
-------------------------------------------
-With **react-rerenderers**, you can create objects freely; that is, your objects
-do not have to follow these restrictions which React.js usually gives us.
-Objects in React.js are usually difficult to survive between renderings; objects
-usually have to be created in `useEffect()` hook and oftentimes they have to be
-destroyed when the owning component is unmounted.
-
-Therefore, the objects related to a mounted componet cannot survive between
-renderings unless the objects are protected with [memoization][].  This
-property of React.js makes designing applications be with some difficulties.
-
-[memoization]: https://react.dev/reference/react/memo
-
-With **react-rerenderers**, your objects will be placed outside from React
-components and able to independently communicate to the components. And these
-outside objects can freely request the peer components to rerender.
-
-See this [demo][].
-
-[demo]: https://2scdyx.csb.app/
-
-In this demo, components directly refer the fields on the object which is
-located on a package scope; these values are not from `useState()` hook.
-Accessing values in this way usually ends up with stale-value issues which
-those components refer out-of-date states of the object. This is where
-**react-rerenderers.js** comes in. Call `useRerenderer()`.
-
-```javascript
-// AppView.js
-
-import * as Rerenderers from "./react-rerenderers";
-import React from "react";
-
-export const AppView = () => {
-  const instance = Rerenderers.useInstance();
-  const cuteSquare = Rerenderers.useInstanceValue("cuteSquare");
-  return (
-    <div id="main-frame">
-      <div
-        id="main-object"
-        className={cuteSquare}
-        onClick={() => instance.counter++}
-      >
-        <div>{instance.counter}</div>
-      </div>
-      <div id="main-message">Click the Square</div>
-    </div>
-  );
-};
-
-```
-
-You might notice that the returned value of `useRerenderer()` hook is
-abondaned. Actually, it is not necessary to keep the returned value from the
-`useRerenderer()` hook because it should be called only for letting the system
-know where to be rerendered.
-
-After that:
-
-```javascript
-// AppModel.js
-import { fireRerenderers } from "./react-rerenderers";
-
-class AppModel {
-  __counter = 0;
-
-  set counter(v) {
-    this.__counter = v % 4;
-    fireRerenderers(this, "cuteSquare");
-  }
-
-  get counter() {
-    return this.__counter;
-  }
-
-  get cuteSquare() {
-    return `f${this.__counter}`;
-  }
-}
-
-export const model = new AppModel();
-```
-
-In the model object, it uses `fireRerenderers()` function. Note that this
-function actually invokes hooks which are located inside the components, but
-the caller of `fireRerenderers()` does not necessarily have to be inside a
-component function nor a hook function.
-
-Please see how it works in the [Example](https://j2wckn.csb.app/]).
-
-That is, the objects which contains your designated business logic can be
-located in package scope with full ability to call hooks in your component.
-
-It is also said that these objects can be accessed from anywhere in your
-React.js application without necessity to take care of their life-cycle. The
-objects persist until the owning browser window closes.
-
-This property of this module makes applications drastically easier to develop.
-
-
- 🌈 Using React-Rerenderers with React-Router 👩‍❤️‍👨
+ 👩‍❤️‍👨 Using React-Rerenderers with React-Router  👩‍❤️‍👨
 ------------------------------------------------------------------
 You very likely want to use **React-Rerenderers** with **React-Router**.  If
 you are in that case, you will try the following code and notice that it does
