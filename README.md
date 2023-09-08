@@ -112,7 +112,7 @@ I moved the clicker to a remote location which is defined in a different file.
 
 Note that with the traditional `useState()` hook, you have to
 [Lifting Up][lifting-state-up] the `useState()` hook and then you have to
-[Drilling Properties][prop-drilling] six feet deep as the following.
+[Drilling Properties][prop-drilling] six feet deep down as the following.
 
 ```javascript
 import React from "react";
@@ -153,26 +153,19 @@ export function AppSquare({ counter }) {
 }
 ```
 
-
 With **React-Rerenderers.js**, you do not need [Lifting Up][lifting-state-up]
 and [Drilling Properties][prop-drilling] anymore. See the following example.
 
-
-[Example No.3](https://codesandbox.io/s/rerenderers-example-no-02-modifying-a-vaue-from-a-remote-location-cc8rdd?file=/src/AppView.js)
-
-
+[Example No.3](https://codesandbox.io/s/rerenderers-example-no-03-modifying-a-vaue-from-a-remote-location-cc8rdd?file=/src/AppView.js)
 
 ```javascript
-import * as Rerenderers from "./react-rerenderers";
 import { AppButton } from "./AppButton.js";
+import { AppSquare } from "./AppSquare.js";
 
 export const AppView = () => {
-  const counter = Rerenderers.useInstanceValue("counter"); // check this out
   return (
     <div id="main-frame">
-      <div id="main-object" className={`square${counter}`}>
-        <div>{counter}</div>
-      </div>
+      <AppSquare />
       <AppButton />
     </div>
   );
@@ -182,8 +175,20 @@ export const AppView = () => {
 ```javascript
 import * as Rerenderers from "./react-rerenderers";
 
+export function AppSquare() {
+  const counter = Rerenderers.useInstanceValue("counter");
+  return (
+    <div id="main-object" className={`square${counter}`}>
+      <div>{counter}</div>
+    </div>
+  );
+}
+```
+
+```javascript
+import * as Rerenderers from "./react-rerenderers";
 export function AppButton() {
-  const setCount = Rerenderers.useInstanceValueSetter("counter"); // check this out
+  const setCount = Rerenderers.useInstanceValueSetter("counter");
   return (
     <button id="main-message" onClick={() => setCount((count) => count + 1)}>
       Click Me
