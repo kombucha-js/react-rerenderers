@@ -29,9 +29,10 @@ class CollectionMap {
       return this.rerenderMap.get(key);
     } else {
       console.warn(
-        `the specified rerenderer of which key is ` +
-        `'${(key ?? "null").toString()}' ` +
-        `does not exist; ignored.`);
+        "the specified rerenderer of which key is '" +
+          (key ?? "null").toString() +
+          "' does not exist; ignored."
+      );
       return undefined;
     }
   }
@@ -58,8 +59,9 @@ class CollectionMap {
       return this.dependerMap.get(key);
     } else {
       console.warn(
-        `the specified rerenderer which key ` +
-        `is ${ key } does not exist; ignored.`
+        "the specified rerenderer which key is '" +
+          key +
+          "' does not exist; ignored."
       );
       return undefined;
     }
@@ -128,12 +130,18 @@ export function useRerenderer(args = { key: null }) {
   };
 }
 
-export function fireRerenderers(
-  instance,
-  key = (() => {
-    throw TypeError("key is not specified");
-  })()
-) {
+export function fireRerenderers(...args) {
+  const instance =
+    (args.length < 2 ? GLOBAL_INSTANCE : args[0]) ??
+    (() => {
+      throw new TypeError("instance is not specified");
+    })();
+  const key =
+    (args.length < 2 ? args[0] : args[1]) ??
+    (() => {
+      throw new TypeError("key is not specified");
+    })();
+
   const cmap = mapMap.getMap(instance);
   const collection = cmap.peekRerenders(key);
   if (collection !== undefined) {
@@ -177,7 +185,7 @@ function useInstanceDefinition(factory, update) {
   if (ref.current === null) {
     const instance = factory();
     ref.current = null;
-    if (('then' in instance) && (typeof instance.then === 'function')) {
+    if (("then" in instance ) && (typeof instance.then === "function")) {
       (async () => {
         ref.current = await instance;
         __executeUpdate(update, ref.current, "new");
