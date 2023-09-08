@@ -411,6 +411,9 @@ See [this post](https://github.com/remix-run/react-router/issues/9324#issuecomme
 for further information.
 
 
+ 🌈  Reference 🌈
+=====================================
+
  API Reference
 ----------------
 
@@ -437,8 +440,8 @@ for further information.
 ### `useRerender()` ###
 
 
- Conclusion
---------------
+ 🌈  Conclusion 🌈
+=====================================
 
 I am not sure this is an appropriate usage React.js nor I even don't think this
 is a correct usage of React.js since this usage is a kind of an attempt of
