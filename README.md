@@ -107,8 +107,8 @@ hook callings.  Though the fact that **Rerenderers** requries more finger power
 than `useState()` hook could disgust you, it gives some advantages which
 `useState()` cannot achieve.
 
-### What you can do with `React-Rerenderers` ###
-#### You can Refresh your Components from a Remote Location ####
+### The Things You Can Achieve with `React-Rerenderers` ###
+#### You can Refresh Your Components from a Remote Location ####
 
 See the example below:
 
