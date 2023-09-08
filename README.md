@@ -108,7 +108,7 @@ than `useState()` hook could disgust you, it gives some advantages which
 `useState()` cannot achieve.
 
 ### The Things You Can Achieve with `React-Rerenderers` ###
-#### 1. You can Refresh Your Components from a Remote Location ####
+#### 🍎 1. You can Refresh Your Components from a Remote Location ####
 
 See the example below:
 
@@ -218,7 +218,7 @@ And you will see that this small difference invokes a drastic change of the
 component design.
 
 
-#### 2. You Actually Don't Have to Call Any Hook When Only Thing You Want to Do is to Update the State
+#### 🍎 2. You Actually Don't Have to Call Any Hook When Only Thing You Want to Do is to Update the State
 
 You actually don't have to call any hook when only thing you want do is to
 update the state.
