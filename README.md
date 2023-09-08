@@ -38,6 +38,8 @@ from React's hells hell.
  Basic Usage
 -----------------------
 
+### React Development with the traditional `useState()` ###
+
 Assume you are creating such a simple application:
 
 [Example No.0](https://codesandbox.io/s/rerenderers-example-no-00-without-react-rerenderers-6d5hnh?file=/src/AppView.js)
@@ -69,6 +71,8 @@ bottom-right and bottom-left, respectively.
 
 In **React-Rerenderers**, we implement the same logic in the following manner:
 
+### With `React-Rerenderers`'s Value Accessors ###
+
 [Example No.1](https://codesandbox.io/s/rerenderers-example-no-01-a-basic-usage-nkvvjs?file=/src/AppView.js)
 
 ```javascript
@@ -82,7 +86,6 @@ export const AppView = () => {
       <div
         id="main-object"
         className={`square${counter}`}
-        // a direct access with no hook.
         onClick={() => setCount((count) => count + 1)}
       >
         <div>{counter}</div>
@@ -101,18 +104,21 @@ setter function, `useInstanceValue()` returns only the current state value and
 
 They share almost same functionarities. But **React-Rerenderers** requires two
 hook callings.  Though the fact that **Rerenderers** requries more finger power
-than `useState()` hook could disgust you, it gives some advantages with which
+than `useState()` hook could disgust you, it gives some advantages which
 `useState()` cannot achieve.
+
+### What you can do with `React-Rerenderers` ###
+#### You can Refresh your Components from a Remote Location ####
 
 See the example below:
 
 [Example No.2](https://codesandbox.io/s/rerenderers-example-no-02-modifying-a-vaue-from-a-remote-location-with-usestate-lm5yhm?file=/src/AppView.js)
 
-I moved the clicker to a remote location which is defined in a different file.
+I moved the click handler to a remote location which is defined in a different file.
 
 Note that with the traditional `useState()` hook, you have to
 [Lifting Up][lifting-state-up] the `useState()` hook and then you have to
-[Drilling Properties][prop-drilling] six feet deep down as the following.
+[Drilling Properties][prop-drilling] six feet deep down as the following:
 
 ```javascript
 import React from "react";
@@ -154,7 +160,9 @@ export function AppSquare({ counter }) {
 ```
 
 With **React-Rerenderers.js**, you do not need [Lifting Up][lifting-state-up]
-and [Drilling Properties][prop-drilling] anymore. See the following example.
+and [Drilling Properties][prop-drilling] anymore.
+
+See the following example:
 
 [Example No.3](https://codesandbox.io/s/rerenderers-example-no-03-modifying-a-vaue-from-a-remote-location-cc8rdd?file=/src/AppView.js)
 
@@ -187,6 +195,7 @@ export function AppSquare() {
 
 ```javascript
 import * as Rerenderers from "./react-rerenderers";
+
 export function AppButton() {
   const setCount = Rerenderers.useInstanceValueSetter("counter");
   return (
@@ -197,8 +206,11 @@ export function AppButton() {
 }
 ```
 
-This works fine.
+Note that `useState()` hook calling at the `<AppView/>` component is eliminated.
+This just works fine.
 
+
+#### You can Refresh your Components from a Remote Location ####
 
 
 **It actually does not need to use any hooks** to achieve the same goal.  These
