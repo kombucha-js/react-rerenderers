@@ -220,11 +220,13 @@ component design.
 
 #### 🍎 2. Update Components from Outside React
 
-you actually don't have to call any hook when only thing you want to do is to
-update the state.
+**React-Rerenderers** offers unique `useRerenderers()` hook.  With
+`useRerenderers()` hook you actually don't have to call any hook when only thing
+you want to do is to update the state.
 
 Actually, this is the biggest surprise which I have encountered duruing I was
-designing **React-Rerenderers**.
+designing **React-Rerenderers**. I have never thought if I could implement it in
+such a way.
 
 See the following example:
 
