@@ -65,9 +65,9 @@ export const AppView = () => {
 In this demo, every time you click on the square `main-object`, its CSS class
 will be set to `square0`, `square1`, `square2` and `square3` respectively.  As
 it goes, it moves around the screen to top-left, top-right, bottom-right and
-bottom-left.
+bottom-left, respectively.
 
-In React-Rerenderers, we implement the same logic in the following manner:
+In **React-Rerenderers**, we implement the same logic in the following manner:
 
 [Example No.1](https://codesandbox.io/s/rerenderers-example-no-01-a-basic-usage-nkvvjs?file=/src/AppView.js)
 
@@ -92,6 +92,13 @@ export const AppView = () => {
   );
 };
 ```
+
+In the example above, it uses `useInstanceValue()` hook and
+`useInstanceValueSetter()` hook.  It is almost same as `useState()` hook but it
+requires two hook callings.  Though the fact that it requries more finger power
+than `useState()` hook could disgust you, it gives some advantages with which
+`useState()` cannot achieve.
+
 
 [Example No.2](https://codesandbox.io/s/rerenderers-example-no-02-a-crucial-usage-mm5p8h?file=/src/AppView.js)
 
