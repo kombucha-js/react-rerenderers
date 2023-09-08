@@ -94,15 +94,71 @@ export const AppView = () => {
 ```
 
 In the example above, it uses `useInstanceValue()` hook and
-`useInstanceValueSetter()` hook.  It is almost same as `useState()` hook but it
-requires two hook callings.  Though the fact that it requries more finger power
+`useInstanceValueSetter()` hook. Note that they have some similarities with
+`useState()`.  While `useState()` returns the current state value and its
+setter function, `useInstanceValue()` returns only the current state value and
+`useInstanceValueSetter()` returns only its setter.
+
+They share almost same functionarities. But **React-Rerenderers** requires two
+hook callings.  Though the fact that **Rerenderers** requries more finger power
 than `useState()` hook could disgust you, it gives some advantages with which
 `useState()` cannot achieve.
 
+See the example below:
 
-[Example No.2](https://codesandbox.io/s/rerenderers-example-no-02-a-crucial-usage-mm5p8h?file=/src/AppView.js)
+[Example No.2](https://codesandbox.io/s/rerenderers-example-no-02-modifying-a-vaue-from-a-remote-location-cc8rdd?file=/src/AppView.js)
 
-[Example No.3](https://codesandbox.io/s/rerenderers-example-no-03-an-advanced-usage-fxwhvp?file=/src/AppView.js)
+I moved the clicker to a remote location which is defined in the different file.
+
+```javascript
+import * as Rerenderers from "./react-rerenderers";
+import { AppButton } from "./AppButton.js";
+
+export const AppView = () => {
+  const counter = Rerenderers.useInstanceValue("counter"); // check this out
+  return (
+    <div id="main-frame">
+      <div id="main-object" className={`square${counter}`}>
+        <div>{counter}</div>
+      </div>
+      <AppButton />
+    </div>
+  );
+};
+```
+
+```javascript
+import * as Rerenderers from "./react-rerenderers";
+
+export function AppButton() {
+  const setCount = Rerenderers.useInstanceValueSetter("counter"); // check this out
+  return (
+    <button id="main-message" onClick={() => setCount((count) => count + 1)}>
+      Click Me
+    </button>
+  );
+}
+```
+
+This works fine.
+
+Note that with the traditional `useState()` hook, you have to
+[Lifting Up][lifting-state-up] the `useState()` hook and then you have to
+[Drilling Properties][prop-drilling] six feet deep as the following example.
+
+[Example No.4](https://codesandbox.io/s/rerenderers-example-no-04-modifying-a-vaue-from-a-remote-location-with-usestate-lm5yhm?file=/src/AppView.js)
+
+**It actually does not need to use any hooks** to achieve the same goal.  These
+two hooks `useInstanceValueSetter()` and `useInstanceValue()` are just helpers.
+
+With **React-Rerenderers.js** you can acutually define a model object and
+directly access to it.
+
+
+
+[Example No.3](https://codesandbox.io/s/rerenderers-example-no-02-a-crucial-usage-mm5p8h?file=/src/AppView.js)
+
+[Example No.4](https://codesandbox.io/s/rerenderers-example-no-03-an-advanced-usage-fxwhvp?file=/src/AppView.js)
 
 
 
