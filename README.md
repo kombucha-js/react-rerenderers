@@ -126,7 +126,7 @@ import { AppButton } from "./AppButton.js";
 import { AppSquare } from "./AppSquare.js";
 
 export const AppView = () => {
-  const [counter, setCounter] = React.useState(0);
+  const [counter, setCounter] = React.useState(0); // check this out
   return (
     <div id="main-frame">
       <AppSquare counter={counter} />
