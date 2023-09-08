@@ -220,11 +220,95 @@ component design.
 
 #### 2. You Actually Don't Have to Call Any Hook When Only Thing You Want to Do is to Update the State
 
-I would like to write it again; you actually don't have to call any hook when
-only thing you want do is to update the state.
+You actually don't have to call any hook when only thing you want do is to
+update the state.
 
-This is the biggest thing Which I was surprised When I Wrote
-**React-Rerenderers**
+Actually, this is the biggest surprise which I have encountered duruing I was 
+designing **React-Rerenderers**.
+
+See the following example:
+
+[Example No.4](https://codesandbox.io/s/rerenderers-example-no-03-an-advanced-usage-fxwhvp?file=/src/AppView.js)
+
+```javascript
+import * as Rerenderers from "./react-rerenderers";
+
+export const AppView = () => {
+  const model = Rerenderers.useInstance();
+  /*
+   * This is acutually the only hook which you have
+   * to call in this framework. In order to mark
+   * which component to rerender when the model state is
+   * modified, you have to call useRerenderer() hook.
+   */
+  Rerenderers.useRerenderer("counter");
+
+  /*
+   * You can read and write any fields on the model
+   * without any React hells.
+   *
+   * See ./AppModels.js too
+   */
+  return (
+    <div id="main-frame">
+      <div
+        id="main-object"
+        className={`square${model.counter}`}
+        onClick={() => model.counter++}
+      >
+        <div>{model.counter}</div>
+      </div>
+      <div id="main-message">Click the Square</div>
+    </div>
+  );
+};
+```
+
+
+```javascript
+import { fireRerenderers } from "./react-rerenderers";
+
+export class AppModel {
+  __counter = 0;
+  set counter(v) {
+    /*
+     * This is MOD; this resets `v` to zero if
+     * `v` is equals or greater than 4
+     */
+    this.__counter = v % 4;
+
+    /*
+     * See ./AppModel.js , too.
+     * You will find a call to useRerenderers(name) there.
+     *
+     * When ever you call the fireRerenderers(name) function,
+     * the componponent which calls the useRerenderers() hook
+     * will be rerendered.
+     *
+     * This enables users to precisely controll when to rerender
+     * component. Also note that, this class is defined outside
+     * compontent functions nor hooks.
+     *
+     * React usually restricts calling hooks from outside of
+     * hooks/component functions.
+     *
+     * With React-Rerenderers.js, you can invoke React rerendering
+     * process anywhere.
+     *
+     * This is the most crucial part of `react-rerenderers`
+     */
+    fireRerenderers(this, "counter");
+  }
+  get counter() {
+    return this.__counter;
+  }
+}
+
+export const model = new AppModel();
+```
+
+
+
 
 **It actually does not need to use any hooks** to achieve the same goal.  These
 two hooks `useInstanceValueSetter()` and `useInstanceValue()` are just helpers.
@@ -233,10 +317,8 @@ With **React-Rerenderers.js** you can acutually define a model object and
 directly access to it.
 
 
+
 [Example No.3](https://codesandbox.io/s/rerenderers-example-no-02-a-crucial-usage-mm5p8h?file=/src/AppView.js)
-
-[Example No.4](https://codesandbox.io/s/rerenderers-example-no-03-an-advanced-usage-fxwhvp?file=/src/AppView.js)
-
 
 
  Principle Behind the Rerenderers
