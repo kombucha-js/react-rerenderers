@@ -283,6 +283,10 @@ export const AppView = () => {
 };
 ```
 
+This actually opens a door for more aggressive optimization.
+
+#### 🍎 3. You can Implement Model-View Controller in a Simplest Way ####
+
 
 [Example No.4](https://codesandbox.io/s/rerenderers-example-no-03-an-advanced-usage-fxwhvp?file=/src/AppView.js)
 
