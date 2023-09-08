@@ -218,7 +218,7 @@ And you will see that this small difference invokes a drastic change of the
 component design.
 
 
-#### 2. You Actually Don't Have to Call Any Hook When Only Thing You Want Do is to Update the State
+#### 2. You Actually Don't Have to Call Any Hook When Only Thing You Want to Do is to Update the State
 
 I would like to write it again; you actually don't have to call any hook when
 only thing you want do is to update the state.
