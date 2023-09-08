@@ -71,7 +71,7 @@ bottom-right and bottom-left, respectively.
 
 In **React-Rerenderers**, we implement the same logic in the following manner:
 
-### With `React-Rerenderers`'s Value Accessors ###
+### React Development With `React-Rerenderers`'s Value Accessors ###
 
 [Example No.1](https://codesandbox.io/s/rerenderers-example-no-01-a-basic-usage-nkvvjs?file=/src/AppView.js)
 
