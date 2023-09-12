@@ -34,7 +34,7 @@ from React's hells hell.
  🗽 Free Objects from Renderings 🎊
 =====================================
 
-React Development with the traditional `useState()`
+ React Development with the traditional `useState()`
 ｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰ
 
 Assume you are creating such a simple application:
@@ -68,7 +68,7 @@ bottom-right and bottom-left, respectively.
 
 In **React-Rerenderers**, we implement the same logic in the following manner:
 
-React Development With `React-Rerenderers`'s Value Accessors
+ React Development With `React-Rerenderers`'s Value Accessors
 ｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰ
 [Example No.1](https://codesandbox.io/s/rerenderers-example-no-01-a-basic-usage-nkvvjs?file=/src/AppView.js)
 
@@ -104,7 +104,7 @@ hook callings.  Though the fact that **Rerenderers** requries more finger power
 than `useState()` hook could disgust you, it gives some advantages which
 `useState()` cannot achieve.
 
-The Things You Can Achieve with `React-Rerenderers`
+ The Things You Can Achieve with `React-Rerenderers`
 ｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰ
 ### 🍎 1. Eliminate State Lifting and Prop Drilling ###
 
