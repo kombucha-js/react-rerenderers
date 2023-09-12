@@ -35,7 +35,7 @@ from React's hells hell.
 =====================================
 
  ✨ React Development with the traditional useState()
-ｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰ
+---------------------------------------------------------
 
 Assume you are creating such a simple application:
 [Example No.0](https://codesandbox.io/s/rerenderers-example-no-00-without-react-rerenderers-6d5hnh?file=/src/AppView.js)
