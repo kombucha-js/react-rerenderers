@@ -70,6 +70,7 @@ In **React-Rerenderers**, we implement the same logic in the following manner:
 
  React Development With `React-Rerenderers`'s Value Accessors
 ｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰ
+
 [Example No.1](https://codesandbox.io/s/rerenderers-example-no-01-a-basic-usage-nkvvjs?file=/src/AppView.js)
 
 ```javascript
@@ -106,6 +107,7 @@ than `useState()` hook could disgust you, it gives some advantages which
 
  The Things You Can Achieve with `React-Rerenderers`
 ｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰ
+
 ### 🍎 1. Eliminate State Lifting and Prop Drilling ###
 
 See the example below:
