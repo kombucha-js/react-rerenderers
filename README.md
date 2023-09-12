@@ -34,7 +34,7 @@ from React's hells hell.
  🗽 Free Objects from Renderings 🎊
 =====================================
 
- React Development with the traditional `useState()`
+  React Development with the traditional `useState()`
 ｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰ
 
 Assume you are creating such a simple application:
