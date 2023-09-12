@@ -34,10 +34,8 @@ from React's hells hell.
  🗽 Free Objects from Renderings 🎊
 =====================================
 
- Basic Usage
------------------------
-
-### React Development with the traditional `useState()` ###
+React Development with the traditional `useState()`
+ｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰ
 
 Assume you are creating such a simple application:
 
@@ -70,8 +68,8 @@ bottom-right and bottom-left, respectively.
 
 In **React-Rerenderers**, we implement the same logic in the following manner:
 
-### React Development With `React-Rerenderers`'s Value Accessors ###
-
+React Development With `React-Rerenderers`'s Value Accessors
+ｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰ
 [Example No.1](https://codesandbox.io/s/rerenderers-example-no-01-a-basic-usage-nkvvjs?file=/src/AppView.js)
 
 ```javascript
@@ -106,8 +104,9 @@ hook callings.  Though the fact that **Rerenderers** requries more finger power
 than `useState()` hook could disgust you, it gives some advantages which
 `useState()` cannot achieve.
 
-### The Things You Can Achieve with `React-Rerenderers` ###
-#### 🍎 1. Eliminate State Lifting and Prop Drilling ####
+The Things You Can Achieve with `React-Rerenderers`
+ｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰ
+### 🍎 1. Eliminate State Lifting and Prop Drilling ###
 
 See the example below:
 
@@ -217,8 +216,7 @@ And you will see that this small difference invokes a drastic change of the
 component design.
 
 
-#### 🍎 2. Update Components from Outside React
-
+### 🍎 2. Update Components from Outside React
 **React-Rerenderers** offers unique `useRerenderers()` hook.  With
 `useRerenderers()` hook you actually don't have to call any hook when only thing
 you want to do is to update the state.
@@ -284,9 +282,7 @@ export const AppView = () => {
 
 This actually opens a door for more aggressive optimization.
 
-#### 🍎 3. You can Implement Model-View Controller in a Simplest Way ####
-
-
+### 🍎 3. You can Implement Model-View Controller in a Simplest Way ####
 [Example No.4](https://codesandbox.io/s/rerenderers-example-no-03-an-advanced-usage-fxwhvp?file=/src/AppView.js)
 
 
@@ -411,11 +407,8 @@ See [this post](https://github.com/remix-run/react-router/issues/9324#issuecomme
 for further information.
 
 
- 🌈  Reference 🌈
+ 🌈 API Reference 🌈
 =====================================
-
- API Reference
-----------------
 
 ### `InstanceProvider()` ###
 
