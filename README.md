@@ -67,7 +67,7 @@ bottom-right and bottom-left, respectively.
 In **React-Rerenderers**, we implement the same logic in the following manner:
 
  ✨ React Development With `React-Rerenderers`'s Value Accessors
-ｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰ
+------------------------------------------------------------------
 
 [Example No.1](https://codesandbox.io/s/rerenderers-example-no-01-a-basic-usage-nkvvjs?file=/src/AppView.js)
 
@@ -104,7 +104,7 @@ than `useState()` hook could disgust you, it gives some advantages which
 `useState()` cannot achieve.
 
  ✨ The Things You Can Achieve with `React-Rerenderers`
-ｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰ
+--------------------------------------------------------
 
 ### 🍎 1. Eliminate State Lifting and Prop Drilling ###
 
@@ -282,7 +282,7 @@ export const AppView = () => {
 
 This actually opens a door for more aggressive optimization.
 
-### 🍎 3. You can Implement Model-View Controller in a Simplest Way ####
+### 🍎 3. You can Implement Model-View Controller in a Simplest Way
 [Example No.4](https://codesandbox.io/s/rerenderers-example-no-03-an-advanced-usage-fxwhvp?file=/src/AppView.js)
 
 
@@ -368,7 +368,8 @@ export const model = new AppModel();
 =====================================
 
  👩‍❤️‍👨 Using React-Rerenderers with React-Router  👩‍❤️‍👨
-------------------------------------------------------------------
+-------------------------------------------------------
+
 You very likely want to use **React-Rerenderers** with **React-Router**.  If
 you are in that case, you will try the following code and notice that it does
 not work.
