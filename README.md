@@ -216,7 +216,7 @@ And you will see that this small difference invokes a drastic change of the
 component design.
 
 
-### 🍎 2. Update Components from Outside React
+### 🍎 2. Update React Virtual DOM Tree from Outside of React
 **React-Rerenderers** offers unique `useRerenderers()` hook.  With
 `useRerenderers()` hook you actually don't have to call any hook when only thing
 you want to do is to update the state.
