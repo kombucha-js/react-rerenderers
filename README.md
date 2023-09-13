@@ -5,7 +5,7 @@ render your components. For further information, please see below.
 
  👺 Features
 ---------------
-**react-rerenderers** is a new state management library. This is a quite
+**React-Rerenderers** is a new state management library. This is a quite
 unusual and yet efficient usage of React.js' hooks which offers a way to escape
 from React's hells hell.
 
@@ -159,7 +159,7 @@ export function AppSquare({ counter }) {
 With **React-Rerenderers.js**, you do not need [Lifting Up][lifting-state-up]
 and [Drilling Properties][prop-drilling] anymore.
 
-### ✨ How Rerenderers eliminate the State Lifting ###
+### ✨ How **React-Rerenderers** eliminate the State Lifting ###
 
 See the following example:
 
