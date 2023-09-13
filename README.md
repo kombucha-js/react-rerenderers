@@ -447,13 +447,13 @@ for further information.
 
 ### `GLOBAL_INSTANCE` ###
 
-### `useRerenderer()` ###
+### `useInstanceValue()` ###
+
+### `useInstanceValueSetter()` ###
 
 ### `fireRerenderers()` ###
 
-### `useGet()` ###
-
-### `useSet()` ###
+### `useRerenderer()` ###
 
 ### `useNewTransmitter()` ###
 
