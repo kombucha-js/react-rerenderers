@@ -354,13 +354,13 @@ import * as Rerenderers from "./react-rerenderers";
 export const AppView = () => {
   /*
    * This returns the instance of **AppModel** class which is defined above.
-   * 
    *
   const model = Rerenderers.useInstance();
   /*
    * Call the useRerender() hook because we are actually
    * going to make a read-access to the field `counter`
-   * in this method.
+   * in this method. Call `useRerenderer('counter')` causes this component
+   * to be rerendered when `fireRerenderers('counter')` is called.
    */
   Rerenderers.useRerenderer("counter");
 
@@ -369,7 +369,7 @@ export const AppView = () => {
       <div
         id="main-object"
         /*
-         * Note that this performes the read access to
+         * Note that this performes the read-access to
          * the `counter` field of the class directly.
          */
         className={`square${model.counter}`}
@@ -390,9 +390,19 @@ export const AppView = () => {
 ```
 
 The example above works. And I noticed that, in this way, 
-it is able to cleanly modularize routes and components and
+it is able to cleanly modularize components and their states and
 the application can scalablly be extended.
 
+ 🍎 4. Modularize Modal Dialogs
+-------------------------------------------------------------------
+Modal Dialogs are trickly. At the first glance, it is easy. But it isn't. See the following example.
+
+[Dialogs with React-Router][example-dialog1]
+
+
+[example-dialog1]: https://codesandbox.io/s/rerenderers-example-no-03-implement-dialogs-in-a-router-1-9xhhwv?file=/src/AppView.js
+[example-dialog2]: https://codesandbox.io/s/rerenderers-example-no-03-implement-dialogs-in-a-router-2-with-provider-hell-rjf8k4?file=/src/AppView.js
+[example-dialog3]: https://codesandbox.io/s/rerenderers-example-no-03-implement-dialogs-in-a-router-3-without-provider-hell-qq9s9d?file=/src/AppView.js
 
  🌈  Miscellaneous 🌈
 =====================================
