@@ -318,25 +318,34 @@ export class AppModel {
     return this.__counter;
   }
 }
-
+/*
+ * Create an instance of the class.
+ */
 export const model = new AppModel();
 ```
 
-After defining the model class, 
+After defining the model class, relate 
+the created instance to the React Virtual DOM Tree by 
+**InstanceProvider** component.
 
 ```javascript
-import App from "./App";
-const root = createRoot(document.getElementById("root-1"));
-window.initializeApp = () => {
-  root.render(
-    <StrictMode>
-      <App />
-    </StrictMode>
+import "./styles.css";
+import { InstanceProvider } from "./react-rerenderers";
+import { AppView } from "./AppView.js";
+import { model } from "./AppModel.js";
+import React from "react";
+
+export default function App() {
+  return (
+    <InstanceProvider factory={() => model}>
+      <AppView />
+    </InstanceProvider>
   );
-};
-setTimeout(() => window.initializeApp(), 100);
+}
 ```
 
+In **AppView** component, it is able to access to the instance 
+by `React-Rerenderers`'s `useInstance()` hook.
 
 ```javascript
 import * as Rerenderers from "./react-rerenderers";
@@ -378,9 +387,6 @@ export const AppView = () => {
   );
 };
 ```
-
-
-
 
  🌈  Miscellaneous 🌈
 =====================================
