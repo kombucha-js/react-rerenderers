@@ -294,17 +294,18 @@ This actually opens a door for more aggressive optimization.
 -------------------------------------------------------------------
 
 In the previous section, we have seen that states are acutually able to be stored
-outside hooks/components and by using useRerenderers() hook, it is able to manually 
-invoke the rebuilding process of React Virtual DOM Tree.
+outside hooks/components. And we also have seen that, by using useRerenderers() hook,
+it is able to manually invoke the rebuilding process of React Virtual DOM Tree.
 
-It suggests that it is also able to store states as classes outside React hooks/components.
+It seemed to me that further optimization is also possible. 
+I realized it is also able to store states as classes outside React hooks/components.
 I think, this could be an implementation of Model View Controller in **React.js**.
 
 See the following example:
 
 [Example No.4](https://codesandbox.io/s/rerenderers-example-no-03-an-advanced-usage-fxwhvp?file=/src/AppView.js)
 
-Define a class which contains all states in the same application.
+At first, define a class which contains all states in the same application.
 
 ```javascript
 import { fireRerenderers } from "./react-rerenderers";
@@ -387,6 +388,11 @@ export const AppView = () => {
   );
 };
 ```
+
+The example above works. And I noticed that, in this way, 
+it is able to cleanly modularize routes and components and
+the application can scalablly be extended.
+
 
  🌈  Miscellaneous 🌈
 =====================================
