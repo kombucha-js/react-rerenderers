@@ -34,7 +34,7 @@ from React's hells hell.
  🗽 The Things You Can Achieve with `React-Rerenderers` 🌈
 ===========================================================
 
- 🍎 1. Eliminate State Lifting and Prop Drilling ###
+ 🍎 1. Eliminate State Lifting and Prop Drilling
 ---------------------------------------------------------
 
 ### ✨ React Development with the traditional `useState()`
@@ -69,7 +69,7 @@ bottom-right and bottom-left, respectively.
 
 In **React-Rerenderers**, we implement the same logic in the following manner:
 
-### ✨ React Development With `React-Rerenderers`'s Value Accessors
+### ✨ React Development With `React-Rerenderers`'s Value Accessors ### 
 
 [Example No.1](https://codesandbox.io/s/rerenderers-example-no-01-a-basic-usage-nkvvjs?file=/src/AppView.js)
 
@@ -105,7 +105,7 @@ hook callings.  Though the fact that **Rerenderers** requries more finger power
 than `useState()` hook could disgust you, it gives some advantages which
 `useState()` cannot achieve.
 
-###  Necessity of Lifting States with React Hooks
+### ✨ Necessity of Lifting States with React Hooks
 
 See the example below:
 
@@ -159,7 +159,7 @@ export function AppSquare({ counter }) {
 With **React-Rerenderers.js**, you do not need [Lifting Up][lifting-state-up]
 and [Drilling Properties][prop-drilling] anymore.
 
-### How Rerenderers eliminate the State Lifting 
+### ✨ How Rerenderers eliminate the State Lifting ###
 
 See the following example:
 
