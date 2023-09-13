@@ -293,33 +293,67 @@ This actually opens a door for more aggressive optimization.
  🍎 3. You can Implement Model-View Controller in a Simpler Way
 -------------------------------------------------------------------
 
+In the previous section, we have seen that states are acutually able to be stored
+outside hooks/components and by using useRerenderers() hook, it is able to manually 
+invoke the rebuilding process of React Virtual DOM Tree.
+
+It suggests that it is also able to store states as classes outside React hooks/components.
+I think, this could be an implementation of Model View Controller in **React.js**.
+
+See the following example:
+
 [Example No.4](https://codesandbox.io/s/rerenderers-example-no-03-an-advanced-usage-fxwhvp?file=/src/AppView.js)
 
+Define a class which contains all states in the same application.
+
+```javascript
+import { fireRerenderers } from "./react-rerenderers";
+export class AppModel {
+  __counter = 0;
+  set counter(v) {
+    this.__counter = v % 4;
+    fireRerenderers(this, "counter");
+  }
+  get counter() {
+    return this.__counter;
+  }
+}
+
+export const model = new AppModel();
+```
+
+After defining the model class, define a component as a view of MVC.
 
 ```javascript
 import * as Rerenderers from "./react-rerenderers";
 
 export const AppView = () => {
+  /*
+   * This returns the instance of **AppModel** class which is defined above.
+   *
   const model = Rerenderers.useInstance();
   /*
-   * This is acutually the only hook which you have
-   * to call in this framework. In order to mark
-   * which component to rerender when the model state is
-   * modified, you have to call useRerenderer() hook.
+   * Call the useRerender() hook because we are actually
+   * going to make a read-access to the field `counter`
+   * in this method.
    */
   Rerenderers.useRerenderer("counter");
 
-  /*
-   * You can read and write any fields on the model
-   * without any React hells.
-   *
-   * See ./AppModels.js too
-   */
   return (
     <div id="main-frame">
       <div
         id="main-object"
+        /*
+         * Note that this performes the read access to
+         * the `counter` field of the class directly.
+         */
         className={`square${model.counter}`}
+
+        /*
+         * Note that this performes the write-access to
+         * the `counter` field of the class directly.
+         * This effectively invokes get() method of the class.
+         */
         onClick={() => model.counter++}
       >
         <div>{model.counter}</div>
@@ -331,47 +365,6 @@ export const AppView = () => {
 ```
 
 
-```javascript
-import { fireRerenderers } from "./react-rerenderers";
-
-export class AppModel {
-  __counter = 0;
-  set counter(v) {
-    /*
-     * This is MOD operator; this resets `v` to zero if
-     * `v` is equals or greater than four.
-     */
-    this.__counter = v % 4;
-
-    /*
-     * See ./AppModel.js , too.
-     * You will find a call to useRerenderers(name) there.
-     *
-     * When ever you call the fireRerenderers(name) function,
-     * the componponent which calls the useRerenderers() hook
-     * will be rerendered.
-     *
-     * This enables users to precisely controll when to rerender
-     * component. Also note that, this class is defined outside
-     * compontent functions nor hooks.
-     *
-     * React usually restricts calling hooks from outside of
-     * hooks/component functions.
-     *
-     * With React-Rerenderers.js, you can invoke React rerendering
-     * process anywhere.
-     *
-     * This is the most crucial part of `react-rerenderers`
-     */
-    fireRerenderers(this, "counter");
-  }
-  get counter() {
-    return this.__counter;
-  }
-}
-
-export const model = new AppModel();
-```
 
 
  🌈  Miscellaneous 🌈
