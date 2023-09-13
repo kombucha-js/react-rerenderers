@@ -115,7 +115,7 @@ I moved the click handler to a remote location which is defined in a different f
 
 Note that with the traditional `useState()` hook, you have to
 [Lifting Up][lifting-state-up] the `useState()` hook and then you have to
-[Drilling Properties][prop-drilling] six feet deep down as following:
+[Drilling Properties][prop-drilling] as following:
 
 ```javascript
 import React from "react";
@@ -155,6 +155,12 @@ export function AppSquare({ counter }) {
   );
 }
 ```
+
+Even though it seems not causing big issues,  it does cause some issues when it comes to a larger project.
+
+- As the number of pages increases, it is usually getting more difficult to modularize your logic when you have to shift up or down those state functions or objects. It requires more complicated works and finally it is going to be impossible.
+- As a state is lifted up, the more components are likely to be rerendered when the hook is called. This causes slowing down the rerendering process.
+- Components with animation should usually not be rerendered. Unexpected rerendering causes compoents to stop their animation.
 
 With **React-Rerenderers.js**, you do not need [Lifting Up][lifting-state-up]
 and [Drilling Properties][prop-drilling] anymore.
