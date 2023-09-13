@@ -31,11 +31,14 @@ from React's hells hell.
 [stale-closure-problem]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+stale+closure+problem
 [batch-update-problem]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+state+batch+update+problem
 
- 🗽 Free Objects from Renderings 🎊
-=====================================
+ 🗽 The Things You Can Achieve with `React-Rerenderers` 🌈
+===========================================================
 
- ✨ React Development with the traditional `useState()`
+ 🍎 1. Eliminate State Lifting and Prop Drilling ###
 ---------------------------------------------------------
+
+### ✨ React Development with the traditional `useState()`
+
 Assume you are creating such a simple application:
 [Example No.0](https://codesandbox.io/s/rerenderers-example-no-00-without-react-rerenderers-6d5hnh?file=/src/AppView.js)
 
@@ -66,8 +69,7 @@ bottom-right and bottom-left, respectively.
 
 In **React-Rerenderers**, we implement the same logic in the following manner:
 
- ✨ React Development With `React-Rerenderers`'s Value Accessors
-------------------------------------------------------------------
+### ✨ React Development With `React-Rerenderers`'s Value Accessors
 
 [Example No.1](https://codesandbox.io/s/rerenderers-example-no-01-a-basic-usage-nkvvjs?file=/src/AppView.js)
 
@@ -103,10 +105,7 @@ hook callings.  Though the fact that **Rerenderers** requries more finger power
 than `useState()` hook could disgust you, it gives some advantages which
 `useState()` cannot achieve.
 
- ✨ The Things You Can Achieve with `React-Rerenderers`
---------------------------------------------------------
-
-### 🍎 1. Eliminate State Lifting and Prop Drilling ###
+###  Necessity of Lifting States with React Hooks
 
 See the example below:
 
@@ -116,7 +115,7 @@ I moved the click handler to a remote location which is defined in a different f
 
 Note that with the traditional `useState()` hook, you have to
 [Lifting Up][lifting-state-up] the `useState()` hook and then you have to
-[Drilling Properties][prop-drilling] six feet deep down as the following:
+[Drilling Properties][prop-drilling] six feet deep down as following:
 
 ```javascript
 import React from "react";
@@ -159,6 +158,8 @@ export function AppSquare({ counter }) {
 
 With **React-Rerenderers.js**, you do not need [Lifting Up][lifting-state-up]
 and [Drilling Properties][prop-drilling] anymore.
+
+### How Rerenderers eliminate the State Lifting 
 
 See the following example:
 
@@ -216,7 +217,8 @@ And you will see that this small difference invokes a drastic change of the
 component design.
 
 
-### 🍎 2. Update React Virtual DOM Tree from Outside of React
+ 🍎 2. Update React Virtual DOM Tree from Outside of React
+----------------------------------------------------------------
 **React-Rerenderers** offers unique `useRerenderers()` hook.  With
 `useRerenderers()` hook you actually don't have to call any hook when only thing
 you want to do is to update the state.
@@ -282,7 +284,9 @@ export const AppView = () => {
 
 This actually opens a door for more aggressive optimization.
 
-### 🍎 3. You can Implement Model-View Controller in a Simpler Way
+ 🍎 3. You can Implement Model-View Controller in a Simpler Way
+-------------------------------------------------------------------
+
 [Example No.4](https://codesandbox.io/s/rerenderers-example-no-03-an-advanced-usage-fxwhvp?file=/src/AppView.js)
 
 
