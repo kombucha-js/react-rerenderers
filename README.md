@@ -322,7 +322,21 @@ export class AppModel {
 export const model = new AppModel();
 ```
 
-After defining the model class, define a component as a view of MVC.
+After defining the model class, 
+
+```javascript
+import App from "./App";
+const root = createRoot(document.getElementById("root-1"));
+window.initializeApp = () => {
+  root.render(
+    <StrictMode>
+      <App />
+    </StrictMode>
+  );
+};
+setTimeout(() => window.initializeApp(), 100);
+```
+
 
 ```javascript
 import * as Rerenderers from "./react-rerenderers";
@@ -330,6 +344,7 @@ import * as Rerenderers from "./react-rerenderers";
 export const AppView = () => {
   /*
    * This returns the instance of **AppModel** class which is defined above.
+   * 
    *
   const model = Rerenderers.useInstance();
   /*
