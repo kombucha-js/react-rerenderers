@@ -418,22 +418,29 @@ where it keeps the current state and where it tries to rebuild React Virtual DOM
     +-<Dialog2 />
     +-<View2 />
 
-// React Virtual DOM
-1.
+// The Transition of the React Virtual DOM Tree
+Step 1. Before the navigation
   +-Router
     +-<Dialog1/>
     +-<View1/>
-2. After it navigates to another
+Step 2. Right after the navigation is triggerd
   +-Router
-    +- (-) <Dialog1/> // this will be destroyed
-    +- (-) <View1/>   //  this will be destroyed
-    +- <Dialog2/> // this is created
-    +- <View2/>  // this is created
+    +- <Dialog1/> (-) // this will be destroyed node
+    +- <View1/>   (-) // this will be destroyed node
+    +- <Dialog2/> (+) // this is a newly created node
+    +- <View2/>   (+) // this is a newly created node
 3. After it navigates to another
   +-Router
     +- <Dialog2/> 
     +- <View2/>  
 ```
+
+The `<Dialog1/>` component will be unmounted after it starts to navigate to the `route2` without waiting the end of its animation.
+
+It seems that **dialogs must be placed outside the `Router`**.
+But this requirement invokes more complexity and you will see that the complexity finally becomes out of controll.
+
+
 
 
 [example-dialog1]: https://codesandbox.io/s/rerenderers-example-no-03-implement-dialogs-in-a-router-1-9xhhwv?file=/src/AppView.js
