@@ -30,7 +30,7 @@ Note that Redux is a hell by itself.
 [encapsulation-hell]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=encapsulation+hell
 [stale-closure-problem]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+stale+closure+problem
 [batch-update-problem]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+state+batch+update+problem
-[redux]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=redux+sucks (Note that Redux is a hell by itself.)
+[redux]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=redux+sucks "Note that Redux is a hell by itself."
 
  🪐 Agenda
 --------------------
