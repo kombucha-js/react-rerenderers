@@ -13,13 +13,13 @@ hooks which offers a way to escape from React's hells hell.
 - No more [Redux State Hell][redux-state-hell]
 - No more [Encapsulation Hell][encapsulation-hell]
 - No more [Infinite Rendering Loop][inf-rendering-loop] Hell
-- No more [Redux][redux]
+- No more [Redux][redux] †
 - No more [Stale Closure Problem][stale-closure-problem]
 - No more [Batch Update Problem][batch-update-problem]
 - No more fussy tricks to manage rendering triggers indirect way
 - Zero dependent
 
-Note that Redux is a hell by itself.
+†Note that Redux is a hell by itself.
 
 [usestate-hell]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+state+hell
 [prop-drilling]: https://react.dev/learn/passing-data-deeply-with-context
