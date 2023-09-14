@@ -435,9 +435,9 @@ Step 2. Right after the navigation is triggerd
     +- <View2/>  
 ```
 
-The `<Dialog1/>` component will be unmounted after it starts to navigate to the `route2` without waiting the end of its animation.
+The `<Dialog1/>` component will be unmounted after it starts to navigate to the `route2` without waiting the animation of `<Dialog1/>`.
 
-It seems that **dialogs must be placed outside the `Router`**.
+We can conclude that **all dialogs must be placed outside the `Router`**.
 But this requirement invokes more complexity and you will see that the complexity finally becomes out of controll.
 
 
