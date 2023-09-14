@@ -1,7 +1,7 @@
  🌈 React-Rerenderers.js
 ======================
 **React-Rerenderers** is a new state management library.
-This is a quite unusual and yet efficient usage of React.js' 
+This is a quite unusual and yet efficient usage of React.js'
 hooks which offers a way to escape from React's hells hell.
 
  👺 Features
@@ -12,11 +12,14 @@ hooks which offers a way to escape from React's hells hell.
 - No more [Context-Provider Hell][context-provider-hell]
 - No more [Redux State Hell][redux-state-hell]
 - No more [Encapsulation Hell][encapsulation-hell]
-- No more [Infinite Rendering Loop][inf-rendering-loop] hell
+- No more [Infinite Rendering Loop][inf-rendering-loop] Hell
+- No more [Redux]  *
 - No more [Stale Closure Problem][stale-closure-problem]
 - No more [Batch Update Problem][batch-update-problem]
 - No more fussy tricks to manage rendering triggers indirect way
 - Zero dependent
+
+Note that Redux is a hell by itself.
 
 [usestate-hell]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+state+hell
 [prop-drilling]: https://react.dev/learn/passing-data-deeply-with-context
@@ -27,6 +30,12 @@ hooks which offers a way to escape from React's hells hell.
 [encapsulation-hell]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=encapsulation+hell
 [stale-closure-problem]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+stale+closure+problem
 [batch-update-problem]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+state+batch+update+problem
+
+ 🪐 Agenda
+--------------------
+- Offers a way to develop applications without other frameworks.
+- Offers a way to develop applications without other frameworks.
+
 
  🗽 The Things You Can Achieve with `React-Rerenderers` 🌈
 ===========================================================
@@ -452,7 +461,7 @@ Therefore, we can conclude that **all dialogs should be placed outside the
 the complexity finally becomes out of controll.
 
 See the following example:
-[Dialogs with React-Router 2. Provider Hell][context-provider-hell]
+[Dialogs with React-Router 2. Provider Hell][example-dialog2]
 
 There are three things to consider in order to take measurement for the issue of
 interuption of the animation as we have seen in above:
@@ -529,8 +538,8 @@ This hell is terrible.  See the previous example again:
   },
 ```
 
-Now we have two providers. That's fine.  But the more we create dialogs, the
-more the nested providers we get. Say we have twenty dialogs, it goes:
+Now we have two providers. That's fine. But the more we create dialogs, the more
+the nested providers we get. Say we have twenty dialogs, it goes:
 
 ```javascript
   {
@@ -591,6 +600,34 @@ more the nested providers we get. Say we have twenty dialogs, it goes:
 
 This is the [Provider Hell][context-provider-hell].
 
+This is where **React-Rerenderers**'s `useTransmitter()` comes in. See the
+following example;
+
+[Dialogs with React-Router 3. : Eliminate Provider Hell][example-dialog3]
+
+```javascript
+const routes = [
+  {
+    path: "/",
+    loader: () => {
+      return {};
+    },
+    element: (
+      <>
+        <Dialog1 />
+        <Dialog2 />
+        <Router.Outlet />
+      </>
+    ),
+    children: [
+      //...
+    ],
+  }
+];
+```
+
+With **React-Rerenderers**'s `useTransmitter()` hook, it is not necessary to
+nest your provider.  For further information, see the following.
 
 
 
