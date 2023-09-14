@@ -691,12 +691,15 @@ you are in that case, you will try the following code and notice that it does
 not work.
 
 ```javascript
-const router = [ ... /* some-routes */ ];
-return (
-  <InstanceProvider factory={() => model} >
-    <RouterProvider router={router} />
-  </InstanceProvider>
-);
+export const ctx = React.createContext("FOO");
+const router = createBrowserRouter([ ... ]);
+const Main =()=>{
+  return (
+    <ctx.Provider value={"BAR"}>
+      <RouterProvider router={router} />
+    </ctx.Provider>
+  );
+}
 ```
 
 **React-Rerenderers** uses `useContext()` hook; the context consumer have to be
@@ -708,20 +711,30 @@ Unless your component is placed in following way, it will not be able to
 retrieve its `current instance`.
 
 ```javascript
+export const ctx = React.createContext("FOO");
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route element={ <InstanceProvider factory={() => model} /> }>
+    <Route element={
+      <ctx.Provider value={"BAR"} >
+        <Outlet />
+      </ctx.Provider>
+    }>
       <Route path="/" element={<AppView />} />
     </Route>
   )
 );
-return (
-  <RouterProvider router={router} />
-);
+const Main =()=>{
+  return (
+    <RouterProvider router={router} />
+  );
+}
 ```
 
-See [this post]()
-for further information.
+According to [this post](context-with-router), it is necessary to create a
+pathless route and place others as its children in order to share a specific
+value to nested components via `<Provider/>` and `<Consumer/>`.
+
+See [this post](context-with-router) for further information.
 
 [context-with-router]: https://github.com/remix-run/react-router/issues/9324#issuecomment-1268554681
 
@@ -795,4 +808,4 @@ Thank you very much and see you soon.
 - At the time **react-rerenderers.js** was started, it was not registered to
   [https://npmjs.org/]()
 
-[vim-mode-line]: vim: ts=2 sw=2
+[vim-mode-line]: vim: ts=2 sw=2 isk+=-
