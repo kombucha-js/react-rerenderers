@@ -39,7 +39,7 @@ from React's hells hell.
 
 ### ✨ React Development with the traditional `useState()`
 
-Assume you are creating such a simple application:
+Assume you are creating a simple application as follows:
 [Example No.0](https://codesandbox.io/s/rerenderers-example-no-00-without-react-rerenderers-6d5hnh?file=/src/AppView.js)
 
 ```jsx
@@ -62,7 +62,7 @@ export const AppView = () => {
 };
 ```
 
-In this demo, every time you click on the square `main-object`, its CSS class
+In this demo, every time you click on the square where its ID is `main-object`, its CSS class
 will be set to `square0`, `square1`, `square2` and `square3` respectively.  As
 the CSS class goes, the square moves around the screen to top-left, top-right,
 bottom-right and bottom-left, respectively.
@@ -100,10 +100,11 @@ In the example above, it uses `useInstanceValue()` hook and
 setter function, `useInstanceValue()` returns only the current state value and
 `useInstanceValueSetter()` returns only its setter.
 
-They share almost same functionarities. But **React-Rerenderers** requires two
-hook callings.  Though the fact that **Rerenderers** requries more finger power
-than `useState()` hook could disgust you, it gives some advantages which
-`useState()` cannot achieve.
+You might notice that their functionarities are identical; while **React-Rerenderers**
+offers separated hook funtions for each functionarity of getting the current state and setting the new state,
+`useState()` offers both functionarities at one go.
+
+This small difference gives some advantages which `useState()` cannot achieve.
 
 ### ✨ Necessity of Lifting States with React Hooks
 
