@@ -437,9 +437,10 @@ Step 2. Right after the navigation is triggerd
 
 The animation for disappearing is interrupted because the `<Dialog1/>` component
 will be unmounted after it starts to navigate to the `route2` 
-without waiting the animation of `<Dialog1/>`. 
-Therefore, we can conclude that **all dialogs must be placed outside the `Router`**.
+without waiting `<Dialog1/>` finishes its animation.
+Therefore, we can conclude that **all dialogs should be placed outside the `Router`**.
 But this requirement invokes more complexity and you will see that the complexity finally becomes out of controll.
+
 
 
 
