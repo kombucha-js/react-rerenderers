@@ -103,6 +103,8 @@ offers separated hook funtions for each functionarity of getting the current sta
 
 This small difference gives some advantages which `useState()` cannot achieve.
 
+Before we go inside the description of the advantages, let's review the necessity of lifting states of `useState()` hook.
+
 ### ✨ Necessity of Lifting States with React Hooks
 
 See the example below:
