@@ -393,9 +393,22 @@ the application can scalablly be extended.
 
  🍎 4. Modularize Modal Dialogs
 -------------------------------------------------------------------
-Modal Dialogs are trickly. At the first glance, it is easy. But it isn't. See the following example.
+Implementing Modal Dialogs with **React.js** is trickly. At the first glance, it seems easy; but it actually isn't. See the following example:
 
 [Dialogs with React-Router][example-dialog1]
+
+A confirmation dialog box will pop up when you click the center
+button and it will automatically navigate to the another route after
+the `proceed` button is clicked.
+
+You may notice that the dialog appears with an animation
+while the dialog disappears without the animation. It should
+be with the animation also when it disappears.
+But you would notice that its workaround for this issue is not easy.
+
+Understanding this behavior requires an advanced knowledge particularly about
+where it keeps the current state and where it tries to rebuild React Virtual DOM.
+
 
 
 [example-dialog1]: https://codesandbox.io/s/rerenderers-example-no-03-implement-dialogs-in-a-router-1-9xhhwv?file=/src/AppView.js
