@@ -745,8 +745,8 @@ const Main =()=>{
 ```
 
 According to [this post](context-with-router), it is necessary to create a
-pathless route and place others as its children in order to share a specific
-value to nested components via `<Provider/>` and `<Consumer/>`.
+pathless route and place others as its children. Otherwise `useContext()` hook
+cannot access to the current value that is set to `<Provider/>` component.
 
 See [this post](context-with-router) for further information.
 
@@ -788,36 +788,6 @@ return (
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-You very likely want to use **React-Rerenderers** with **React-Router**.  If
-you are in that case, you will try the following code and notice that it does
-not work.
-
-**React-Rerenderers** uses `useContext()` hook; the context consumer have to be
-a direct descendant of the context provider. In **React-Router**, your
-component will be a direct descendant of `Route` component which is the case
-that **useContext()** cannot corpolate with.
-
-Unless your component is placed in following way, it will not be able to
-retrieve its `current instance`.
-
-See [this post]()
-for further information.
-
-[context-with-router]: https://github.com/remix-run/react-router/issues/9324#issuecomment-1268554681
 
  🌈 API Reference 🌈
 =====================================
