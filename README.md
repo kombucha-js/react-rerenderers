@@ -32,11 +32,12 @@ hooks which offers a way to escape from React's hells hell.
 [batch-update-problem]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+state+batch+update+problem
 [redux]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=redux+sucks "Note that Redux is a hell by itself."
 
- 🪐 Agenda
+ 🪐 The Design Goal of **React-Rerenderers.js**
 --------------------
-- Offers a way to develop applications without other frameworks.
-- Offers a way to develop applications without other frameworks.
-
+- Control when to rerender manually and precisely.
+- Offer a way to manage **React.js** states without other frameworks.
+- Centralize logic as Model-View Controller.
+- Modularize not only components but also dialogs.
 
  🗽 The Things You Can Achieve with `React-Rerenderers` 🌈
 ===========================================================
