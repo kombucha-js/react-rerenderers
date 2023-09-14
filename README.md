@@ -691,6 +691,18 @@ you are in that case, you will try the following code and notice that it does
 not work.
 
 ```javascript
+const router = [ ... /* some-routes */ ];
+return (
+  <InstanceProvider factory={() => model} >
+    <RouterProvider router={router} />
+  </InstanceProvider>
+);
+```
+
+This problem roots to the difficulty of using React Context with React Router.
+See the following example.
+
+```javascript
 export const ctx = React.createContext("FOO");
 const router = createBrowserRouter([ ... ]);
 const Main =()=>{
@@ -702,13 +714,15 @@ const Main =()=>{
 }
 ```
 
-**React-Rerenderers** uses `useContext()` hook; the context consumer have to be
-a direct descendant of the context provider. In **React-Router**, your
-component will be a direct descendant of `Route` component which is the case
-that **useContext()** cannot corpolate with.
+It is not able to access to the value which `<ctx.Provider />` provides if you
+place the provider outside the route object tree.
 
-Unless your component is placed in following way, it will not be able to
-retrieve its `current instance`.
+The context consumer have to be a direct descendant of the context provider. In
+**React-Router**, your component will be a direct descendant of `Route`
+component which is the case that **useContext()** cannot corpolate with.
+
+The only workaround which I could find in the net is mentioned in
+[this post](context-with-router) in React-Router Remix's GitHub Repository.
 
 ```javascript
 export const ctx = React.createContext("FOO");
@@ -735,6 +749,73 @@ pathless route and place others as its children in order to share a specific
 value to nested components via `<Provider/>` and `<Consumer/>`.
 
 See [this post](context-with-router) for further information.
+
+[context-with-router]: https://github.com/remix-run/react-router/issues/9324#issuecomment-1268554681
+
+**React-Rerenderers.js**'s `<InstanceProvider/>` uses `useContext()` hook. That
+is, the instance consumer have to be a direct descendant of the instance
+provider.
+
+```javascript
+const router = [ ... /* some-routes */ ];
+return (
+  <InstanceProvider factory={() => model} >
+    <RouterProvider router={router} />
+  </InstanceProvider>
+);
+```
+The code above does not work as expected.
+
+Unless the `<InstanceProvider/>` is placed as follows, it will not be able to
+retrieve its `current state`.
+
+```javascript
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route element={ <InstanceProvider factory={() => model} /> }>
+      <Route path="/" element={<AppView />} />
+    </Route>
+  )
+);
+return (
+  <RouterProvider router={router} />
+);
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+You very likely want to use **React-Rerenderers** with **React-Router**.  If
+you are in that case, you will try the following code and notice that it does
+not work.
+
+**React-Rerenderers** uses `useContext()` hook; the context consumer have to be
+a direct descendant of the context provider. In **React-Router**, your
+component will be a direct descendant of `Route` component which is the case
+that **useContext()** cannot corpolate with.
+
+Unless your component is placed in following way, it will not be able to
+retrieve its `current instance`.
+
+See [this post]()
+for further information.
 
 [context-with-router]: https://github.com/remix-run/react-router/issues/9324#issuecomment-1268554681
 
@@ -808,4 +889,4 @@ Thank you very much and see you soon.
 - At the time **react-rerenderers.js** was started, it was not registered to
   [https://npmjs.org/]()
 
-[vim-mode-line]: vim: ts=2 sw=2 isk+=-
+[vim-mode-line]: vim: ts=2 sw=2
