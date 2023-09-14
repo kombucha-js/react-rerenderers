@@ -1,14 +1,11 @@
  🌈 React-Rerenderers.js
 ======================
-This is a new state management framework which allows you to decide when to
-render your components. For further information, please see below.
+**React-Rerenderers** is a new state management library.
+This is a quite unusual and yet efficient usage of React.js' 
+hooks which offers a way to escape from React's hells hell.
 
  👺 Features
 ---------------
-**React-Rerenderers** is a new state management library. This is a quite
-unusual and yet efficient usage of React.js' hooks which offers a way to escape
-from React's hells hell.
-
 - No more [useState() Hell][usestate-hell]
 - No more [Prop Drilling][prop-drilling] Hell
 - No more [Lifting-State-Up][lifting-state-up] Hell
