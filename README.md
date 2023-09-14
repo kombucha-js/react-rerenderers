@@ -455,10 +455,58 @@ See the following example:
 
 [Dialogs with React-Router 2. Provider Hell][example-dialog1]
 
+There are three things to consider in order to take measurement for the issue of
+interuption of the animation as we have seen in above:
+
+- Every dialog must be placed outside the Router.
+- When a dialog is placed outside the router, its state should also be placed
+  outside the Router.
+- The state should also be passed to the caller of the dialog; otherwise the
+  caller cannot trigger the dialog to pop up.
+
+This is actually a very difficult problem. React Router states that every
+definition of routes should be placed to global scope.
+
+How can this be achieved?
+
+The only way to pass an arbitrary value to a route is actually [`useContext()`][useContext].
+
+But you will be suffered with the second problem. Actually every route is not
+able to be any descendant of other React Virtual DOM Tree. In short,
+
+```javascript
+const router = [ ... /* some-routes */ ];
+return (
+  <InstanceProvider factory={() => model} >
+    <RouterProvider router={router} />
+  </InstanceProvider>
+);
+```
+
+The bad news is, the code above does not work, unfortunately.  The good news is,
+there are a simple workaround; create a pathless route as follows:
+
+```javascript
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route element={ <InstanceProvider factory={() => model} /> }>
+      <Route path="/" element={<AppView />} />
+    </Route>
+  )
+);
+return (
+  <RouterProvider router={router} />
+);
+```
+This will be explained further in the following section.
+
+
+
 
 [example-dialog1]: https://codesandbox.io/s/rerenderers-example-no-03-implement-dialogs-in-a-router-1-9xhhwv?file=/src/AppView.js
 [example-dialog2]: https://codesandbox.io/s/rerenderers-example-no-03-implement-dialogs-in-a-router-2-with-provider-hell-rjf8k4?file=/src/AppView.js
 [example-dialog3]: https://codesandbox.io/s/rerenderers-example-no-03-implement-dialogs-in-a-router-3-without-provider-hell-qq9s9d?file=/src/AppView.js
+[use-context]: https://react.dev/reference/react/useContext
 
  🌈  Miscellaneous 🌈
 =====================================
@@ -500,9 +548,10 @@ return (
 );
 ```
 
-See [this post](https://github.com/remix-run/react-router/issues/9324#issuecomment-1268554681)
+See [this post]()
 for further information.
 
+[context-with-router]: https://github.com/remix-run/react-router/issues/9324#issuecomment-1268554681
 
  🌈 API Reference 🌈
 =====================================
