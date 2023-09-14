@@ -398,17 +398,38 @@ Implementing Modal Dialogs with **React.js** is trickly. At the first glance, it
 [Dialogs with React-Router][example-dialog1]
 
 A confirmation dialog box will pop up when you click the center
-button and it will automatically navigate to the another route after
+button and it will automatically navigate to another route after
 the `proceed` button is clicked.
 
 You may notice that the dialog appears with an animation
 while the dialog disappears without the animation. It should
 be with the animation also when it disappears.
-But you would notice that its workaround for this issue is not easy.
+But you will notice that its workaround for this issue is not easy.
 
 Understanding this behavior requires an advanced knowledge particularly about
 where it keeps the current state and where it tries to rebuild React Virtual DOM.
 
+```
+// The Route Definition for the Router
+  +-route1
+    +-<Dialog1 />
+    +-<View1 />
+  +-route2
+    +-<Dialog2 />
+    +-<View2 />
+
+// React Virtual DOM
+1.
+  +-Router
+    +-<Dialog1/>
+    +-<View1/>
+2. After it navigates to another
+  +-Router
+    +- **<Dialog1/>** // this will be destroyed
+    +- **<View1/>**  //  this will be destroyed
+    +- <Dialog2/> // this is created
+    +- <View2/>  // this is created
+```
 
 
 [example-dialog1]: https://codesandbox.io/s/rerenderers-example-no-03-implement-dialogs-in-a-router-1-9xhhwv?file=/src/AppView.js
