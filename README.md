@@ -452,8 +452,7 @@ Therefore, we can conclude that **all dialogs should be placed outside the
 the complexity finally becomes out of controll.
 
 See the following example:
-
-[Dialogs with React-Router 2. Provider Hell][example-dialog1]
+[Dialogs with React-Router 2. Provider Hell][context-provider-hell]
 
 There are three things to consider in order to take measurement for the issue of
 interuption of the animation as we have seen in above:
@@ -474,8 +473,7 @@ The only way to pass an arbitrary value to a route is actually [useContext()][us
 But you will be suffered with the second problem. Actually every route is not
 able to be any descendant of other React Virtual DOM Tree. In short,
 
-```javascript
-const router = [ ... /* some-routes */ ];
+```javascript const router = [ ... /* some-routes */ ];
 return (
   <InstanceProvider factory={() => model} >
     <RouterProvider router={router} />
@@ -483,8 +481,8 @@ return (
 );
 ```
 
-The bad news is, the code above does not work, unfortunately.  The good news is,
-there are a simple workaround; create a pathless route as follows:
+Unfortunately, the code above does not work. But the good news is, there are a
+simple workaround; create a pathless route as follows:
 
 ```javascript
 const router = createBrowserRouter(
@@ -498,7 +496,100 @@ return (
   <RouterProvider router={router} />
 );
 ```
-This will be explained further in the following section.
+
+This flawlessly works. This will be explained further in the following section.
+
+Good! So we can go through this difficulty, right?!
+Actually this leads us to another hell.
+That is the [Provider Hell][context-provider-hell].
+
+This hell is terrible.  See the previous example again:
+
+[Dialogs with React-Router 2. Provider Hell][example-dialog1]
+
+**AppView.js**
+```javascript
+  {
+    path: "/",
+    element: (
+      <>
+        <Rotate1Provider>
+          <Rotate2Provider>
+            <Router.Outlet />
+          </Rotate2Provider>
+        </Rotate1Provider>
+      </>
+    ),
+    children: [
+      {
+          //...
+      },
+      //...
+    ],
+  },
+```
+
+Now we have two providers. That's fine.  But the more we create dialogs, the
+more the nested providers we get. Say we have twenty dialogs, it goes:
+
+```javascript
+  {
+    path: "/",
+    element: (
+      <>
+        <Rotate1Provider>
+          <Rotate2Provider>
+            <Rotate3Provider>
+              <Rotate4Provider>
+                <Rotate5Provider>
+                  <Rotate6Provider>
+                    <Rotate7Provider>
+                      <Rotate8Provider>
+                        <Rotate9Provider>
+                          <Rotate10Provider>
+                            <Rotate11Provider>
+                              <Rotate12Provider>
+                                <Rotate13Provider>
+                                  <Rotate14Provider>
+                                    <Rotate15Provider>
+                                      <Rotate16Provider>
+                                        <Rotate17Provider>
+                                          <Rotate18Provider>
+                                            <Rotate19Provider>
+                                              <Rotate20Provider>
+                                                <Router.Outlet />
+                                              </Rotate20Provider>
+                                            </Rotate19Provider>
+                                          </Rotate18Provider>
+                                        </Rotate17Provider>
+                                      </Rotate16Provider>
+                                    </Rotate15Provider>
+                                  </Rotate14Provider>
+                                </Rotate13Provider>
+                              </Rotate12Provider>
+                            </Rotate11Provider>
+                          </Rotate10Provider>
+                        </Rotate9Provider>
+                      </Rotate8Provider>
+                    </Rotate7Provider>
+                  </Rotate6Provider>
+                </Rotate5Provider>
+              </Rotate4Provider>
+            </Rotate3Provider>
+          </Rotate2Provider>
+        </Rotate1Provider>
+      </>
+    ),
+    children: [
+      {
+          //...
+      },
+      //...
+    ],
+  },
+```
+
+This is the [Provider Hell][context-provider-hell].
 
 
 
