@@ -37,8 +37,8 @@ hooks which offers a way to escape from React's hells hell.
 ### ✨ React Development with the traditional `useState()`
 
 Assume you are creating a simple application as follows:
-[Example No.0](https://codesandbox.io/s/rerenderers-example-no-00-without-react-rerenderers-6d5hnh?file=/src/AppView.js)
 
+[Example No.0](https://codesandbox.io/s/rerenderers-example-no-00-without-react-rerenderers-6d5hnh?file=/src/AppView.js)
 ```jsx
 import React from "react";
 
