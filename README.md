@@ -425,10 +425,14 @@ where it keeps the current state and where it tries to rebuild React Virtual DOM
     +-<View1/>
 2. After it navigates to another
   +-Router
-    +- **<Dialog1/>** // this will be destroyed
-    +- **<View1/>**  //  this will be destroyed
+    +- (-) <Dialog1/> // this will be destroyed
+    +- (-) <View1/>   //  this will be destroyed
     +- <Dialog2/> // this is created
     +- <View2/>  // this is created
+3. After it navigates to another
+  +-Router
+    +- <Dialog2/> 
+    +- <View2/>  
 ```
 
 
