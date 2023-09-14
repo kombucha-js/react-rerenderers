@@ -629,7 +629,60 @@ const routes = [
 ```
 
 With **React-Rerenderers**'s `useTransmitter()` hook, it is not necessary to
-nest your provider.  For further information, see the following.
+nest your provider.  See the following code.
+
+```javascript
+export const Dialog1 = () => {
+  const navigate = rr.useNavigate();
+  const [show, setShow] = React.useState(false);
+  const handlers = {
+    show,
+    handleClose: (result) => {
+      setShow(false);
+      if (result) {
+        navigate("/" + handlers.to);
+      }
+    },
+    handleShow: () => setShow(true),
+    get message() {
+      return `Navigate to ${handlers.to}?`;
+    },
+    to: "bar"
+  };
+
+  Rerenderers.useNewTransmitter("route1dialog", handlers); // << See this.
+
+  return (
+    <>
+      <bs.Modal show={handlers.show} onHide={handlers.handleClose}>
+        //....
+      </bs.Modal>
+    </>
+  );
+}
+```
+
+After we called the `useState()` hook, we set the state setter function to an
+object. Then we passed the object to **React-Rerenderers.js**'s
+`useNewTransmitter()` hook with an ID.
+
+While the component which calls the `useNewTransmitter()` hook is mounted
+somewhere in the React Virtual DOM Tree, you can access to the value via
+calling `useTransmitter()` hook with the specified ID.
+
+This enables users to access to the object from anywhere in the React Virtual
+DOM Tree.
+
+
+
+
+
+
+
+
+
+
+For further information, see the following.
 
 
 
@@ -753,4 +806,4 @@ Thank you very much and see you soon.
 - At the time **react-rerenderers.js** was started, it was not registered to
   [https://npmjs.org/]()
 
-
+[vim-mode-line]: vim: ts=2 sw=2
