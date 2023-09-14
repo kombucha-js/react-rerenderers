@@ -19,7 +19,7 @@ hooks which offers a way to escape from React's hells hell.
 - No more fussy tricks to manage rendering triggers indirect way
 - Zero dependent
 
-†Note that Redux is a hell by itself.
+† Note that Redux is a hell by itself.
 
 [usestate-hell]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+state+hell
 [prop-drilling]: https://react.dev/learn/passing-data-deeply-with-context
