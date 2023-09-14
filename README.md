@@ -97,9 +97,10 @@ In the example above, it uses `useInstanceValue()` hook and
 setter function, `useInstanceValue()` returns only the current state value and
 `useInstanceValueSetter()` returns only its setter.
 
-You might notice that their functionarities are identical; while **React-Rerenderers**
-offers separated hook funtions for each functionarity of getting the current state and setting the new state,
-`useState()` offers both functionarities at one go.
+You might notice that their functionarities are identical; while
+**React-Rerenderers** offers separated hook funtions for each functionarity of
+getting the current state and setting the new state, `useState()` offers both
+functionarities at one go.
 
 This small difference gives some advantages which `useState()` cannot achieve.
 
@@ -156,11 +157,17 @@ export function AppSquare({ counter }) {
 }
 ```
 
-Even though it does not seem to cause serious issues, it does cause some serious issues when it comes to a larger project.
+Even though it does not seem to cause serious issues, it does cause some
+serious issues when it comes to a larger project.
 
-- As the number of pages increases, it is usually getting more difficult to modularize your logic when you have to shift up or down those state functions or objects. It requires more complicated works and finally it is going to be impossible to achive.
-- As a state is lifted up, the more components are likely to be rerendered when the hook is called. This causes slowing down the rerendering process.
-- Components with animation should usually not be rerendered. Unexpected rerendering causes compoents to stop their animation.
+- As the number of pages increases, it is usually getting more difficult to
+  modularize your logic when you have to shift up or down those state functions
+  or objects. It requires more complicated works and finally it is going to be
+  impossible to achive.
+- As a state is lifted up, the more components are likely to be rerendered when
+  the hook is called. This causes slowing down the rerendering process.
+- Components with animation should usually not be rerendered. Unexpected
+  rerendering causes compoents to stop their animation.
 
 **React-Rerenderers.js** can eliminate these [Lifting Up][lifting-state-up]
 and [Drilling Properties][prop-drilling] necessity.
@@ -393,13 +400,15 @@ the application can scalablly be extended.
 
  🍎 4. Modularize Modal Dialogs
 -------------------------------------------------------------------
-Implementing Modal Dialogs with **React.js** is trickly. At the first glance, it seems easy; but it actually isn't. See the following example:
+Implementing Modal Dialogs with **React.js** is trickly. At the first glance,
+it seems easy; but it actually isn't. See the following example:
 
-[Dialogs with React-Router][example-dialog1]
+[Dialogs with React-Router 1. ][example-dialog1]
 
-A confirmation dialog box will pop up when you click the center
-button and it will automatically navigate to another route after
-the `proceed` button is clicked.
+In this example, dialogs are implemented with a popular module named
+`react-bootstrap`.  A confirmation dialog box will pop up when you click the
+center button and it will automatically navigate to another route after the
+`proceed` button is clicked.
 
 You may notice that the dialog appears with an animation
 while the dialog disappears without the animation. It should
@@ -431,17 +440,20 @@ Step 2. Right after the navigation is triggerd
     +- <View2/>   (+) // this is a newly created node
 3. After it navigates to another
   +-Router
-    +- <Dialog2/> 
-    +- <View2/>  
+    +- <Dialog2/>
+    +- <View2/>
 ```
 
-The animation for disappearing is interrupted because the `<Dialog1/>` component
-will be unmounted after it starts to navigate to the `route2` 
-without waiting `<Dialog1/>` finishes its animation.
-Therefore, we can conclude that **all dialogs should be placed outside the `Router`**.
-But this requirement invokes more complexity and you will see that the complexity finally becomes out of controll.
+The animation which occurs when the dialog disappears is always interrupted
+because the `<Dialog1/>` component will be unmounted after `Router` starts to
+navigate to the `route2` without waiting `<Dialog1/>` finishes its animation.
+Therefore, we can conclude that **all dialogs should be placed outside the
+`Router`**.  But this requirement invokes more complexity and you will see that
+the complexity finally becomes out of controll.
 
+See the following example:
 
+[Dialogs with React-Router 2. Provider Hell][example-dialog1]
 
 
 [example-dialog1]: https://codesandbox.io/s/rerenderers-example-no-03-implement-dialogs-in-a-router-1-9xhhwv?file=/src/AppView.js
