@@ -792,7 +792,42 @@ return (
  🌈 API Reference 🌈
 =====================================
 
-### `InstanceProvider()` ###
+### `<InstanceProvider factory={} />` ###
+
+`<InstanceProvider/>` specifies the current object which all states should be
+stored.  The attribute `factory` should be a function which returns the current
+object.
+
+Opposing to the name `factory` suggests, in most case, it should be as follows:
+```jsx
+export const myModel = new MyModel();
+const Main = ()=>{
+  return (
+    <InstanceProvider factory={()=>myModel} >
+      <MyView/>
+    </InstanceProvider>
+  );
+};
+```
+
+Not as follows:
+```jsx
+const Main = ()=>{
+  return (
+    <InstanceProvider factory={()=>new MyModel()} >
+      <MyView/>
+    </InstanceProvider>
+  );
+};
+```
+
+The object should be located on the global scope because actions and loaders on
+your routers are very likely placed on the global scope. If your model is placed
+on **React.js**'s state, there is no way to access to it from your actions and
+loaders.
+
+`<InstanceProvider/>` is not mandatory. In case you haven't specified your
+current object, it defaults to `GLOBAL_INSTANCE` as mentioned later.
 
 ### `useInstance()` ###
 
@@ -811,6 +846,7 @@ return (
 ### `getTransmitter()` ###
 
 ### `useTransmitter()` ###
+
 
 ### `useRerender()` ###
 
