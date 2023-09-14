@@ -469,7 +469,7 @@ definition of routes should be placed to global scope.
 
 How can this be achieved?
 
-The only way to pass an arbitrary value to a route is actually [`useContext()`][useContext].
+The only way to pass an arbitrary value to a route is actually [useContext()][useContext].
 
 But you will be suffered with the second problem. Actually every route is not
 able to be any descendant of other React Virtual DOM Tree. In short,
