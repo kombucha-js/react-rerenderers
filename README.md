@@ -668,22 +668,11 @@ object. Then we passed the object to **React-Rerenderers.js**'s
 
 While the component which calls the `useNewTransmitter()` hook is mounted
 somewhere in the React Virtual DOM Tree, you can access to the value via
-calling `useTransmitter()` hook with the specified ID `route1dialog`.
+calling `useTransmitter()` hook with the specified ID `route1dialog` .
 
-This enables users to access to the object from anywhere in the React Virtual
-DOM Tree.
-
-
-
-
-
-
-
-
-
-
-For further information, see the following.
-
+This enables users to access to any hooks (that is, states and state setter
+functions) from anywhere in the React Virtual DOM Tree without those nested
+context providers.
 
 
 [example-dialog1]: https://codesandbox.io/s/rerenderers-example-no-03-implement-dialogs-in-a-router-1-9xhhwv?file=/src/AppView.js
