@@ -43,7 +43,7 @@ Assume you are creating a simple application as follows:
 import React from "react";
 
 export const AppView = () => {
-  const [counter, setCounter] = React.useState(0); // << check this out
+  const [counter, setCounter] = React.useState(0); // << See this
   return (
     <div id="main-frame">
       <div
@@ -74,8 +74,8 @@ In **React-Rerenderers**, we implement the same logic in the following manner:
 import * as Rerenderers from "./react-rerenderers";
 
 export const AppView = () => {
-  const counter = Rerenderers.useInstanceValue("counter"); // << check this out
-  const setCount = Rerenderers.useInstanceValueSetter("counter"); // << check this out
+  const counter = Rerenderers.useInstanceValue("counter"); // << See this
+  const setCount = Rerenderers.useInstanceValueSetter("counter"); // << See this
   return (
     <div id="main-frame">
       <div
@@ -123,7 +123,7 @@ import { AppButton } from "./AppButton.js";
 import { AppSquare } from "./AppSquare.js";
 
 export const AppView = () => {
-  const [counter, setCounter] = React.useState(0); // check this out
+  const [counter, setCounter] = React.useState(0); // << See this
   return (
     <div id="main-frame">
       <AppSquare counter={counter} />
@@ -192,8 +192,7 @@ export const AppView = () => {
 import * as Rerenderers from "./react-rerenderers";
 
 export function AppSquare() {
-  // check this out
-  const counter = Rerenderers.useInstanceValue("counter");
+  const counter = Rerenderers.useInstanceValue("counter"); // << See this
   return (
     <div id="main-object" className={`square${counter}`}>
       <div>{counter}</div>
@@ -206,8 +205,7 @@ export function AppSquare() {
 import * as Rerenderers from "./react-rerenderers";
 
 export function AppButton() {
-  // check this out
-  const setCount = Rerenderers.useInstanceValueSetter("counter");
+  const setCount = Rerenderers.useInstanceValueSetter("counter"); // << See this
   return (
     <button id="main-message" onClick={() => setCount((count) => count + 1)}>
       Click Me
