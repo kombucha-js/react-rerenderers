@@ -165,7 +165,7 @@ Even though it does not seem to cause serious issues, it does cause some serious
 **React-Rerenderers.js** can eliminate these [Lifting Up][lifting-state-up]
 and [Drilling Properties][prop-drilling] necessity.
 
-### ✨ How **React-Rerenderers** eliminate the State Lifting ###
+### ✨ How **React-Rerenderers** Eliminate the State Lifting ###
 
 See the following example:
 
