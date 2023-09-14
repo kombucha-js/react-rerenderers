@@ -664,11 +664,11 @@ export const Dialog1 = () => {
 
 After we called the `useState()` hook, we set the state setter function to an
 object. Then we passed the object to **React-Rerenderers.js**'s
-`useNewTransmitter()` hook with an ID.
+`useNewTransmitter()` hook with an ID, in this case it is `route1dialog`.
 
 While the component which calls the `useNewTransmitter()` hook is mounted
 somewhere in the React Virtual DOM Tree, you can access to the value via
-calling `useTransmitter()` hook with the specified ID.
+calling `useTransmitter()` hook with the specified ID `route1dialog`.
 
 This enables users to access to the object from anywhere in the React Virtual
 DOM Tree.
