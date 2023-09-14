@@ -13,7 +13,7 @@ hooks which offers a way to escape from React's hells hell.
 - No more [Redux State Hell][redux-state-hell]
 - No more [Encapsulation Hell][encapsulation-hell]
 - No more [Infinite Rendering Loop][inf-rendering-loop] Hell
-- No more [Redux](redux)
+- No more [Redux][redux]
 - No more [Stale Closure Problem][stale-closure-problem]
 - No more [Batch Update Problem][batch-update-problem]
 - No more fussy tricks to manage rendering triggers indirect way
