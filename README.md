@@ -314,7 +314,7 @@ it is able to manually invoke the rebuilding process of React Virtual DOM Tree.
 
 It seemed to me that further optimization is also possible. 
 I realized it is also able to store states as classes outside React hooks/components.
-I think, this could be an implementation of Model View Controller in **React.js**.
+I think, this could be an implementation of Model-View Controller in **React.js**.
 
 See the following example:
 
