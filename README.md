@@ -414,7 +414,7 @@ It is very important to understand when to call `useRerenderer()` and
 
 See the following example:
 
-[Rule of React-Rerenderers.js No.1][rerenderers-rule-01]
+[The Rules of React-Rerenderers.js No.1][rerenderers-rule-01]
 
 [rerenderers-rule-01]: https://codesandbox.io/s/react-rerenderers-usererenderer-and-firererenderers-y3x92v?file=/src/App.js
 
@@ -456,7 +456,13 @@ The principle behind the rules is simple:
 - `fireRerenderer()` rerenders and refreshes the all components in the list
   which is stored as the specified ID.
 
+This set of rules is related to the mechanism of the re-rendering process of
+React.js. It requires the knowledge of the proces in order to understand the set
+of rules properly.
+
 For further information, see [Render and Commit in React.js Official Documentation](https://react.dev/learn/render-and-commit).
+
+
 
 
  🐙 4. Modularize Modal Dialogs
@@ -957,4 +963,4 @@ Thank you very much and see you soon.
 - At the time **react-rerenderers.js** was started, it was not registered to
   [https://npmjs.org/]()
 
-[vim-mode-line]: vim: ts=2 sw=2 isk+=- spell
+[vim-mode-line]: vim: spell ts=2 sw=2 isk+=-
