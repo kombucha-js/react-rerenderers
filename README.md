@@ -407,7 +407,7 @@ it is able to cleanly modularize components and their states and
 the application can scalably be extended.
 
 
-### 📜 Rules of React-Rerenderers.js 📜 ###
+### 📜 Rules of `useRerenderer()` and `fireRerenderers()` 📜 ###
 
 It is very important to understand when to call `useRerenderer()` and
 `fireRerenderers()`.  
@@ -444,9 +444,9 @@ The rules are:
   current associated instance.
 - Call 'fireRerenderers()` if the component makes a write-access to a field of
   the current associated instance.
-- ID parameter of the functions should match to the name of the field to access
-  but it is not mandatory; though it must be unique enough to identify the
-  field.
+- ID parameter of the functions should match to the name of the field where the
+  component makes an access but it is not mandatory; though it must be unique
+  enough to identify the field.
 
 The principle behind the rules is simple:
 
@@ -461,6 +461,9 @@ React.js. It requires the knowledge of the proces in order to understand the set
 of rules properly.
 
 For further information, see [Render and Commit in React.js Official Documentation](https://react.dev/learn/render-and-commit).
+
+
+### 📜 Rules of `useRerenderer()` and `fireRerenderers()` 📜 ###
 
 
 
