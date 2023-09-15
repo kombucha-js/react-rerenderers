@@ -307,12 +307,14 @@ This actually opens a door for more aggressive optimization.
 -------------------------------------------------------------------
 
 In the previous section, we have seen that states are actually able to be stored
-outside hooks/components. And we also have seen that, by using useRerenderers() hook,
-it is able to manually invoke the rebuilding process of React Virtual DOM Tree.
+outside hooks/components. And we also have seen that, by using `useRerenderers()`
+hook, it is able to manually invoke the rebuilding process of React Virtual
+DOM Tree.
 
-It seemed to me that further optimization is also possible. 
-I realized it is also able to store states as classes outside React hooks/components.
-I think, this could be an implementation of Model-View Controller in **React.js**.
+It seemed to me as a hint to the possibility to a further optimization.  I
+realized it is also able to store states as JavaScript objects outside React
+hooks/components.  I think, this could be an implementation of Model-View
+Controller in **React.js**.
 
 See the following example:
 
@@ -338,9 +340,8 @@ export class AppModel {
 export const model = new AppModel();
 ```
 
-After defining the model class, relate 
-the created instance to the React Virtual DOM Tree by 
-**InstanceProvider** component.
+After defining the model class, associate the created instance to the React Virtual
+DOM Tree by **InstanceProvider** component.
 
 ```jsx
 import "./styles.css";
@@ -358,8 +359,7 @@ export default function App() {
 }
 ```
 
-In **AppView** component, it is able to access to the instance 
-by `React-Rerenderers`'s `useInstance()` hook.
+In **AppView** component, it is able to access to the instance by `useInstance()` hook.
 
 ```jsx
 import * as Rerenderers from "./react-rerenderers";
@@ -402,15 +402,60 @@ export const AppView = () => {
 };
 ```
 
-The example above works. And I noticed that, in this way, 
+The example above works. And I noticed that, in this way,
 it is able to cleanly modularize components and their states and
 the application can scalably be extended.
 
 
+### 📜 Rules of React-Rerenderers.js 📜 ###
+
+It is very important to understand when to call `useRerenderer()` and
+`fireRerenderers()`.  See the following example:
+
+[rerenderers-rule-01]: https://codesandbox.io/s/react-rerenderers-usererenderer-and-firererenderers-y3x92v?file=/src/App.js
+
+- Call `useRerenderer()` if the component makes a read-access to a field of the
+  current associated instance.
+- Call 'fireRerenderers()` if the component makes a write-access to a field of
+  the current associated instance.
+- ID parameter of the functions should match to the name of the field to access
+  but it is not mandatory; though it must be unique enough to identify the
+  field.
+
+```jsx
+import * as rers from "./react-rerenderers";
+import * as bs from "react-bootstrap";
+
+export const Value01Reader = () => {
+  const model = rers.useInstance();
+  rers.useRerenderer("value01");
+  return <input value={model.value01} readOnly />;
+};
+
+export const Value01Writer = () => {
+  const model = rers.useInstance();
+  function handleClick() {
+    model.value01++;
+    rers.fireRerenderers(model, "value01");
+  }
+  return <bs.Button onClick={handleClick}>Add</bs.Button>;
+};
+```
+
+What it actually does is simple:
+
+- `useRerenderer()` marks the component where the hook is called as the
+  specified ID; this process effectively makes a list of components with that
+  specified ID and stores the list on the current associated instance.
+- `fireRerenderer()` rerenders and refreshes the all components in the list
+  which is stored as the specified ID.
+
+[Render and Commit in React.js Official Documentation](https://react.dev/learn/render-and-commit)
 
 
 
- 🍎 4. Modularize Modal Dialogs
+
+ 🐙 4. Modularize Modal Dialogs
 -------------------------------------------------------------------
 Implementing Modal Dialogs with **React.js** is tricky. At the first glance,
 it seems easy; but it actually isn't. See the following example:
@@ -908,4 +953,4 @@ Thank you very much and see you soon.
 - At the time **react-rerenderers.js** was started, it was not registered to
   [https://npmjs.org/]()
 
-[vim-mode-line]: vim: ts=2 sw=2
+[vim-mode-line]: vim: ts=2 sw=2 spell
