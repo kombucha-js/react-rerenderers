@@ -719,7 +719,7 @@ place the provider outside the route object tree.
 
 The context consumer have to be a direct descendant of the context provider. In
 **React-Router**, your component will be a direct descendant of `Route`
-component which is the case that **useContext()** cannot corpolate with.
+component which is the case that **useContext()** cannot corporate with.
 
 The only workaround which I could find in the net is mentioned in
 [this post](context-with-router) in React-Router Remix's GitHub Repository.
