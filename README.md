@@ -689,14 +689,12 @@ context providers.
 [example-dialog3]: https://codesandbox.io/s/rerenderers-example-no-03-implement-dialogs-in-a-router-3-without-provider-hell-qq9s9d?file=/src/AppView.js
 [use-context]: https://react.dev/reference/react/useContext
 
- 🌈  Miscellaneous 🌈
-=====================================
 
- 👩‍❤️‍👨 Using React-Rerenderers with React-Router  👩‍❤️‍👨
--------------------------------------------------------
+ 👩‍❤️‍👨 How to Use React-Rerenderers with React-Router
+==========================================================================
 
 You very likely want to use **React-Rerenderers** with **React-Router**.  If
-you are in that case, you will try the following code and notice that it does
+you are in that case, you might try the following code and notice that it does
 not work.
 
 ```jsx
