@@ -81,7 +81,7 @@ In **React-Rerenderers**, we implement the same logic in the following manner:
 
 [Example No.1](https://codesandbox.io/s/rerenderers-example-no-01-a-basic-usage-nkvvjs?file=/src/AppView.js)
 
-```javascript
+```jsx
 import * as Rerenderers from "./react-rerenderers";
 
 export const AppView = () => {
@@ -129,7 +129,7 @@ Note that with the traditional `useState()` hook, you have to
 [Lifting Up][lifting-state-up] the `useState()` hook and then you have to
 [Drilling Properties][prop-drilling] as following:
 
-```javascript
+```jsx
 import React from "react";
 import { AppButton } from "./AppButton.js";
 import { AppSquare } from "./AppSquare.js";
@@ -145,7 +145,7 @@ export const AppView = () => {
 };
 ```
 
-```javascript
+```jsx
 export function AppButton({ setCounter }) {
   return (
     <button
@@ -158,7 +158,7 @@ export function AppButton({ setCounter }) {
 }
 ```
 
-```javascript
+```jsx
 export function AppSquare({ counter }) {
   return (
     <div id="main-object" className={`square${counter}`}>
@@ -189,7 +189,7 @@ See the following example:
 
 [Example No.3](https://codesandbox.io/s/rerenderers-example-no-03-modifying-a-vaue-from-a-remote-location-cc8rdd?file=/src/AppView.js)
 
-```javascript
+```jsx
 import { AppButton } from "./AppButton.js";
 import { AppSquare } from "./AppSquare.js";
 
@@ -206,7 +206,7 @@ export const AppView = () => {
 };
 ```
 
-```javascript
+```jsx
 import * as Rerenderers from "./react-rerenderers";
 
 export function AppSquare() {
@@ -219,7 +219,7 @@ export function AppSquare() {
 }
 ```
 
-```javascript
+```jsx
 import * as Rerenderers from "./react-rerenderers";
 
 export function AppButton() {
@@ -254,7 +254,7 @@ See the following example:
 [Example No.4](https://codesandbox.io/s/rerenderers-example-no-04-update-components-from-outside-react-ss6tdm?file=/src/AppView.js)
 
 
-```javascript
+```jsx
 import * as Rerenderers from "./react-rerenderers";
 
 /*
@@ -323,7 +323,7 @@ See the following example:
 
 At first, define a class which contains all states in the same application.
 
-```javascript
+```jsx
 import { fireRerenderers } from "./react-rerenderers";
 export class AppModel {
   __counter = 0;
@@ -345,7 +345,7 @@ After defining the model class, relate
 the created instance to the React Virtual DOM Tree by 
 **InstanceProvider** component.
 
-```javascript
+```jsx
 import "./styles.css";
 import { InstanceProvider } from "./react-rerenderers";
 import { AppView } from "./AppView.js";
@@ -364,7 +364,7 @@ export default function App() {
 In **AppView** component, it is able to access to the instance 
 by `React-Rerenderers`'s `useInstance()` hook.
 
-```javascript
+```jsx
 import * as Rerenderers from "./react-rerenderers";
 
 export const AppView = () => {
@@ -475,31 +475,37 @@ interruption of the animation as we have seen in above:
   caller cannot trigger the dialog to pop up.
 
 This is actually a very difficult problem. React Router states that every
-definition of routes should be placed to global scope.
+definition of routes should be placed to the global scope.
 
 How can this be achieved?
 
-The only way to pass an arbitrary value to a route is actually [useContext()][use-context].
+The only way to pass an arbitrary value to a route is actually using
+[useContext()][use-context] hook.
 
 But you will be suffered with the second problem. Actually every route is not
 able to be any descendant of other React Virtual DOM Tree. In short,
 
-```javascript const router = [ ... /* some-routes */ ];
+```jsx
+const MY_VALUE={};
+const ctx = createContext(MY_VALUE);
+const router = [ ... /* some-routes */ ];
 return (
-  <InstanceProvider factory={() => model} >
+  <ctx.Provider  >
     <RouterProvider router={router} />
-  </InstanceProvider>
+  </ctx.Provider>
 );
 ```
 
 Unfortunately, the code above does not work. But the good news is, there are a
-simple workaround; create a pathless route as follows:
+simple workaround; create a pathless route with `<Outlet/>` as follows:
 
-```javascript
+```jsx
+const MY_VALUE={};
+const ctx = createContext(MY_VALUE);
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route element={ <InstanceProvider factory={() => model} /> }>
-      <Route path="/" element={<AppView />} />
+    <Route element={ <ctx.Provider /><Outlet/></ctx.Provider> }>
+      <Route path="/" element={<MyView />} />
     </Route>
   )
 );
@@ -508,7 +514,7 @@ return (
 );
 ```
 
-This flawlessly works. This will be explained further in the following section.
+This flawlessly works. The workaround will be explained further in the following section.
 
 Good! So we can go through this difficulty, right?!
 Actually this leads us to another hell.
@@ -519,7 +525,7 @@ This hell is terrible.  See the previous example again:
 [Dialogs with React-Router 2. Provider Hell][example-dialog1]
 
 **AppView.js**
-```javascript
+```jsx
   {
     path: "/",
     element: (
@@ -543,7 +549,7 @@ This hell is terrible.  See the previous example again:
 Now we have two providers. That's fine. But the more we create dialogs, the more
 the nested providers we get. Say we have twenty dialogs, it goes:
 
-```javascript
+```jsx
   {
     path: "/",
     element: (
@@ -607,7 +613,7 @@ following example;
 
 [Dialogs with React-Router 3. : Eliminate Provider Hell][example-dialog3]
 
-```javascript
+```jsx
 const routes = [
   {
     path: "/",
@@ -634,7 +640,7 @@ dialogs.
 With **React-Rerenderers**'s `useTransmitter()` hook, it is not required to
 define customized providers.  See the following code:
 
-```javascript
+```jsx
 export const Dialog1 = () => {
   const navigate = rr.useNavigate();
   const [show, setShow] = React.useState(false);
@@ -694,7 +700,7 @@ You very likely want to use **React-Rerenderers** with **React-Router**.  If
 you are in that case, you will try the following code and notice that it does
 not work.
 
-```javascript
+```jsx
 const router = [ ... /* some-routes */ ];
 return (
   <InstanceProvider factory={() => model} >
@@ -706,7 +712,7 @@ return (
 This problem roots to the difficulty of using React Context with React Router.
 See the following example.
 
-```javascript
+```jsx
 export const ctx = React.createContext("FOO");
 const router = createBrowserRouter([ ... ]);
 const Main =()=>{
@@ -718,17 +724,17 @@ const Main =()=>{
 }
 ```
 
-It is not able to access to the value which `<ctx.Provider />` provides if you
+It is not able to access to the value which is set to `<ctx.Provider />` if you
 place the provider outside the route object tree.
 
-The context consumer have to be a direct descendant of the context provider. In
+The context consumer has to be a direct descendant of the context provider. In
 **React-Router**, your component will be a direct descendant of `Route`
 component which is the case that **useContext()** cannot corporate with.
 
 The only workaround which I could find in the net is mentioned in
 [this post](context-with-router) in React-Router Remix's GitHub Repository.
 
-```javascript
+```jsx
 export const ctx = React.createContext("FOO");
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -757,10 +763,10 @@ See [this post](context-with-router) for further information.
 [context-with-router]: https://github.com/remix-run/react-router/issues/9324#issuecomment-1268554681
 
 **React-Rerenderers.js**'s `<InstanceProvider/>` uses `useContext()` hook. That
-is, the instance consumer have to be a direct descendant of the instance
+is, the instance consumer has to be a direct descendant of the instance
 provider.
 
-```javascript
+```jsx
 const router = [ ... /* some-routes */ ];
 return (
   <InstanceProvider factory={() => model} >
@@ -773,7 +779,7 @@ The code above does not work as expected.
 Unless the `<InstanceProvider/>` is placed as follows, it will not be able to
 retrieve its `current state`.
 
-```javascript
+```jsx
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={ <InstanceProvider factory={() => model} /> }>
@@ -798,9 +804,9 @@ return (
 
 ### `<InstanceProvider factory={} />` ###
 
-`<InstanceProvider/>` specifies the current object which all states should be
-stored.  The attribute `factory` should be a function which returns the current
-object.
+`<InstanceProvider/>` can share the current object which all states in an
+application should be stored.  The attribute `factory` should be a function
+which returns the current object.
 
 Opposing to the name `factory` suggests, in most case, it should be as follows:
 ```jsx
