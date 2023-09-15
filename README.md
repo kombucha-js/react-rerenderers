@@ -415,6 +415,7 @@ It is very important to understand when to call `useRerenderer()` and
 See the following example:
 
 [Rule of React-Rerenderers.js No.1][rerenderers-rule-01]
+
 [rerenderers-rule-01]: https://codesandbox.io/s/react-rerenderers-usererenderer-and-firererenderers-y3x92v?file=/src/App.js
 
 ```jsx
