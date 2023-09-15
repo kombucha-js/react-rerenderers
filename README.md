@@ -410,17 +410,12 @@ the application can scalably be extended.
 ### 📜 Rules of React-Rerenderers.js 📜 ###
 
 It is very important to understand when to call `useRerenderer()` and
-`fireRerenderers()`.  See the following example:
+`fireRerenderers()`.  
 
+See the following example:
+
+[Rule of React-Rerenderers.js No.1][rerenderers-rule-01]
 [rerenderers-rule-01]: https://codesandbox.io/s/react-rerenderers-usererenderer-and-firererenderers-y3x92v?file=/src/App.js
-
-- Call `useRerenderer()` if the component makes a read-access to a field of the
-  current associated instance.
-- Call 'fireRerenderers()` if the component makes a write-access to a field of
-  the current associated instance.
-- ID parameter of the functions should match to the name of the field to access
-  but it is not mandatory; though it must be unique enough to identify the
-  field.
 
 ```jsx
 import * as rers from "./react-rerenderers";
@@ -442,7 +437,17 @@ export const Value01Writer = () => {
 };
 ```
 
-What it actually does is simple:
+The rule is:
+
+- Call `useRerenderer()` if the component makes a read-access to a field of the
+  current associated instance.
+- Call 'fireRerenderers()` if the component makes a write-access to a field of
+  the current associated instance.
+- ID parameter of the functions should match to the name of the field to access
+  but it is not mandatory; though it must be unique enough to identify the
+  field.
+
+The principle behind the rule is simple:
 
 - `useRerenderer()` marks the component where the hook is called as the
   specified ID; this process effectively makes a list of components with that
@@ -450,7 +455,7 @@ What it actually does is simple:
 - `fireRerenderer()` rerenders and refreshes the all components in the list
   which is stored as the specified ID.
 
-[Render and Commit in React.js Official Documentation](https://react.dev/learn/render-and-commit)
+For further information, see [Render and Commit in React.js Official Documentation](https://react.dev/learn/render-and-commit).
 
 
 
