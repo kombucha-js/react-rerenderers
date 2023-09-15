@@ -690,6 +690,11 @@ context providers.
 [use-context]: https://react.dev/reference/react/useContext
 
 
+  How to Build Applications in Model-View Controller Architecture in 
+  **React-Rerenderers.js**
+==========================================================================
+
+
  👩‍❤️‍👨 How to Use React-Rerenderers with React-Router
 ==========================================================================
 
