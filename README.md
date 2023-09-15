@@ -462,10 +462,37 @@ of rules properly.
 
 For further information, see [Render and Commit in React.js Official Documentation](https://react.dev/learn/render-and-commit).
 
+### 📜 Rules of `useInstanceValue()` and `useInstanceValueSetter()` 📜 ###
 
-### 📜 Rules of `useRerenderer()` and `fireRerenderers()` 📜 ###
+In the previous section, we have seen when to `useRerenderer()` and
+`fireRerenderer()`.
 
+`useInstanceValue()` and `useInstanceValueSetter()` are merely helper functions
+to utilize `useInstanceValue()` and `fireRerenderer()`.
 
+See their source code:
+
+```jsx
+export function useInstanceValue(key) {
+  const instance = useInstance();
+  /* const rerender = */ useRerenderer(key);
+  return instance[key];
+}
+
+export function useInstanceValueSetter(key) {
+  const instance = useInstance();
+  return function setter(f) {
+    if (typeof f !== "function") {
+      throw new TypeError("value is not a function");
+    }
+    instance[key] = f(instance[key]);
+    fireRerenderers(instance, key);
+  };
+}
+```
+
+They only help to conform to the rules which are described in the previous
+section.
 
 
  🐙 4. Modularize Modal Dialogs
