@@ -108,10 +108,10 @@ In the example above, it uses `useInstanceValue()` hook and
 setter function, `useInstanceValue()` returns only the current state value and
 `useInstanceValueSetter()` returns only its setter.
 
-You might notice that their functionarities are identical; while
-**React-Rerenderers** offers separated hook funtions for each functionarity of
+You might notice that their functionalities are identical; while
+**React-Rerenderers** offers separated hook functions for each functionality of
 getting the current state and setting the new state, `useState()` offers both
-functionarities at one go.
+functionalities at one go.
 
 This small difference gives some advantages which `useState()` cannot achieve.
 
@@ -174,11 +174,11 @@ serious issues when it comes to a larger project.
 - As the number of pages increases, it is usually getting more difficult to
   modularize your logic when you have to shift up or down those state functions
   or objects. It requires more complicated works and finally it is going to be
-  impossible to achive.
+  impossible to achieve.
 - As a state is lifted up, the more components are likely to be rerendered when
   the hook is called. This causes slowing down the rerendering process.
 - Components with animation should usually not be rerendered. Unexpected
-  rerendering causes compoents to stop their animation.
+  rerendering causes components to stop their animation.
 
 **React-Rerenderers.js** can eliminate these [Lifting Up][lifting-state-up]
 and [Drilling Properties][prop-drilling] necessity.
@@ -245,7 +245,7 @@ component design.
 `useRerenderers()` hook you actually don't have to call any hook when only thing
 you want to do is to update the state.
 
-Actually, this is the biggest surprise which I have encountered duruing I was
+Actually, this is the biggest surprise which I have encountered during I was
 designing **React-Rerenderers**. I have never thought if I could implement it in
 such a way.
 
@@ -309,7 +309,7 @@ This actually opens a door for more aggressive optimization.
  🍎 3. You can Implement Model-View Controller in a Simpler Way
 -------------------------------------------------------------------
 
-In the previous section, we have seen that states are acutually able to be stored
+In the previous section, we have seen that states are actually able to be stored
 outside hooks/components. And we also have seen that, by using useRerenderers() hook,
 it is able to manually invoke the rebuilding process of React Virtual DOM Tree.
 
@@ -407,11 +407,11 @@ export const AppView = () => {
 
 The example above works. And I noticed that, in this way, 
 it is able to cleanly modularize components and their states and
-the application can scalablly be extended.
+the application can scalably be extended.
 
  🍎 4. Modularize Modal Dialogs
 -------------------------------------------------------------------
-Implementing Modal Dialogs with **React.js** is trickly. At the first glance,
+Implementing Modal Dialogs with **React.js** is tricky. At the first glance,
 it seems easy; but it actually isn't. See the following example:
 
 [Dialogs with React-Router 1. ][example-dialog1]
@@ -460,13 +460,13 @@ because the `<Dialog1/>` component will be unmounted after `Router` starts to
 navigate to the `route2` without waiting `<Dialog1/>` finishes its animation.
 Therefore, we can conclude that **all dialogs should be placed outside the
 `Router`**.  But this requirement invokes more complexity and you will see that
-the complexity finally becomes out of controll.
+the complexity finally becomes out of control.
 
 See the following example:
 [Dialogs with React-Router 2. Provider Hell][example-dialog2]
 
 There are three things to consider in order to take measurement for the issue of
-interuption of the animation as we have seen in above:
+interruption of the animation as we have seen in above:
 
 - Every dialog must be placed outside the Router.
 - When a dialog is placed outside the router, its state should also be placed
@@ -628,8 +628,11 @@ const routes = [
 ];
 ```
 
-With **React-Rerenderers**'s `useTransmitter()` hook, it is not necessary to
-nest your provider.  See the following code.
+It cuts out the necessity of the providers and flattens the definitions of the
+dialogs.
+
+With **React-Rerenderers**'s `useTransmitter()` hook, it is not required to
+define customized providers.  See the following code:
 
 ```javascript
 export const Dialog1 = () => {
@@ -661,6 +664,7 @@ export const Dialog1 = () => {
   );
 }
 ```
+
 
 After we called the `useState()` hook, we set the state setter function to an
 object. Then we passed the object to **React-Rerenderers.js**'s
@@ -889,7 +893,7 @@ Thank you very much and see you soon.
 ### as `react-rerenderers.js` ###
 
 - After **react-hooks** was released, **rerenderers.js** was forked from the
-  module **react-hooks**. Since then **rerenderers.js** have been developped in
+  module **react-hooks**. Since then **rerenderers.js** have been developed in
   a different application.
 - On Aug 24, 2023, the new repository **react-rerenderers.js** was started.
 - At the time **react-rerenderers.js** was started, it was not registered to
