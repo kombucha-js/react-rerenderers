@@ -690,8 +690,8 @@ context providers.
 [use-context]: https://react.dev/reference/react/useContext
 
 
- 👷‍♂️ 👷‍♀️ Model-View Controller Architecture with **React-Rerenderers.js**
-==========================================================================
+ 👷‍♂️Model-View Controller Architecture with **React-Rerenderers.js** 👷‍♀️
+==========================================================================================
 
 
  👩‍❤️‍👨 How to Use React-Rerenderers with React-Router
