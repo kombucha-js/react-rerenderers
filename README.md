@@ -11,26 +11,24 @@ hooks which offers a way to escape from React's hells hell.
 - No more [Lifting-State-Up][lifting-state-up] Hell
 - No more [Context-Provider Hell][context-provider-hell]
 - No more [Redux State Hell][redux-state-hell]
+- No more [Redux][redux]
 - No more [Encapsulation Hell][encapsulation-hell]
 - No more [Infinite Rendering Loop][inf-rendering-loop] Hell
-- No more [Redux][redux] †
 - No more [Stale Closure Problem][stale-closure-problem]
 - No more [Batch Update Problem][batch-update-problem]
 - No more fussy tricks to manage rendering triggers indirect way
 - Zero dependent
-
-† Note that Redux is a hell by itself.
 
 [usestate-hell]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+state+hell
 [prop-drilling]: https://react.dev/learn/passing-data-deeply-with-context
 [lifting-state-up]: https://react.dev/learn/sharing-state-between-components
 [context-provider-hell]: https://www.google.com/search?gl=us&hl=en&q=react+context+provider+hell
 [redux-state-hell]: https://www.google.com/search?gl=us&hl=en&q=redux-state-hell
+[redux]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=redux
 [inf-rendering-loop]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+infinite+rendering
 [encapsulation-hell]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=encapsulation+hell
 [stale-closure-problem]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+stale+closure+problem
 [batch-update-problem]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+state+batch+update+problem
-[redux]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=redux+sucks "Note that Redux is a hell by itself."
 
  🪐 The Design Goal of **React-Rerenderers.js**
 --------------------
@@ -407,6 +405,10 @@ export const AppView = () => {
 The example above works. And I noticed that, in this way, 
 it is able to cleanly modularize components and their states and
 the application can scalably be extended.
+
+
+
+
 
  🍎 4. Modularize Modal Dialogs
 -------------------------------------------------------------------
