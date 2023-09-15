@@ -437,7 +437,7 @@ export const Value01Writer = () => {
 };
 ```
 
-The rule is:
+The rules are:
 
 - Call `useRerenderer()` if the component makes a read-access to a field of the
   current associated instance.
@@ -447,7 +447,7 @@ The rule is:
   but it is not mandatory; though it must be unique enough to identify the
   field.
 
-The principle behind the rule is simple:
+The principle behind the rules is simple:
 
 - `useRerenderer()` marks the component where the hook is called as the
   specified ID; this process effectively makes a list of components with that
@@ -456,8 +456,6 @@ The principle behind the rule is simple:
   which is stored as the specified ID.
 
 For further information, see [Render and Commit in React.js Official Documentation](https://react.dev/learn/render-and-commit).
-
-
 
 
  🐙 4. Modularize Modal Dialogs
@@ -958,4 +956,4 @@ Thank you very much and see you soon.
 - At the time **react-rerenderers.js** was started, it was not registered to
   [https://npmjs.org/]()
 
-[vim-mode-line]: vim: ts=2 sw=2 spell
+[vim-mode-line]: vim: ts=2 sw=2 isk+=- spell
