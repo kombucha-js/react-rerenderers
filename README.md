@@ -233,9 +233,8 @@ export function AppButton() {
 ```
 
 Note that `useState()` hook calling at the `<AppView/>` component is eliminated.
-See it just works fine.
 
-And you will see that this small difference invokes a drastic change of the
+And you will see that this small difference triggers a drastic change of the
 component design.
 
 
