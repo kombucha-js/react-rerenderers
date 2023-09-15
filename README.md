@@ -927,17 +927,67 @@ loaders.
 `<InstanceProvider/>` is not mandatory. In case you haven't specified your
 current object, it defaults to `GLOBAL_INSTANCE` as mentioned later.
 
+#### Attributes ####
+- factory : function 
+  Specify a function which returns the current instance value to associate with.
+
 ### `useInstance()` ###
+`useInstance()` hook returns the current instance which is associated to the
+React Virtual DOM Tree where the caller component is belonging to. If no
+instance is associated, it returns `GLOBAL_INSTANCE`.
+
+`GLOBAL_INSTANCE` is described in the following section.
 
 ### `GLOBAL_INSTANCE` ###
+`GLOBAL_INSTANCE` is the default instance where there is no current instance
+which is associated to the React Virtual DOM Tree where the current component is
+belonging to.
 
-### `useInstanceValue()` ###
+### `useInstanceValue(fieldname : string)` ###
+`useInstanceValue()` returns the value of the specified field on the current
+instance which is associated to the React Virtual DOM Tree where the caller
+component is belonging to.
 
-### `useInstanceValueSetter()` ###
+This is a helper function which is meant to simplify the calling process of
+`useRerenderer()` and `fireRerenderers()`.
 
-### `fireRerenderers()` ###
+#### Parameter ####
+- fieldname : string 
+  Specify the field name to get the current value
 
-### `useRerenderer()` ###
+
+
+### `useInstanceValueSetter( fieldname : string )` ###
+`useInstanceValueSetter()` returns a setter function to set a value of the
+specified field on the current instance which is associated to the React Virtual
+DOM Tree where the caller component is belonging to.
+
+This is a helper function which is meant to simplify the calling process of
+`useRerenderer()` and `fireRerenderers()`.
+
+#### Parameter ####
+- fieldname : string 
+  Specify the field name to set a new value
+
+
+### `useRerenderer( id:any )` ###
+`useRerenderer()` hook function marks the caller component with the specified ID
+
+
+#### Parameter ####
+- id : any 
+  Specify the ID to mark as.
+
+### `fireRerenderers(instance:object, id:any)` ###
+`fireRerenderers()` refreshes and re-renders the components which is associated
+to the specified ID.
+
+#### Parameter ####
+- instance : any 
+  Specify the current instance.
+- id : any 
+  Specify the ID of the components to be re-rendered.
+
 
 ### `useNewTransmitter()` ###
 
@@ -992,5 +1042,3 @@ Thank you very much and see you soon.
 - On Aug 24, 2023, the new repository **react-rerenderers.js** was started.
 - At the time **react-rerenderers.js** was started, it was not registered to
   [https://npmjs.org/]()
-
-[vim-mode-line]: vim: spell ts=2 sw=2 isk+=-
