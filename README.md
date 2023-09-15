@@ -989,12 +989,39 @@ to the specified ID.
   Specify the ID of the components to be re-rendered.
 
 
-### `useNewTransmitter()` ###
+### `useNewTransmitter( id:any, f:function )` ###
 
-### `getTransmitter()` ###
+`useNewTransmitter()` sets a value to the specified field on the current
+associated instance only while the caller component is mounted to the React
+Virtual DOM Tree in order to share the value with the components anywhere on the
+associated tree.
 
-### `useTransmitter()` ###
+The value can be obtained by calling `useTransmitter()` and `getTransmitter()`
+while the component is mounted.
 
+This hook is meant to be used to share states and state setter functions between
+components on the other part of the tree.
+
+#### Parameter ####
+- id:any 
+  Specify the ID which is used for identify the value.
+- f:function 
+  Specify the function which returns the value which should be shared with
+  other components.
+
+
+### `useTransmitter( id:any )` ###
+`useTransmitter()` retrieves the current value which is registered by
+`useNewTransmitter()` hook. `useTransmitter()` returns the value only when the
+caller of useNewTransmitter()` hook is mounted; otherwise it returns `null`.
+
+#### Parameter ####
+- id:any 
+  Specify the ID which is used for identify the value.
+
+### `getTransmitter( instance:any, id:any )` ###
+`getTransmitter()` is a non-hook function which has the exactly same
+functionality with `useTransmitter()` function.
 
 ### `useRerender()` ###
 
