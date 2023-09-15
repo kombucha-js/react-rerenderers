@@ -924,8 +924,8 @@ your routers are very likely placed on the global scope. If your model is placed
 on **React.js**'s state, there is no way to access to it from your actions and
 loaders.
 
-`<InstanceProvider/>` is not mandatory. In case you haven't specified your
-current object, it defaults to `GLOBAL_INSTANCE` as mentioned later.
+Usage of `<InstanceProvider/>` is not mandatory. In case you haven't specified
+your current object, it defaults to `GLOBAL_INSTANCE` as mentioned later.
 
 #### Attributes ####
 - factory : function 
@@ -943,7 +943,7 @@ instance is associated, it returns `GLOBAL_INSTANCE`.
 which is associated to the React Virtual DOM Tree where the current component is
 belonging to.
 
-### `useInstanceValue(fieldname : string)` ###
+### `useInstanceValue( fieldname : string )` ###
 `useInstanceValue()` returns the value of the specified field on the current
 instance which is associated to the React Virtual DOM Tree where the caller
 component is belonging to.
@@ -1024,6 +1024,14 @@ caller of useNewTransmitter()` hook is mounted; otherwise it returns `null`.
 functionality with `useTransmitter()` function.
 
 ### `useRerender()` ###
+`useRerender()` is the lowest-level basic function of **React-Rerenderers**.
+The return value is a function. Call the function to invoke rerendering process
+of the component which calls the `useRerender()` hook.
+
+
+#### Return Value ####
+- a function to rerender the component which calls the `useRerender()` hook.
+
 
 
  🌈  Conclusion 🌈
