@@ -5,7 +5,7 @@ This is a quite unusual and yet efficient usage of React.js'
 hooks which offers a way to escape from React's hells hell.
 
 
- 🥜 What is `React-Rerenderers`? In a Nutshell
+ 🥜 In a Nutshell, What is `React-Rerenderers`? 
 ------------------
 **React-Rerenderers.js** drastically simplifies the React application
 development.  **React-Rerenderers.js** replaces `useState()` with much smaller
