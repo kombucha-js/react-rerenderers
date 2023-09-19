@@ -48,48 +48,6 @@ simplified.
 
 [COMMENT]: <> ( BEGIN )
 
-- [🌈 React-Rerenderers.js](#%F0%9F%8C%88-react-rerenderersjs)
-  * [👺 Features](#%F0%9F%91%BA-features)
-  * [🪐 The Design Goal of **React-Rerenderers.js**](#%F0%9F%AA%90-the-design-goal-of-react-rerenderersjs)
-  * [Table of Contents](#table-of-contents)
-- [🗽 The Things You Can Achieve with `React-Rerenderers` 🌈](#%F0%9F%97%BD-the-things-you-can-achieve-with-react-rerenderers-%F0%9F%8C%88)
-  * [🍎 1. Eliminate State Lifting and Prop Drilling](#%F0%9F%8D%8E-1-eliminate-state-lifting-and-prop-drilling)
-    + [✨ React Development with the traditional `useState()`](#%E2%9C%A8-react-development-with-the-traditional-usestate)
-    + [✨ React Development With `React-Rerenderers`'s Value Accessors](#%E2%9C%A8-react-development-with-react-rerendererss-value-accessors)
-    + [✨ Necessity of Lifting States with React Hooks](#%E2%9C%A8-necessity-of-lifting-states-with-react-hooks)
-    + [✨ How **React-Rerenderers** Eliminate the State Lifting](#%E2%9C%A8-how-react-rerenderers-eliminate-the-state-lifting)
-  * [🍎 2. Update React Virtual DOM Tree from Outside of React](#%F0%9F%8D%8E-2-update-react-virtual-dom-tree-from-outside-of-react)
-  * [🍎 3. You can Implement Model-View Controller in a Simpler Way](#%F0%9F%8D%8E-3-you-can-implement-model-view-controller-in-a-simpler-way)
-    + [📜 Rules of `useRerenderer()` and `fireRerenderers()` 📜](#%F0%9F%93%9C-rules-of-usererenderer-and-firererenderers-%F0%9F%93%9C)
-    + [📜 Rules of `useInstanceValue()` and `useInstanceValueSetter()` 📜](#%F0%9F%93%9C-rules-of-useinstancevalue-and-useinstancevaluesetter-%F0%9F%93%9C)
-  * [🐙 4. Modularize Modal Dialogs](#%F0%9F%90%99-4-modularize-modal-dialogs)
-- [👷‍♂️Model-View Controller Architecture with **React-Rerenderers.js** 👷‍♀️](#%F0%9F%91%B7%E2%80%8D%E2%99%82%EF%B8%8Fmodel-view-controller-architecture-with-react-rerenderersjs-%F0%9F%91%B7%E2%80%8D%E2%99%80%EF%B8%8F)
-- [👩‍❤️‍👨 How to Use React-Rerenderers with React-Router](#%F0%9F%91%A9%E2%80%8D%E2%9D%A4%EF%B8%8F%E2%80%8D%F0%9F%91%A8-how-to-use-react-rerenderers-with-react-router)
-- [🌈 API Reference 🌈](#%F0%9F%8C%88-api-reference-%F0%9F%8C%88)
-    + [``](#)
-      - [Attributes](#attributes)
-    + [`useInstance()`](#useinstance)
-    + [`GLOBAL_INSTANCE`](#global_instance)
-    + [`useInstanceValue( fieldname : string )`](#useinstancevalue-fieldname--string-)
-      - [Parameter](#parameter)
-    + [`useInstanceValueSetter( fieldname : string )`](#useinstancevaluesetter-fieldname--string-)
-      - [Parameter](#parameter-1)
-    + [`useRerenderer( id:any )`](#usererenderer-idany-)
-      - [Parameter](#parameter-2)
-    + [`fireRerenderers(instance:object, id:any)`](#firererenderersinstanceobject-idany)
-      - [Parameter](#parameter-3)
-    + [`useNewTransmitter( id:any, f:function )`](#usenewtransmitter-idany-ffunction-)
-      - [Parameter](#parameter-4)
-    + [`useTransmitter( id:any )`](#usetransmitter-idany-)
-      - [Parameter](#parameter-5)
-    + [`getTransmitter( instance:any, id:any )`](#gettransmitter-instanceany-idany-)
-    + [`useRerender()`](#usererender)
-      - [Return Value](#return-value)
-- [🌈 Conclusion 🌈](#%F0%9F%8C%88--conclusion-%F0%9F%8C%88)
-  * [History](#history)
-    + [as `react-hooks`](#as-react-hooks)
-    + [as `react-rerenderers.js`](#as-react-rerenderersjs)
-
 [COMMENT]: <> ( END )
 
  🗽 The Things You Can Achieve with `React-Rerenderers` 🌈
@@ -982,7 +940,7 @@ loaders.
 Usage of `<InstanceProvider/>` is not mandatory. In case you haven't specified
 your current object, it defaults to `GLOBAL_INSTANCE` as mentioned later.
 
-#### Attributes ####
+**Attributes**
 - factory : function 
   Specify a function which returns the current instance value to associate with.
 
@@ -1006,7 +964,7 @@ component is belonging to.
 This is a helper function which is meant to simplify the calling process of
 `useRerenderer()` and `fireRerenderers()`.
 
-#### Parameter ####
+**Parameters**
 - fieldname : string 
   Specify the field name to get the current value
 
@@ -1020,7 +978,7 @@ DOM Tree where the caller component is belonging to.
 This is a helper function which is meant to simplify the calling process of
 `useRerenderer()` and `fireRerenderers()`.
 
-#### Parameter ####
+**Parameters**
 - fieldname : string 
   Specify the field name to set a new value
 
@@ -1029,7 +987,7 @@ This is a helper function which is meant to simplify the calling process of
 `useRerenderer()` hook function marks the caller component with the specified ID
 
 
-#### Parameter ####
+**Parameters**
 - id : any 
   Specify the ID to mark as.
 
@@ -1037,7 +995,7 @@ This is a helper function which is meant to simplify the calling process of
 `fireRerenderers()` refreshes and re-renders the components which is associated
 to the specified ID.
 
-#### Parameter ####
+**Parameters**
 - instance : any 
   Specify the current instance.
 - id : any 
@@ -1057,7 +1015,7 @@ while the component is mounted.
 This hook is meant to be used to share states and state setter functions between
 components on the other part of the tree.
 
-#### Parameter ####
+**Parameters**
 - id:any 
   Specify the ID which is used for identify the value.
 - f:function 
@@ -1070,7 +1028,7 @@ components on the other part of the tree.
 `useNewTransmitter()` hook. `useTransmitter()` returns the value only when the
 caller of useNewTransmitter()` hook is mounted; otherwise it returns `null`.
 
-#### Parameter ####
+**Parameters**
 - id:any 
   Specify the ID which is used for identify the value.
 
@@ -1084,7 +1042,7 @@ The return value is a function. Call the function to invoke rerendering process
 of the component which calls the `useRerender()` hook.
 
 
-#### Return Value ####
+**Return Value**
 - a function to rerender the component which calls the `useRerender()` hook.
 
 
