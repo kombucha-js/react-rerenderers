@@ -4,6 +4,15 @@
 This is a quite unusual and yet efficient usage of React.js'
 hooks which offers a way to escape from React's hells hell.
 
+
+ 🥜 What is `React-Rerenderers`? In a Nutshell
+------------------
+**React-Rerenderers.js** drastically simplifies the React application
+development.  **React-Rerenderers.js** replaces `useState()` with much smaller
+hooks like `useInstance()`, `useInstanceValue()` , `useInstanceValueSetter()`
+and `useRerenderer()`.
+
+
  👺 Features
 ---------------
 - No more [useState() Hell][usestate-hell]
