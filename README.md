@@ -252,7 +252,7 @@ And you will see that this small difference triggers a drastic change of the
 component design.
 
 
-  2. Let Objects in Global Scope Trigger Updating React Virtual DOM Tree
+ 2. Let Objects in Global Scope Trigger Updating React Virtual DOM Tree
 ==================================================================
 **React-Rerenderers** offers unique `useRerenderers()` hook.  With
 `useRerenderers()` hook you actually don't have to call any hook when only thing
@@ -319,7 +319,7 @@ export const AppView = () => {
 
 This actually opens a door for more aggressive optimization.
 
-  3. Implement Model-View Controller
+ 3. Implement Model-View Controller
 ==================================================================
 
 In the previous section, we have seen that states are actually able to be stored
@@ -513,7 +513,7 @@ They only help to conform to the rules which are described in the previous
 section.
 
 
-  4. Modularize Modal Dialogs
+ 4. Modularize Modal Dialogs
 ====================================================================
 Implementing Modal Dialogs with **React.js** is tricky. At the first glance,
 it seems easy; but it actually isn't. See the following example:
@@ -796,7 +796,7 @@ context providers.
 
 
 
-  How to Use React-Rerenderers with React-Router
+ How to Use React-Rerenderers with React-Router
 ==========================================================================
 
 You very likely want to use **React-Rerenderers** with **React-Router**.  If
