@@ -50,7 +50,7 @@ simplified.
 
 [COMMENT]: <> ( END )
 
- 🗽 The Things You Can Achieve with `React-Rerenderers` 🌈
+  The Things You Can Achieve with `React-Rerenderers` 🌈
 ===========================================================
 
  🍎 1. Eliminate State Lifting and Prop Drilling
@@ -249,7 +249,7 @@ And you will see that this small difference triggers a drastic change of the
 component design.
 
 
- 🍎 2. Update React Virtual DOM Tree from Outside of React
+ 🍎 2. Global Objects can Trigger Updating React Virtual DOM Tree
 ----------------------------------------------------------------
 **React-Rerenderers** offers unique `useRerenderers()` hook.  With
 `useRerenderers()` hook you actually don't have to call any hook when only thing
