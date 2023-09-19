@@ -195,7 +195,7 @@ serious issues when it comes to a larger project.
 **React-Rerenderers.js** can eliminate these [Lifting Up][lifting-state-up]
 and [Drilling Properties][prop-drilling] necessity.
 
- ✨ How **React-Rerenderers** Eliminate the State Lifting ###
+ ✨ How **React-Rerenderers** Eliminates the State Lifting
 ----------------------------------------------------------------------
 
 See the following example:
@@ -251,7 +251,7 @@ And you will see that this small difference triggers a drastic change of the
 component design.
 
 
- 🍎 2. Global Objects can Trigger Updating React Virtual DOM Tree
+ 🍎 2. Let Objects in Global Scope Trigger Updating React Virtual DOM Tree
 ==================================================================
 **React-Rerenderers** offers unique `useRerenderers()` hook.  With
 `useRerenderers()` hook you actually don't have to call any hook when only thing
@@ -318,7 +318,7 @@ export const AppView = () => {
 
 This actually opens a door for more aggressive optimization.
 
- 🍎 3. You can Implement Model-View Controller in a Simpler Way
+ 🍎 3. Implement Model-View Controller
 ==================================================================
 
 In the previous section, we have seen that states are actually able to be stored
@@ -893,10 +893,6 @@ return (
   <RouterProvider router={router} />
 );
 ```
-
-
-
-
 
 
 
