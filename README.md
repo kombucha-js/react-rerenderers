@@ -55,7 +55,7 @@ simplified.
  Eliminate State Lifting and Prop Drilling
 ===========================================================
 
- ✨ React Development with the traditional `useState()`
+ React Development with the traditional `useState()`
 ------------------------------------------------------------
 
 Assume you are creating a simple application as follows:
@@ -88,7 +88,7 @@ bottom-right and bottom-left, respectively.
 
 In **React-Rerenderers**, we implement the same logic in the following manner:
 
-  React Development With `React-Rerenderers`'s Value Accessors
+ React Development With `React-Rerenderers`'s Value Accessors
 ----------------------------------------------------------------------
 
 [Example No.1](https://codesandbox.io/s/rerenderers-example-no-01-a-basic-usage-nkvvjs?file=/src/AppView.js)
@@ -129,7 +129,7 @@ This small difference gives some advantages which `useState()` cannot achieve.
 
 Before we go inside the description of the advantages, let's review the necessity of lifting states of `useState()` hook.
 
-  Necessity of Lifting States with React Hooks
+ Necessity of Lifting States with React Hooks
 ----------------------------------------------------------------------
 
 See the example below:
