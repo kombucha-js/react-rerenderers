@@ -46,7 +46,7 @@ simplified.
  Table of Contents
 ---------------------------
 
-[COMMENT]: <>( >>> )
+[COMMENT]: <> ( BEGIN )
 
 - [🌈 React-Rerenderers.js](#%F0%9F%8C%88-react-rerenderersjs)
   * [👺 Features](#%F0%9F%91%BA-features)
@@ -90,7 +90,7 @@ simplified.
     + [as `react-hooks`](#as-react-hooks)
     + [as `react-rerenderers.js`](#as-react-rerenderersjs)
 
-[COMMENT]: <>( <<< )
+[COMMENT]: <> ( END )
 
  🗽 The Things You Can Achieve with `React-Rerenderers` 🌈
 ===========================================================
