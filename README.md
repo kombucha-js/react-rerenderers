@@ -332,6 +332,9 @@ realized it is also able to store states as JavaScript objects outside React
 hooks/components.  I think, this could be an implementation of Model-View
 Controller in **React.js**.
 
+ Basic
+----------------
+
 See the following example:
 
 [Example No.4](https://codesandbox.io/s/rerenderers-example-no-03-an-advanced-usage-fxwhvp?file=/src/AppView.js)
