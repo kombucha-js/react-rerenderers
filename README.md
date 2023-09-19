@@ -48,42 +48,11 @@ simplified.
 
 [COMMENT]: <> ( BEGIN )
 
-- [🌈 React-Rerenderers.js](#%F0%9F%8C%88-react-rerenderersjs)
-  * [👺 Features](#%F0%9F%91%BA-features)
-  * [🪐 The Design Goal of **React-Rerenderers.js**](#%F0%9F%AA%90-the-design-goal-of-react-rerenderersjs)
-  * [🗽 Table of Contents 🌈](#%F0%9F%97%BD-table-of-contents-%F0%9F%8C%88)
-- [🍎 1. Eliminate State Lifting and Prop Drilling](#%F0%9F%8D%8E-1-eliminate-state-lifting-and-prop-drilling)
-  * [✨ React Development with the traditional `useState()`](#%E2%9C%A8-react-development-with-the-traditional-usestate)
-  * [✨ React Development With `React-Rerenderers`'s Value Accessors](#%E2%9C%A8-react-development-with-react-rerendererss-value-accessors)
-  * [✨ Necessity of Lifting States with React Hooks](#%E2%9C%A8-necessity-of-lifting-states-with-react-hooks)
-  * [✨ How **React-Rerenderers** Eliminates the State Lifting](#%E2%9C%A8-how-react-rerenderers-eliminates-the-state-lifting)
-- [🍎 2. Let Objects in Global Scope Trigger Updating React Virtual DOM Tree](#%F0%9F%8D%8E-2-let-objects-in-global-scope-trigger-updating-react-virtual-dom-tree)
-- [🍎 3. Implement Model-View Controller](#%F0%9F%8D%8E-3-implement-model-view-controller)
-  * [📜 Rules of `useRerenderer()` and `fireRerenderers()` 📜](#%F0%9F%93%9C-rules-of-usererenderer-and-firererenderers-%F0%9F%93%9C)
-  * [📜 Rules of `useInstanceValue()` and `useInstanceValueSetter()` 📜 ###](#%F0%9F%93%9C-rules-of-useinstancevalue-and-useinstancevaluesetter-%F0%9F%93%9C-%23%23%23)
-- [🐙 4. Modularize Modal Dialogs](#%F0%9F%90%99-4-modularize-modal-dialogs)
-- [👩‍❤️‍👨 How to Use React-Rerenderers with React-Router](#%F0%9F%91%A9%E2%80%8D%E2%9D%A4%EF%B8%8F%E2%80%8D%F0%9F%91%A8-how-to-use-react-rerenderers-with-react-router)
-- [🌈 API Reference 🌈](#%F0%9F%8C%88-api-reference-%F0%9F%8C%88)
-    + [`<InstanceProvider factory={} />`](#instanceprovider-factory-)
-    + [`useInstance()`](#useinstance)
-    + [`GLOBAL_INSTANCE`](#global_instance)
-    + [`useInstanceValue( fieldname : string )`](#useinstancevalue-fieldname--string-)
-    + [`useInstanceValueSetter( fieldname : string )`](#useinstancevaluesetter-fieldname--string-)
-    + [`useRerenderer( id:any )`](#usererenderer-idany-)
-    + [`fireRerenderers(instance:object, id:any)`](#firererenderersinstanceobject-idany)
-    + [`useNewTransmitter( id:any, f:function )`](#usenewtransmitter-idany-ffunction-)
-    + [`useTransmitter( id:any )`](#usetransmitter-idany-)
-    + [`getTransmitter( instance:any, id:any )`](#gettransmitter-instanceany-idany-)
-    + [`useRerender()`](#usererender)
-- [🌈 Conclusion 🌈](#%F0%9F%8C%88--conclusion-%F0%9F%8C%88)
-  * [History](#history)
-    + [as `react-hooks`](#as-react-hooks)
-    + [as `react-rerenderers.js`](#as-react-rerenderersjs)
 
 [COMMENT]: <> ( END )
 
 
- 🍎 1. Eliminate State Lifting and Prop Drilling
+ 1. Eliminate State Lifting and Prop Drilling
 ===========================================================
 
  ✨ React Development with the traditional `useState()`
@@ -119,7 +88,7 @@ bottom-right and bottom-left, respectively.
 
 In **React-Rerenderers**, we implement the same logic in the following manner:
 
- ✨ React Development With `React-Rerenderers`'s Value Accessors
+  React Development With `React-Rerenderers`'s Value Accessors
 ----------------------------------------------------------------------
 
 [Example No.1](https://codesandbox.io/s/rerenderers-example-no-01-a-basic-usage-nkvvjs?file=/src/AppView.js)
@@ -160,7 +129,7 @@ This small difference gives some advantages which `useState()` cannot achieve.
 
 Before we go inside the description of the advantages, let's review the necessity of lifting states of `useState()` hook.
 
- ✨ Necessity of Lifting States with React Hooks
+  Necessity of Lifting States with React Hooks
 ----------------------------------------------------------------------
 
 See the example below:
@@ -227,7 +196,7 @@ serious issues when it comes to a larger project.
 **React-Rerenderers.js** can eliminate these [Lifting Up][lifting-state-up]
 and [Drilling Properties][prop-drilling] necessity.
 
- ✨ How **React-Rerenderers** Eliminates the State Lifting
+  How **React-Rerenderers** Eliminates the State Lifting
 ----------------------------------------------------------------------
 
 See the following example:
@@ -283,7 +252,7 @@ And you will see that this small difference triggers a drastic change of the
 component design.
 
 
- 🍎 2. Let Objects in Global Scope Trigger Updating React Virtual DOM Tree
+  2. Let Objects in Global Scope Trigger Updating React Virtual DOM Tree
 ==================================================================
 **React-Rerenderers** offers unique `useRerenderers()` hook.  With
 `useRerenderers()` hook you actually don't have to call any hook when only thing
@@ -350,7 +319,7 @@ export const AppView = () => {
 
 This actually opens a door for more aggressive optimization.
 
- 🍎 3. Implement Model-View Controller
+  3. Implement Model-View Controller
 ==================================================================
 
 In the previous section, we have seen that states are actually able to be stored
@@ -454,7 +423,7 @@ it is able to cleanly modularize components and their states and
 the application can scalably be extended.
 
 
- 📜 Rules of `useRerenderer()` and `fireRerenderers()` 📜
+ Rules of `useRerenderer()` and `fireRerenderers()`
 -----------------------------------------------------------------
 
 It is very important to understand when to call `useRerenderer()` and
@@ -510,7 +479,7 @@ of rules properly.
 
 For further information, see [Render and Commit in React.js Official Documentation](https://react.dev/learn/render-and-commit).
 
- 📜 Rules of `useInstanceValue()` and `useInstanceValueSetter()` 📜 ###
+  Rules of `useInstanceValue()` and `useInstanceValueSetter()`
 ------------------------------------------------------------------------
 
 In the previous section, we have seen when to `useRerenderer()` and
@@ -544,7 +513,7 @@ They only help to conform to the rules which are described in the previous
 section.
 
 
- 🐙 4. Modularize Modal Dialogs
+  4. Modularize Modal Dialogs
 ====================================================================
 Implementing Modal Dialogs with **React.js** is tricky. At the first glance,
 it seems easy; but it actually isn't. See the following example:
@@ -827,7 +796,7 @@ context providers.
 
 
 
- 👩‍❤️‍👨 How to Use React-Rerenderers with React-Router
+  How to Use React-Rerenderers with React-Router
 ==========================================================================
 
 You very likely want to use **React-Rerenderers** with **React-Router**.  If
