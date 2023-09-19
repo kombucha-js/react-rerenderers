@@ -79,6 +79,7 @@ simplified.
   * [History](#history)
     + [as `react-hooks`](#as-react-hooks)
     + [as `react-rerenderers.js`](#as-react-rerenderersjs)
+
 [COMMENT]: <> ( END )
 
 
