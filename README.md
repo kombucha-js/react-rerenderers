@@ -47,44 +47,43 @@ simplified.
 ---------------------------
 
 [TOC-BEGIN]: <>
-
--   [Rerenderers can Eliminate State Lifting and Prop Drilling](#rerenderers-can-eliminate-state-lifting-and-prop-drilling)
-    -   [React Development with the traditional `useState()`](#react-development-with-the-traditional-usestate)
-    -   [React Development With Rerenderers's Value Accessors](#react-development-with-rerendererss-value-accessors)
-    -   [Necessity of Lifting States with React Hooks](#necessity-of-lifting-states-with-react-hooks)
-    -   [How Rerenderers Eliminates the State Lifting](#how-rerenderers-eliminates-the-state-lifting)
--   [Rerenderers can Trigger Rerendering without Hooks](#rerenderers-can-trigger-rerendering-without-hooks)
--   [Rerenderers can Implement Model-View Controller](#rerenderers-can-implement-model-view-controller)
-    -   [Basic](#basic)
-    -   [Rules of `useRerenderer()` and `fireRerenderers()`](#rules-of-usererenderer-and-firererenderers)
-    -   [Rules of `useInstanceValue()` and `useInstanceValueSetter()`](#rules-of-useinstancevalue-and-useinstancevaluesetter)
--   [Rerenderers can Modularize Modal Dialogs](#rerenderers-can-modularize-modal-dialogs)
--   [How to Use Rerenderers with React-Router](#how-to-use-rerenderers-with-react-router)
--   [Kombucha.js ES6 Module Convention in React.js (Komesmcoir)](#kombucha.js-es6-module-convention-in-react.js-komesmcoir)
-    -   [The Purpose of Komesmcoir](#the-purpose-of-komesmcoir)
-    -   [The Filename of Every Module](#the-filename-of-every-module)
-    -   [The Fields to be Defined in Every Komesmcoir Module](#the-fields-to-be-defined-in-every-komesmcoir-module)
--   [🌈 API Reference 🌈](#api-reference)
-    -   [`<InstanceProvider factory={} />`](#instanceprovider-factory)
-    -   [`useInstance()`](#useinstance)
-    -   [`GLOBAL_INSTANCE`](#global_instance)
-    -   [`useInstanceValue( fieldname : string )`](#useinstancevalue-fieldname-string)
-    -   [`useInstanceValueSetter( fieldname : string )`](#useinstancevaluesetter-fieldname-string)
-    -   [`useRerenderer( id:any )`](#usererenderer-idany)
-    -   [`fireRerenderers(instance:object, id:any)`](#firererenderersinstanceobject-idany)
-    -   [`useNewTransmitter( id:any, f:function )`](#usenewtransmitter-idany-ffunction)
-    -   [`useTransmitter( id:any )`](#usetransmitter-idany)
-    -   [`getTransmitter( instance:any, id:any )`](#gettransmitter-instanceany-idany)
-    -   [`useRerender()`](#usererender)
--   [🌈 Conclusion 🌈](#conclusion)
--   [History](#history)
-    -   [as `react-hooks`](#as-react-hooks)
-    -   [as `react-rerenderers.js`](#as-react-rerenderers.js)
-
+-   [🌈 React-Rerenderers.js](#react-rerenderers.js)
+    -   [Eliminate State Lifting and Prop Drilling](#eliminate-state-lifting-and-prop-drilling)
+        -   [React Development with the traditional `useState()`](#react-development-with-the-traditional-usestate)
+        -   [React Development With Rerenderers's Value Accessors](#react-development-with-rerendererss-value-accessors)
+        -   [Necessity of Lifting States with React Hooks](#necessity-of-lifting-states-with-react-hooks)
+        -   [How Rerenderers Eliminates the State Lifting](#how-rerenderers-eliminates-the-state-lifting)
+    -   [Trigger Rerendering without Hooks](#trigger-rerendering-without-hooks)
+    -   [Implement Model-View Controller](#implement-model-view-controller)
+        -   [Basic](#basic)
+        -   [Rules of `useRerenderer()` and `fireRerenderers()`](#rules-of-usererenderer-and-firererenderers)
+        -   [Rules of `useInstanceValue()` and `useInstanceValueSetter()`](#rules-of-useinstancevalue-and-useinstancevaluesetter)
+    -   [Modularize Modal Dialogs](#modularize-modal-dialogs)
+    -   [How to Use Rerenderers with React-Router](#how-to-use-rerenderers-with-react-router)
+    -   [Kombucha.js ES6 Module Convention in React.js (Komesmcoir)](#kombucha.js-es6-module-convention-in-react.js-komesmcoir)
+        -   [The Purpose of Komesmcoir](#the-purpose-of-komesmcoir)
+        -   [The Filename of Every Module](#the-filename-of-every-module)
+        -   [The Fields to be Defined in Every Komesmcoir Module](#the-fields-to-be-defined-in-every-komesmcoir-module)
+    -   [API Reference](#api-reference)
+        -   [`<InstanceProvider factory={} />`](#instanceprovider-factory)
+        -   [`useInstance()`](#useinstance)
+        -   [`GLOBAL_INSTANCE`](#global_instance)
+        -   [`useInstanceValue( fieldname : string )`](#useinstancevalue-fieldname-string)
+        -   [`useInstanceValueSetter( fieldname : string )`](#useinstancevaluesetter-fieldname-string)
+        -   [`useRerenderer( id:any )`](#usererenderer-idany)
+        -   [`fireRerenderers(instance:object, id:any)`](#firererenderersinstanceobject-idany)
+        -   [`useNewTransmitter( id:any, f:function )`](#usenewtransmitter-idany-ffunction)
+        -   [`useTransmitter( id:any )`](#usetransmitter-idany)
+        -   [`getTransmitter( instance:any, id:any )`](#gettransmitter-instanceany-idany)
+        -   [`useRerender()`](#usererender)
+    -   [🌈 Conclusion 🌈](#conclusion)
+    -   [History](#history)
+        -   [as `react-hooks`](#as-react-hooks)
+        -   [as `react-rerenderers.js`](#as-react-rerenderers.js)
 [TOC-END]: <>
 [TOC-GENERATOR]: <> ":r! cat README.md | pandoc --toc --wrap=none -s README.md  --from=markdown --to=markdown | sed -n '1,/^ *$/p"
 
- Rerenderers can Eliminate State Lifting and Prop Drilling
+ Eliminate State Lifting and Prop Drilling
 -------------------------------------------------------------
 
 ### React Development with the traditional `useState()`
@@ -280,7 +279,7 @@ And you will see that this small difference triggers a drastic change of the
 component design.
 
 
- Rerenderers can Trigger Rerendering without Hooks
+ Trigger Rerendering without Hooks
 ----------------------------------------------------------------------
 
 **React-Rerenderers** offers unique `useRerenderers()` hook.  With
@@ -348,7 +347,7 @@ export const AppView = () => {
 
 This actually opens a door for more aggressive optimization.
 
- Rerenderers can Implement Model-View Controller
+ Implement Model-View Controller
 ------------------------------------------------------
 
 In the previous section, we have seen that states are actually able to be stored
@@ -542,7 +541,7 @@ They only help to conform to the rules which are described in the previous
 section.
 
 
- Rerenderers can Modularize Modal Dialogs
+ Modularize Modal Dialogs
 ------------------------------------------
 
 Implementing Modal Dialogs with **React.js** is tricky. At the first glance,
@@ -1034,7 +1033,7 @@ Komesmcoir modules must have three fields:
 
 
 
- 🌈 API Reference 🌈
+ API Reference
 -----------------------------------
 
 ### `<InstanceProvider factory={} />` ###
