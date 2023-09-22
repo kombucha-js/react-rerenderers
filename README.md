@@ -53,10 +53,9 @@ simplified.
 
 
  Eliminate State Lifting and Prop Drilling
-===========================================================
+---------------------------------------------
 
- React Development with the traditional `useState()`
-------------------------------------------------------------
+### React Development with the traditional `useState()`
 
 Assume you are creating a simple application as follows:
 
@@ -88,8 +87,7 @@ bottom-right and bottom-left, respectively.
 
 In **React-Rerenderers**, we implement the same logic in the following manner:
 
- React Development With `React-Rerenderers`'s Value Accessors
-----------------------------------------------------------------------
+### React Development With `React-Rerenderers`'s Value Accessors
 
 [Example No.1](https://codesandbox.io/s/rerenderers-example-no-01-a-basic-usage-nkvvjs?file=/src/AppView.js)
 
@@ -129,8 +127,7 @@ This small difference gives some advantages which `useState()` cannot achieve.
 
 Before we go inside the description of the advantages, let's review the necessity of lifting states of `useState()` hook.
 
- Necessity of Lifting States with React Hooks
-----------------------------------------------------------------------
+### Necessity of Lifting States with React Hooks
 
 See the example below:
 
@@ -196,8 +193,7 @@ serious issues when it comes to a larger project.
 **React-Rerenderers.js** can eliminate these [Lifting Up][lifting-state-up]
 and [Drilling Properties][prop-drilling] necessity.
 
-  How **React-Rerenderers** Eliminates the State Lifting
-----------------------------------------------------------------------
+###  How **React-Rerenderers** Eliminates the State Lifting
 
 See the following example:
 
@@ -253,7 +249,8 @@ component design.
 
 
  Let Objects in Global Scope Trigger Updating React Virtual DOM Tree
-==================================================================
+----------------------------------------------------------------------
+
 **React-Rerenderers** offers unique `useRerenderers()` hook.  With
 `useRerenderers()` hook you actually don't have to call any hook when only thing
 you want to do is to update the state.
@@ -320,7 +317,7 @@ export const AppView = () => {
 This actually opens a door for more aggressive optimization.
 
  Implement Model-View Controller
-==================================================================
+------------------------------------------------------
 
 In the previous section, we have seen that states are actually able to be stored
 outside hooks/components. And we also have seen that, by using `useRerenderers()`
@@ -332,8 +329,7 @@ realized it is also able to store states as JavaScript objects outside React
 hooks/components.  I think, this could be an implementation of Model-View
 Controller in **React.js**.
 
- Basic
-----------------
+### Basic
 
 See the following example:
 
@@ -426,8 +422,7 @@ it is able to cleanly modularize components and their states and
 the application can scalably be extended.
 
 
- Rules of `useRerenderer()` and `fireRerenderers()`
------------------------------------------------------------------
+### Rules of `useRerenderer()` and `fireRerenderers()`
 
 It is very important to understand when to call `useRerenderer()` and
 `fireRerenderers()`.  
@@ -482,8 +477,7 @@ of rules properly.
 
 For further information, see [Render and Commit in React.js Official Documentation](https://react.dev/learn/render-and-commit).
 
-  Rules of `useInstanceValue()` and `useInstanceValueSetter()`
-------------------------------------------------------------------------
+###  Rules of `useInstanceValue()` and `useInstanceValueSetter()`
 
 In the previous section, we have seen when to `useRerenderer()` and
 `fireRerenderer()`.
@@ -517,7 +511,8 @@ section.
 
 
  Modularize Modal Dialogs
-====================================================================
+-----------------------------------
+
 Implementing Modal Dialogs with **React.js** is tricky. At the first glance,
 it seems easy; but it actually isn't. See the following example:
 
@@ -800,7 +795,7 @@ context providers.
 
 
  How to Use React-Rerenderers with React-Router
-==========================================================================
+-----------------------------------------------------
 
 You very likely want to use **React-Rerenderers** with **React-Router**.  If
 you are in that case, you might try the following code and notice that it does
@@ -906,13 +901,13 @@ return (
 
 
   Kombucha.js ES6 Module Convention in React.js (Komesmcoir)
-===============================================================
+---------------------------------------------------------------
 
 We defines the form of ES6 modules and its filename as described below. We call
 it Komesmcoir convention.
 
- The Purpose of Komesmcoir
-----------------------------
+### The Purpose of Komesmcoir
+
 The design purpose of Komesmcoir is to implement scalable development of
 frontend applications especially with React-Router.
 
@@ -921,8 +916,8 @@ the solutions are tent to vary among the developpers; so we decided to define
 the unique convention for modules which are used in React.js applications to
 resolve style conflicts.
 
- The Filename of Every Module
---------------------------------
+### The Filename of Every Module
+
 Every module should be named starting with `unit_`.
 Use underscore as word separators. For example:
   - unit_main.js
@@ -930,8 +925,7 @@ Use underscore as word separators. For example:
   - unit_user_managers.js
 
 
- The Fields to be Defined in Every Komesmcoir Module
--------------------------------------------------
+### The Fields to be Defined in Every Komesmcoir Module
 
 See the following example:
 
@@ -1009,7 +1003,7 @@ Komesmcoir modules must have three fields:
 
 
  🌈 API Reference 🌈
-=====================================
+-----------------------------------
 
 ### `<InstanceProvider factory={} />` ###
 
@@ -1156,7 +1150,7 @@ of the component which calls the `useRerender()` hook.
 
 
  🌈  Conclusion 🌈
-=====================================
+-------------------------
 
 I am not sure this is an appropriate usage React.js nor I even don't think this
 is a correct usage of React.js since this usage is a kind of an attempt of
