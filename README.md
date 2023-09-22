@@ -66,7 +66,7 @@ simplified.
         -   [Filename Convention](#filename-convention)
         -   [Fields to be Defined](#fields-to-be-defined)
     -   [API Reference](#api-reference)
-        -   [`<InstanceProvider factory={} />`{=html}](#section)
+        -   [`<InstanceProvider factory={} />`{=html}](#instanceprovider)
         -   [useInstance()](#useinstance)
         -   [GLOBAL\_INSTANCE](#global_instance)
         -   [useInstanceValue( fieldname : string )](#useinstancevalue-fieldname-string)
@@ -1036,7 +1036,7 @@ KOMESMCOIR modules must have three fields:
  API Reference
 -----------------------------------
 
-### <InstanceProvider factory={} /> ###
+### \<InstanceProvider factory={} /\> ###
 
 `<InstanceProvider/>` can share the current object which all states in an
 application should be stored.  The attribute `factory` should be a function
