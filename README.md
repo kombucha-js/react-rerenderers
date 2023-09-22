@@ -48,9 +48,6 @@ simplified.
 
 [TOC-BEGIN]: <>
 
--   [👺 Features](#features)
--   [🪐 The Design Goal of **React-Rerenderers.js**](#the-design-goal-of-react-rerenderers.js)
--   [🗽 Table of Contents 🌈](#table-of-contents)
 -   [Rerenderers can Eliminate State Lifting and Prop Drilling](#rerenderers-can-eliminate-state-lifting-and-prop-drilling)
     -   [React Development with the traditional `useState()`](#react-development-with-the-traditional-usestate)
     -   [React Development With Rerenderers's Value Accessors](#react-development-with-rerendererss-value-accessors)
