@@ -87,7 +87,7 @@ bottom-right and bottom-left, respectively.
 
 In **React-Rerenderers**, we implement the same logic in the following manner:
 
-### React Development With `React-Rerenderers`'s Value Accessors
+### React Development With RRs Value Accessors
 
 [Example No.1](https://codesandbox.io/s/rerenderers-example-no-01-a-basic-usage-nkvvjs?file=/src/AppView.js)
 
@@ -193,7 +193,7 @@ serious issues when it comes to a larger project.
 **React-Rerenderers.js** can eliminate these [Lifting Up][lifting-state-up]
 and [Drilling Properties][prop-drilling] necessity.
 
-###  How **React-Rerenderers** Eliminates the State Lifting
+###  How RR Eliminates the State Lifting
 
 See the following example:
 
@@ -794,7 +794,7 @@ context providers.
 
 
 
- How to Use React-Rerenderers with React-Router
+ How to Use RR with React-Router
 -----------------------------------------------------
 
 You very likely want to use **React-Rerenderers** with **React-Router**.  If
