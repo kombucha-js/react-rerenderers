@@ -936,7 +936,7 @@ return (
 We defines the form of ES6 modules and its filename as described below. We call
 it KOMESMCOIR convention.
 
-### Design Goal of KOMESMCOIR
+### Design Goal
 
 The design purpose of KOMESMCOIR is to implement scalable development of
 frontend applications especially with React-Router.
@@ -951,9 +951,9 @@ resolve style conflicts.
 Every module should be named starting with `unit_`.
 Use underscore as word separators. For example:
 
-  - unit_main.js
-  - unit_error_dialog.js
-  - unit_user_managers.js
+  - unit\_main.js
+  - unit\_error\_dialog.js
+  - unit\_user\_managers.js
 
 
 ### Fields to be Defined
