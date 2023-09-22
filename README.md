@@ -66,7 +66,7 @@ simplified.
         -   [Filename Convention](#filename-convention)
         -   [Fields to be Defined](#fields-to-be-defined)
     -   [API Reference](#api-reference)
-        -   [`<InstanceProvider factory={} />`{=html}](#section)
+        -   [<InstanceProvider factory={} />](#section)
         -   [useInstance()](#useinstance)
         -   [GLOBAL\_INSTANCE](#global_instance)
         -   [useInstanceValue( fieldname : string )](#useinstancevalue-fieldname-string)
