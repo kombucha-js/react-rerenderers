@@ -1,4 +1,4 @@
- 🌈 React-Rerenderers.js
+ 🌈 React-Rerenderers.js 🌈
 ======================
 **React-Rerenderers** is a new state management library.
 This is a quite unusual and yet efficient usage of React.js'
@@ -9,7 +9,7 @@ hooks which offers a way to escape from React's hells hell.
 `useRerenderer()`.  As a result, React application development is drastically
 simplified.
 
- 👺 Features
+ 👺 Features 👺
 ---------------
 - No more [useState() Hell][usestate-hell]
 - No more [Prop Drilling][prop-drilling] Hell
@@ -35,7 +35,7 @@ simplified.
 [stale-closure-problem]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+stale+closure+problem
 [batch-update-problem]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+state+batch+update+problem
 
- 🪐 The Design Goal of **React-Rerenderers.js**
+ 🪐 The Design Goal of **React-Rerenderers.js** 🪐
 --------------------
 - Control when to rerender manually and precisely.
 - Offer a way to manage **React.js** states without other frameworks.
@@ -43,12 +43,12 @@ simplified.
 - Modularize not only components but also dialogs.
 
 
- 🗽 Table of Contents 🌈
+ 🌈 Table of Contents 🌈
 ---------------------------
 
 [TOC-BEGIN]: <>
 
--   [🌈 React-Rerenderers.js](#react-rerenderers.js)
+-   [🌈 React-Rerenderers.js 🌈](#react-rerenderers.js)
     -   [Eliminate State Lifting and Prop Drilling](#eliminate-state-lifting-and-prop-drilling)
         -   [React Development with the traditional useState()](#react-development-with-the-traditional-usestate)
         -   [React Development With Rerenderers's Value Accessors](#react-development-with-rerendererss-value-accessors)
