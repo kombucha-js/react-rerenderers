@@ -52,7 +52,7 @@ simplified.
 [COMMENT]: <> ( END )
 
 
- Eliminate State Lifting and Prop Drilling
+ RR can Eliminate State Lifting and Prop Drilling
 ---------------------------------------------
 
 ### React Development with the traditional `useState()`
@@ -248,7 +248,7 @@ And you will see that this small difference triggers a drastic change of the
 component design.
 
 
- Let Objects in Global Scope Trigger Updating React Virtual DOM Tree
+ RR can Trigger Rerendering Virtual DOM Tree without Hooks
 ----------------------------------------------------------------------
 
 **React-Rerenderers** offers unique `useRerenderers()` hook.  With
@@ -316,7 +316,7 @@ export const AppView = () => {
 
 This actually opens a door for more aggressive optimization.
 
- Implement Model-View Controller
+ RR can Implement Model-View Controller
 ------------------------------------------------------
 
 In the previous section, we have seen that states are actually able to be stored
@@ -510,7 +510,7 @@ They only help to conform to the rules which are described in the previous
 section.
 
 
- Modularize Modal Dialogs
+ RR can Modularize Modal Dialogs
 -----------------------------------
 
 Implementing Modal Dialogs with **React.js** is tricky. At the first glance,
