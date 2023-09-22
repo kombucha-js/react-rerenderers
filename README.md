@@ -77,7 +77,7 @@ simplified.
         -   [useTransmitter( id:any )](#usetransmitter-idany)
         -   [getTransmitter( instance:any, id:any )](#gettransmitter-instanceany-idany)
         -   [useRerender()](#usererender)
-
+    -   [🌈 Conclusion 🌈](#conclusion)
 
 [TOC-END]: <>
 [TOC-GENERATOR]: <> ":r! cat README.md | pandoc --toc --wrap=none -s README.md  --from=markdown --to=markdown | sed -n '1,/^ *$/p"
