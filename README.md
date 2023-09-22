@@ -84,7 +84,7 @@ simplified.
  Eliminate State Lifting and Prop Drilling
 -------------------------------------------------------------
 
-### React Development with the traditional `useState()`
+### React Development with the traditional useState()
 
 Assume you are creating a simple application as follows:
 
@@ -451,7 +451,7 @@ it is able to cleanly modularize components and their states and
 the application can scalably be extended.
 
 
-### Rules of `useRerenderer()` and `fireRerenderers()`
+### Rules of useRerenderer() and fireRerenderers()
 
 It is very important to understand when to call `useRerenderer()` and
 `fireRerenderers()`.  
@@ -506,7 +506,7 @@ of rules properly.
 
 For further information, see [Render and Commit in React.js Official Documentation](https://react.dev/learn/render-and-commit).
 
-###  Rules of `useInstanceValue()` and `useInstanceValueSetter()`
+###  Rules of useInstanceValue() and useInstanceValueSetter()
 
 In the previous section, we have seen when to `useRerenderer()` and
 `fireRerenderer()`.
@@ -1035,7 +1035,7 @@ KOMESMCOIR modules must have three fields:
  API Reference
 -----------------------------------
 
-### `<InstanceProvider factory={} />` ###
+### <InstanceProvider factory={} /> ###
 
 `<InstanceProvider/>` can share the current object which all states in an
 application should be stored.  The attribute `factory` should be a function
@@ -1076,19 +1076,19 @@ your current object, it defaults to `GLOBAL_INSTANCE` as mentioned later.
 - factory : function 
   Specify a function which returns the current instance value to associate with.
 
-### `useInstance()` ###
+### useInstance() ###
 `useInstance()` hook returns the current instance which is associated to the
 React Virtual DOM Tree where the caller component is belonging to. If no
 instance is associated, it returns `GLOBAL_INSTANCE`.
 
 `GLOBAL_INSTANCE` is described in the following section.
 
-### `GLOBAL_INSTANCE` ###
+### GLOBAL_INSTANCE ###
 `GLOBAL_INSTANCE` is the default instance where there is no current instance
 which is associated to the React Virtual DOM Tree where the current component is
 belonging to.
 
-### `useInstanceValue( fieldname : string )` ###
+### useInstanceValue( fieldname : string ) ###
 `useInstanceValue()` returns the value of the specified field on the current
 instance which is associated to the React Virtual DOM Tree where the caller
 component is belonging to.
@@ -1102,7 +1102,7 @@ This is a helper function which is meant to simplify the calling process of
 
 
 
-### `useInstanceValueSetter( fieldname : string )` ###
+### useInstanceValueSetter( fieldname : string ) ###
 `useInstanceValueSetter()` returns a setter function to set a value of the
 specified field on the current instance which is associated to the React Virtual
 DOM Tree where the caller component is belonging to.
@@ -1115,7 +1115,7 @@ This is a helper function which is meant to simplify the calling process of
   Specify the field name to set a new value
 
 
-### `useRerenderer( id:any )` ###
+### useRerenderer( id:any ) ###
 `useRerenderer()` hook function marks the caller component with the specified ID
 
 
@@ -1123,7 +1123,7 @@ This is a helper function which is meant to simplify the calling process of
 - id : any 
   Specify the ID to mark as.
 
-### `fireRerenderers(instance:object, id:any)` ###
+### fireRerenderers(instance:object, id:any) ###
 `fireRerenderers()` refreshes and re-renders the components which is associated
 to the specified ID.
 
@@ -1134,7 +1134,7 @@ to the specified ID.
   Specify the ID of the components to be re-rendered.
 
 
-### `useNewTransmitter( id:any, f:function )` ###
+### useNewTransmitter( id:any, f:function ) ###
 
 `useNewTransmitter()` sets a value to the specified field on the current
 associated instance only while the caller component is mounted to the React
@@ -1155,7 +1155,7 @@ components on the other part of the tree.
   other components.
 
 
-### `useTransmitter( id:any )` ###
+### useTransmitter( id:any ) ###
 `useTransmitter()` retrieves the current value which is registered by
 `useNewTransmitter()` hook. `useTransmitter()` returns the value only when the
 caller of useNewTransmitter()` hook is mounted; otherwise it returns `null`.
@@ -1164,11 +1164,11 @@ caller of useNewTransmitter()` hook is mounted; otherwise it returns `null`.
 - id:any 
   Specify the ID which is used for identify the value.
 
-### `getTransmitter( instance:any, id:any )` ###
+### getTransmitter( instance:any, id:any ) ###
 `getTransmitter()` is a non-hook function which has the exactly same
 functionality with `useTransmitter()` function.
 
-### `useRerender()` ###
+### useRerender() ###
 `useRerender()` is the lowest-level basic function of **React-Rerenderers**.
 The return value is a function. Call the function to invoke rerendering process
 of the component which calls the `useRerender()` hook.
