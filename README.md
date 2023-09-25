@@ -11,6 +11,7 @@ simplified.
 
  👺 Features 👺
 ---------------
+- Zero dependent
 - No more [useState() Hell][usestate-hell]
 - No more [Prop Drilling][prop-drilling] Hell
 - No more [Lifting-State-Up][lifting-state-up] Hell
@@ -22,7 +23,6 @@ simplified.
 - No more [Stale Closure Problem][stale-closure-problem]
 - No more [Batch Update Problem][batch-update-problem]
 - No more fussy tricks to manage rendering triggers indirect way
-- Zero dependent
 
 [usestate-hell]: https://www.google.com/search?gl=us&hl=en&gws_rd=cr&safe=off&q=react+state+hell
 [prop-drilling]: https://react.dev/learn/passing-data-deeply-with-context
@@ -39,7 +39,7 @@ simplified.
 --------------------
 - Control when to rerender manually and precisely.
 - Offer a way to manage **React.js** states without other frameworks.
-- Centralize logic as Model-View Controller.
+- Centralize business logic as Model-View Controller.
 - Modularize not only components but also dialogs.
 
 
@@ -1223,3 +1223,4 @@ Thank you very much and see you soon.
 - On Aug 24, 2023, the new repository **react-rerenderers.js** was started.
 - At the time **react-rerenderers.js** was started, it was not registered to
   [https://npmjs.org/]()
+[]: <> " vim: set ts=2 sts=2 spell :  "
