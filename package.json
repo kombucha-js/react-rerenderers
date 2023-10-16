@@ -16,7 +16,7 @@
     "react.js",
     "hooks"
   ],
-  "author": "Kombucha.js",
+  "author": "Atsushi Oka",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/kombucha-js/react-rerenderers/issues"
