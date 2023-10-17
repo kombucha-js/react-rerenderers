@@ -934,10 +934,11 @@ return (
 ---------------------------------------------------------------
 
 We defines a convention which should be followed in all modules in a Kombucha.js
-frontend application. It defines fields an methods which should be defined in
-all modules and define how these modules are named.
+frontend application. It has a requirement to a module to implement some
+specific named fields and methods. It also has a requirement how those modules
+should be named.
 
-We call the convention as `KOMESMCOIR convention`.
+We call this convention as `KOMESMCOIR convention`.
 
 ### Design Goal
 
