@@ -938,7 +938,7 @@ frontend application. It has a requirement to a module to implement some
 specific named fields and methods. It also has a requirement how those modules
 should be named.
 
-We call this convention as `KOMESMCOIR convention`.
+We call this convention as **KOMESMCOIR** convention.
 
 ### Design Goal
 
