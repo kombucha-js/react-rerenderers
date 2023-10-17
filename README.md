@@ -61,7 +61,7 @@ simplified.
         -   [Rules of useInstanceValue() and useInstanceValueSetter()](#rules-of-useinstancevalue-and-useinstancevaluesetter)
     -   [Modularize Modal Dialogs](#modularize-modal-dialogs)
     -   [How to Use Rerenderers with React-Router](#how-to-use-rerenderers-with-react-router)
-    -   [Kombucha.js ES6 Module Convention in React.js (KOMESMCOIR)](#kombucha.js-es6-module-convention-in-react.js-komesmcoir)
+    -   [Kombucha.js ES6 Module Convention in React.js (KOMESMCOIR)](#kombuchajs-es6-module-convention-in-reactjs-komesmcoir)
         -   [Design Goal of KOMESMCOIR](#design-goal-of-komesmcoir)
         -   [Filename Convention](#filename-convention)
         -   [Fields to be Defined](#fields-to-be-defined)
@@ -933,8 +933,11 @@ return (
   Kombucha.js ES6 Module Convention in React.js (KOMESMCOIR)
 ---------------------------------------------------------------
 
-We defines the form of ES6 modules and its filename as described below. We call
-it KOMESMCOIR convention.
+We defines a convention which should be followed in all modules in a Kombucha.js
+frontend application. It defines fields an methods which should be defined in
+all modules and define how these modules are named.
+
+We call the convention as `KOMESMCOIR convention`.
 
 ### Design Goal
 
