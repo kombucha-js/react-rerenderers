@@ -1227,4 +1227,7 @@ Thank you very much and see you soon.
 - On Aug 24, 2023, the new repository **react-rerenderers.js** was started.
 - At the time **react-rerenderers.js** was started, it was not registered to
   [https://npmjs.org/]()
+- (Wed, 18 Oct 2023 21:21:25 +0900) Release `v1.0.0`.
+
+
 []: <> " vim: set ts=2 sts=2 spell :  "
