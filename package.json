@@ -1,8 +1,9 @@
 {
   "name": "react-rerenderers",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a new state management framework which allows you to decide to when and of where render your component.",
-  "main": "index.js",
+  "main": "index.mjs",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
