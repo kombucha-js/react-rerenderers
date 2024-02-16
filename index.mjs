@@ -300,7 +300,26 @@ export function useNewTransmitter(key, value) {
   const scope = useInstance();
   setTransmitter(scope, key, value);
 }
+
 export function useTransmitter(key) {
+  /* const rerenderer = */ useRerenderer(key);
+  const scope = useInstance();
+  return getTransmitter(scope, key);
+}
+
+/*
+ *
+ */
+
+export function useNewSharedState( key, initializer, dependency ) {
+  const value = React.useMemo( initializer, dependency );
+  const scope = useInstance();
+  setTransmitter( scope, key , value );
+
+  return value;
+}
+
+export function useSharedState(key) {
   /* const rerenderer = */ useRerenderer(key);
   const scope = useInstance();
   return getTransmitter(scope, key);

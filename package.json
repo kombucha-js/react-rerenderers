@@ -1,6 +1,6 @@
 {
   "name": "react-rerenderers",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "a new state management framework which allows you to decide to when and of where render your component.",
   "main": "index.mjs",
   "type": "module",
