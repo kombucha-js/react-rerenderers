@@ -307,21 +307,49 @@ export function useTransmitter(key) {
   return getTransmitter(scope, key);
 }
 
+
 /*
- *
+ * Shared State
  */
+function setSharedState(scope, key, value) {
+  if (key === null || key === undefined) {
+    throw new ReferenceError("the parameter key was not specified");
+  }
+  if (scope === null || scope === undefined) {
+    throw new ReferenceError("the parameter scope was not specified");
+  }
+  if (typeof scope !== "object") {
+    throw new ReferenceError("scope must be an object");
+  }
+  scope[key] = value;
+  return;
+}
+
+function getSharedState(scope, key) {
+  if (key === null || key === undefined) {
+    throw new ReferenceError("the parameter key was not specified");
+  }
+  if (scope === null || scope === undefined) {
+    throw new ReferenceError("the parameter scope was not specified");
+  }
+  if (typeof scope !== "object") {
+    throw new ReferenceError("scope must be an object");
+  }
+  return scope[key] ?? null;
+}
 
 export function useNewSharedState( key, initializer, dependency ) {
-  const value = React.useMemo( initializer, dependency );
+  const args = dependency ? [ initializer, dependency ] : [ initializer ];
+  const value = React.useMemo( ...args );
   const scope = useInstance();
-  setTransmitter( scope, key , value );
-
+  setSharedState( scope, key , value );
   return value;
 }
 
 export function useSharedState(key) {
   /* const rerenderer = */ useRerenderer(key);
   const scope = useInstance();
-  return getTransmitter(scope, key);
+  return getSharedState(scope, key);
 }
+
 
