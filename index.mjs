@@ -339,8 +339,8 @@ function getSharedState(scope, key) {
 }
 
 export function useNewSharedState( key, initializer, dependency ) {
-  const args = dependency ? [ initializer, dependency ] : [ initializer ];
-  const value = React.useMemo( ...args );
+  // const args = dependency ? [ initializer, dependency ] : [ initializer ];
+  const value = React.useMemo( initializer, dependency );
   const scope = useInstance();
   setSharedState( scope, key , value );
   return value;
