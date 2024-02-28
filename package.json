@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/kombucha-js/react-rerenderers/issues"
   },
-  "homepage": "https://github.com/kombucha-js/react-rerenderers#readme"
+  "homepage": "https://github.com/kombucha-js/react-rerenderers#readme",
+  "dependencies": {
+    "react": "^18.2.0"
+  }
 }
