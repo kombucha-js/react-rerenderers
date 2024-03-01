@@ -1218,6 +1218,7 @@ Thank you very much and see you soon.
 - v1.0.6 Updated README.md (Wed, 09 Aug 2023 20:30:01 +0900)
 - v1.0.7 Removed JSX syntax (Fri, 11 Aug 2023 10:56:13 +0900)
 - v1.0.8 Exported `useRerender()` (Sat, 12 Aug 2023 15:57:48 +0900)
+- v1.0.9 add `useNewSharedState()` (Fri, 01 Mar 2024 14:49:04 +0900)
 
 ### as `react-rerenderers.js` ###
 
