@@ -311,7 +311,7 @@ export function useTransmitter(key) {
 /*
  * Shared State
  */
-function setSharedState(scope, key, value) {
+export function setSharedState(scope, key, value) {
   if (key === null || key === undefined) {
     throw new ReferenceError("the parameter key was not specified");
   }
@@ -321,11 +321,24 @@ function setSharedState(scope, key, value) {
   if (typeof scope !== "object") {
     throw new ReferenceError("scope must be an object");
   }
-  scope[key] = value;
+
+  if ( scope[key] ) {
+    if ( Array.isArray( scope[key] ) ) {
+      // okay
+    } else {
+      console.error( `the property ${key} is already defined. `, scope[key] );
+      throw new Error( `the property ${key} is already defined. ` );
+    }
+  } else {
+    scope[key] = [];
+  }
+
+  scope[key].push( value );
+
   return;
 }
 
-function getSharedState(scope, key) {
+export function unsetSharedState(scope, key, value) {
   if (key === null || key === undefined) {
     throw new ReferenceError("the parameter key was not specified");
   }
@@ -335,14 +348,60 @@ function getSharedState(scope, key) {
   if (typeof scope !== "object") {
     throw new ReferenceError("scope must be an object");
   }
-  return scope[key] ?? null;
+
+  if ( scope[key] ) {
+    if ( Array.isArray( scope[key] ) ) {
+      if ( scope[key].pop() === value ) {
+        // okay
+        return;
+      } else {
+        throw new Error( `the last value on the property $${key} does not match to the specified object.` );
+      }
+    } else {
+      // silently ignore it.
+    }
+  }
+
+  return;
+}
+
+
+export function getSharedState(scope, key) {
+  if (key === null || key === undefined) {
+    throw new ReferenceError("the parameter key was not specified");
+  }
+  if (scope === null || scope === undefined) {
+    throw new ReferenceError("the parameter scope was not specified");
+  }
+  if (typeof scope !== "object") {
+    throw new ReferenceError("scope must be an object");
+  }
+
+  if ( scope[key] ) {
+    if ( Array.isArray( scope[key] ) ) {
+      if ( 0 < scope[key].length ) {
+        return (scope[key])[scope[key].length-1];
+      } else {
+        return null;
+      }
+    } else {
+      throw new Error( `the property ${key} is already defined as another variable.` );
+    }
+  } else {
+    return null;
+  }
 }
 
 export function useNewSharedState( key, initializer, dependency ) {
   // const args = dependency ? [ initializer, dependency ] : [ initializer ];
   const value = React.useMemo( initializer, dependency );
   const scope = useInstance();
-  setSharedState( scope, key , value );
+  React.useInsertionEffect(()=>{
+    setSharedState( scope, key , value );
+    return ()=>{
+      unsetSharedState( scope, key , value );
+    };
+  });
   return value;
 }
 
