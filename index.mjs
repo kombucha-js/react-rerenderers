@@ -63,6 +63,7 @@ class CollectionMap {
           key +
           "' does not exist; ignored."
       );
+      console.trace('nonexisted key ' + key );
       return undefined;
     }
   }
@@ -377,17 +378,21 @@ export function getSharedState(scope, key) {
     throw new ReferenceError("scope must be an object");
   }
 
+
   if ( scope[key] ) {
     if ( Array.isArray( scope[key] ) ) {
       if ( 0 < scope[key].length ) {
         return (scope[key])[scope[key].length-1];
       } else {
+        // console.error('mMC885wcf7APihCGQAor4g','react-rerenderers/scope(zero)', 'key',key, 'scope',scope );
         return null;
       }
     } else {
       throw new Error( `the property ${key} is already defined as another variable.` );
     }
   } else {
+    // console.error('mMC885wcf7APihCGQAor4g','react-rerenderers/scope(null)', 'key',key, 'scope[key]',scope[key] );
+    // console.error('mMC885wcf7APihCGQAor4g','react-rerenderers/scope(null)', 'key',key, 'scope',{...scope });
     return null;
   }
 }
@@ -410,5 +415,64 @@ export function useSharedState(key) {
   const scope = useInstance();
   return getSharedState(scope, key);
 }
+
+/*
+ * Added on (Wed, 12 Jun 2024 17:27:05 +0900)
+ */
+
+export class SharedStates {
+  getSharedState( key ) {
+    return getSharedState( this, key );
+  }
+  useSharedState( key, initializer, dependency ) {
+    const value = React.useMemo( initializer, dependency );
+    const scope = this;
+    React.useInsertionEffect(()=>{
+      setSharedState( scope, key , value );
+      return ()=>{
+        unsetSharedState( scope, key , value );
+      };
+    });
+    return value;
+  }
+
+  useRerenderer(key) {
+    const instance = this;
+    const cmap = mapMap.getMap(instance);
+    const rerender = useRerender();
+    React.useEffect(() => {
+      if (key !== undefined) {
+        cmap.addRerenders(key, rerender);
+      }
+      return () => {
+        if (key !== undefined) {
+          cmap.deleteRerenders(key, rerender);
+        }
+      };
+    });
+  }
+
+  fireRerenderers(key){
+    fireRerenderers( this, key );
+  }
+
+  useSharedValue( key ) {
+    const instance = this;
+    this.useRerenderer(key);
+    return instance[key];
+  }
+
+  getSharedValue( key ) {
+    const instance = this;
+    return instance[key];
+  }
+  setSharedValue( key , value ) {
+    const instance = this;
+    instance[key] = value;
+    fireRerenderers( this, key );
+  }
+}
+
+
 
 
