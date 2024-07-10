@@ -410,6 +410,9 @@ export function useNewSharedState( key, initializer, dependency ) {
   return value;
 }
 
+/*
+ * deprecated
+ */
 export function useSharedState(key) {
   /* const rerenderer = */ useRerenderer(key);
   const scope = useInstance();
