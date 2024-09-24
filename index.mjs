@@ -28,11 +28,8 @@ class CollectionMap {
     if (this.rerenderMap.has(key)) {
       return this.rerenderMap.get(key);
     } else {
-      console.warn(
-        "the specified rerenderer of which key is '" +
-          (key ?? "null").toString() +
-          "' does not exist; ignored."
-      );
+      console.info ( `[react-rerenderers] the specified rerenderer of which key is "${ (key ?? "null").toString() }" does not exist; ignored.` );
+      console.trace( `[react-rerenderers] nonexisted key "${key}"` );
       return undefined;
     }
   }
@@ -58,12 +55,8 @@ class CollectionMap {
     if (this.dependerMap.has(key)) {
       return this.dependerMap.get(key);
     } else {
-      console.warn(
-        "the specified rerenderer which key is '" +
-          key +
-          "' does not exist; ignored."
-      );
-      console.trace('nonexisted key ' + key );
+      console.info(  `[react-rerenderers] the specified rerenderer which key is "${ key }" does not exist; ignored.` );
+      console.trace( `[react-rerenderers] nonexisted key "${key}"` );
       return undefined;
     }
   }
