@@ -23,7 +23,15 @@
     "url": "https://github.com/kombucha-js/react-rerenderers/issues"
   },
   "homepage": "https://github.com/kombucha-js/react-rerenderers#readme",
+  "bakDependencies": {
+    "react": "^18.2.0"
+  },
+  "bakPeerDependencies": {
+    "react": "^18.2.0"
+  },
   "dependencies": {
+  },
+  "peerDependencies": {
     "react": "^18.2.0"
   }
 }
